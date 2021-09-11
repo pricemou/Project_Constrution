@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+        <!-- Tourniquets Dashboard -->
+        <template id="dashboard" name="Tableau de bord">
+            <t t-call="website.layout">
+                <div class="dashboard">
+                    <div>
+                        <a  id="hidden_box_btn"  class="btn btn-primary btn-lg o_default_snippet_text">configure</a>
+                    </div>
+					<div id="check_notif" class="modal fade" tabindex="-1"
+                        role="dialog" aria-labelledby="label" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div id="loading-indicator" style="display:none" />
+                                <div class="choose_driverpopup">
+                                    <div class="modal-header">
+                                        <div class="tourniq_iconr col-2">
+                                            <img class="img-thumbnail rounded-circle"
+                                                src="/tourniquets/static/description/icon.png"
+                                                alt="" />
+                                        </div>
+                                        <h3 class="modal-title" id="label">Nouveau check</h3>
+                                    </div>
+                                    <div class="modal-body check-details">
+                                        <div class="empl-image col-7">
+                                            <img class="img-fluid rounded"
+                                                src=""
+                                                alt="" />
+                                        </div>
+                                        <div class="empl-infos">
+                                            <h4 class="empl-name insert-name">Name</h4>
+                                            <p class="check-date">Date : <span class="insert-date"></span></p>
+                                            <p class="check-date">Time : <span class="insert-time"></span></p>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <!-- <button type="button" class="btn cancelbtn"
+                                                data-dismiss="modal">Fermer
+                                        </button> -->
+                                        <!-- <button type="button" class="btn cancelbtn confirm_driver">Ok</button> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

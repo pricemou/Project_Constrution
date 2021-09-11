@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+	<data>
+        <template id="tourniquets_assets"
+			inherit_id="website.assets_frontend" name="Tourniquets Assets">
+            <xpath expr="." position="inside">
+                <script type="text/javascript"
+					src="/tourniquets/static/src/js/script.js" />
+                <link rel="stylesheet" type="text/scss" href="/tourniquets/static/src/css/styles.css"/>
+                <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+			</xpath>
+
+        </template>
+
+    </data>
+</odoo>
