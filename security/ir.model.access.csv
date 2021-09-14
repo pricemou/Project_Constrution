@@ -1,2 +1,2 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_construction_projects,access_construction.projects,model_construction_projects,,1,1,1,1
+access_construction_projects,construction.projects,model_construction_projects,,1,1,1,1

@@ -2,21 +2,90 @@
     <data>
     
         <!-- model.name form view -->
-        <record id="model_name_view_form" model="ir.ui.view">
-            <field name="name">model.name.view.form</field>
-            <field name="model">model.name</field>
+        <record id="construction_projects_view_form" model="ir.ui.view">
+            <field name="name">construction.projects.view.form</field>
+            <field name="model">construction.projects</field>
             <field name="arch" type="xml">
                 <form string="">
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                            
+                          <sheet>
+                                <field name="photo" nolabel="1"
+                                    class="oe_left oe_avatar" img_width="120"
+                                    img_height="120" width="120" height="110"
+                                    widget="image" />
+
+                                <div class="oe_title" >
+                                    <div class="oe_edit_only">
+                                        <label for="clientConstruction_Id" />
+                                    </div>
+                                    <h1>
+                                        <field style="width: 30%%" name="clientConstruction_Id"
+                                            default_focus="1" placeholder="Nom"
+                                            context="" />
+                                    </h1>
+                                </div>
+
+                                 <group>
+                                    <group>
+                                        <field name="name" />
+                                        <field name="date" />
+                                        <field name="type_de_construction" />
+                                    </group>
+                                    <group>
+                                        <field name="sex" />
+                                        <!-- <field name="age" readonly="1" /> -->
+                                        <field name="entrepot" />
+                                    </group>
+                                </group>
+
+                                <!-- <notebook>
+                                    <page string="Diseases">
+                                        <field name="patient_disease_ids"
+                                            nolabel="1" widget="one2many_list" />
+                                    </page>
+                                </notebook> -->
+
+                          </sheet>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
-        
+
+        <!-- construction.projects tree view -->
+        <record id="construction_projects_view_tree" model="ir.ui.view">
+            <field name="name">construction.projects.view.tree</field>
+            <field name="model">construction.projects</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!-- Add your fields here -->
+                    
+                </tree>
+            </field>
+        </record>
+
+        <!-- construction.projects action window -->
+        <record id="action_construction_projects" model="ir.actions.act_window">
+            <field name="name">Projets</field>
+            <field name="res_model">construction.projects</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_type">form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    <!-- Add Text Here -->
+                </p><p>
+                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+            </field>
+        </record>
+
+         <!-- <menuitem sequence="0" id="construction_root" name="Construction"/>
+
+        <menuitem id="construction_projectss_menu" parent="construction_root"
+            name="Projets" action="action_construction_projectss" sequence="1"/> -->
+
     
     </data>
     

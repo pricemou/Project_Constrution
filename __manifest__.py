@@ -7,10 +7,10 @@
     'version': '1.0',
     'depends': ['base','sale','mrp'],
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/ir.model.access.csv',
         # 'views/templates.xml',
-        'views/construction.xml',
         'views/views.xml',
+        'menu/menu.xml',
         # 'static/src/views/dashboard.xml',
     ],
     'application': True,
