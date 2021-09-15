@@ -1,16 +1,48 @@
-<?xml version="1.0" encoding="utf-8" ?>
 <odoo>
-	<data>
-        <template id="tourniquets_assets"
-			inherit_id="website.assets_frontend" name="Tourniquets Assets">
+    <data>
+        <template id="simple_theme_assets" name="simple" inherit_id="website.assets_frontend"> 
+          <xpath expr="//link[last()]" position="after" > 
+            <title>Open Medecine</title>
+
+           <!-- BASE CSS -->
+            <link href="/construction/static/css/style.css" rel="stylesheet"/>
+
+          </xpath> 
+        </template> 
+
+        
+        <template id="assets_backend" name="Backernd" inherit_id="web.assets_backend"> 
+
             <xpath expr="." position="inside">
-                <script type="text/javascript"
-					src="/tourniquets/static/src/js/script.js" />
-                <link rel="stylesheet" type="text/scss" href="/tourniquets/static/src/css/styles.css"/>
-                <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-			</xpath>
+                <!--These links will be called when loading your Odoo -->
+                <link href="/construction/static/css/style.css" rel="stylesheet"/>
+            </xpath>
 
-        </template>
+        </template> 
+        
+        <!-- <record id="homepage_view_1" model="ir.ui.view">
+         <field name="name">Open Medecine</field>
+         <field name="type">qweb</field>
+         <field name="key">website.homepage1</field>
+         <field name="mode">primary</field>
+         <field name="active">True</field>
+         <field name="arch" type="xml"> 
+            <t name="Homepage" t-name="website.homepage1">
+                <t t-call="website.layout">
+                    <t t-set="pageName" t-value="'homepage'"/>
+                    <div id="wrap" class="oReservee_structure oe_empty">
+                        <p>hello</p>
+                    </div>
+                </t>
+            </t>
+         </field>
+        </record> -->
 
+        <!-- <record id="homepage_view_menu" model="website.page">
+            <field name="website_published">True</field>
+            <field name="url">/demoNome</field>
+            <field name="is_homepage">True</field>
+            <field name="view_id" ref="homepage_view_1"/>
+        </record> -->
     </data>
 </odoo>

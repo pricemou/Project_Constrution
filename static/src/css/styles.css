@@ -1,9 +1,0 @@
-#check_notif .modal-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.check-details{
-    display: flex;
-}
