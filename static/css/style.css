@@ -159,7 +159,21 @@ a:hover{
     border-bottom-color:var(--verte);
 }
 
+.o_main_navbar > ul > li.o_extra_menu_items.show > ul > li > a {
+    background-color:var(--verte);
+}
+
 /*------------ o_footer_copyright ------------------ */
 .o_footer_copyright {
     display: none;
+}
+
+
+/*------------ o_footer_copyright ------------------ */
+
+
+.text_value_color:hover {
+    font-size: 19px;
+    font-weight: 500;
+    color: #ef7c29;
 }

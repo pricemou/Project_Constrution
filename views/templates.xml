@@ -11,38 +11,14 @@
         </template> 
 
         
-        <template id="assets_backend" name="Backernd" inherit_id="web.assets_backend"> 
+        <template id="assets_backend" name="Backend" inherit_id="web.assets_backend"> 
 
             <xpath expr="." position="inside">
                 <!--These links will be called when loading your Odoo -->
                 <link href="/construction/static/css/style.css" rel="stylesheet"/>
+                <!-- <script type="text/javascript" src="/construction/static/js/file.js"/> -->
             </xpath>
 
         </template> 
-        
-        <!-- <record id="homepage_view_1" model="ir.ui.view">
-         <field name="name">Open Medecine</field>
-         <field name="type">qweb</field>
-         <field name="key">website.homepage1</field>
-         <field name="mode">primary</field>
-         <field name="active">True</field>
-         <field name="arch" type="xml"> 
-            <t name="Homepage" t-name="website.homepage1">
-                <t t-call="website.layout">
-                    <t t-set="pageName" t-value="'homepage'"/>
-                    <div id="wrap" class="oReservee_structure oe_empty">
-                        <p>hello</p>
-                    </div>
-                </t>
-            </t>
-         </field>
-        </record> -->
-
-        <!-- <record id="homepage_view_menu" model="website.page">
-            <field name="website_published">True</field>
-            <field name="url">/demoNome</field>
-            <field name="is_homepage">True</field>
-            <field name="view_id" ref="homepage_view_1"/>
-        </record> -->
     </data>
 </odoo>

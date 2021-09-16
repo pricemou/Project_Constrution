@@ -5,7 +5,17 @@
     'category': 'Extras tool',
     'author': 'Pricemou Claude, Willof-God Bassanti',
     'version': '1.0',
-    'depends': ['base','sale','mrp','website','website_theme_install'],
+    'depends': [
+        'base',
+        'sale',
+        'purchase',
+        'sale',
+        'project',
+        'account',
+        'stock',
+        'mrp',
+        'website',
+        'website_theme_install'],
     'data': [
         'security/ir.model.access.csv',
         'views/templates.xml',

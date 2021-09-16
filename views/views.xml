@@ -3,7 +3,7 @@
     
         <!-- model.name form view -->
         <record id="construction_projects_view_form" model="ir.ui.view">
-            <field name="name">construction.projects.view.form</field>
+            <field name="name">Listes des construction</field>
             <field name="model">construction.projects</field>
             <field name="arch" type="xml">
                 <form string="">
@@ -11,7 +11,7 @@
                         <group>
                             <!-- Add your fields here -->
                           <sheet>
-                                <field name="photo" nolabel="1"
+                                <field name="image_medium" nolabel="1"
                                     class="oe_left oe_avatar" img_width="120"
                                     img_height="120" width="120" height="110"
                                     widget="image" />
@@ -29,23 +29,23 @@
 
                                  <group>
                                     <group>
-                                        <field name="name" />
+                                        <!-- <field name="id" /> -->
                                         <field name="date" />
                                         <field name="type_de_construction" />
-                                    </group>
+                                    </group>    
                                     <group>
                                         <field name="sex" />
-                                        <!-- <field name="age" readonly="1" /> -->
                                         <field name="entrepot" />
+                                        <field name="telephone"/>
                                     </group>
                                 </group>
 
-                                <!-- <notebook>
-                                    <page string="Diseases">
-                                        <field name="patient_disease_ids"
-                                            nolabel="1" widget="one2many_list" />
+                                <notebook>
+                                    <page string="Transaction">
+                                        <field name="transaction_ids"
+                                            nolabel="1"  />
                                     </page>
-                                </notebook> -->
+                                </notebook>
 
                           </sheet>
                         </group>
@@ -56,11 +56,15 @@
 
         <!-- construction.projects tree view -->
         <record id="construction_projects_view_tree" model="ir.ui.view">
-            <field name="name">construction.projects.view.tree</field>
+            <field name="name">Construction</field>
             <field name="model">construction.projects</field>
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
+                    <field name="clientConstruction_Id" />
+                    <field name="clientConstruction_Id" />
+                    <field name="date" />
+                    <field name="type_de_construction" />
                     
                 </tree>
             </field>
@@ -70,7 +74,7 @@
         <record id="action_construction_projects" model="ir.actions.act_window">
             <field name="name">Projets</field>
             <field name="res_model">construction.projects</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">kanban,tree,form</field>
             <field name="view_type">form</field>
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
@@ -78,6 +82,44 @@
                 </p><p>
                     <!-- More details about what a user can do with this object will be OK --> 
                 </p>
+            </field>
+        </record>
+
+        <!-- construction.projects kanban view -->
+        <record id='construction_projects_view_kanban' model='ir.ui.view'>
+        <field name="name">construction.projects.kanban</field>
+        <field name="model">construction.projects</field>
+        <field name="arch" type="xml">
+            <kanban string="Kanban "  >
+                <field name="id"  />
+                <!-- <field name="image" /> -->
+                <field name="clientConstruction_Id" /> 
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click ">
+                            <div class="o_kanban_image">
+                                <img t-att-src="kanban_image('construction.projects', 'image_medium', record.id.raw_value)"/>
+                            </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title text_value_color">
+                                        <field name="clientConstruction_Id"/>
+                                    </strong>
+                                        <ul>
+                                            <li>
+                                                <t t-if="record.date"><field name="date"/></t>
+                                            </li>
+                                            <li>
+                                                <t t-if="record.sex"><field name="sex"/></t>
+                                            </li>
+                                            <li>
+                                                <t t-if="record.telephone"><field name="telephone"/></t>
+                                            </li>
+                                        </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
             </field>
         </record>
 
