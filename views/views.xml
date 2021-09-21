@@ -37,7 +37,16 @@
 
                                 <notebook>
                                     <page string="Transaction">
-                                        <field name="transaction_ids" nolabel="1" />
+                                        <!-- <field name="state" invisible="1"/> -->
+                                        <!-- <field name="transaction_ids" nolabel="1" /> -->
+                                        <field name="transaction_ids" attrs="{'invisible': [('warehouse_id', '=', False)]}" nolabel="1" mode="tree">
+                                            <tree default_order="scheduled_date">
+                                                <field name="scheduled_date" string="Date de la demande"/>
+                                                <field name="partner_id"/>
+                                                <field name="picking_type_id"/>
+                                                <field name="state"/>
+                                            </tree>
+                                        </field>
                                     </page>
                                     <page string="Description">
                                         <!-- <field name="transaction_ids" nolabel="1" /> -->
@@ -113,6 +122,16 @@
             </field>
         </record>
 
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">view_picking_form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="construction_project_id" />
+                </field>
+            </field>
+        </record>
         <!-- <menuitem sequence="0" id="construction_root" name="Construction"/>
 
         <menuitem id="construction_projectss_menu" parent="construction_root" name="Projets" action="action_construction_projectss" sequence="1"/> -->

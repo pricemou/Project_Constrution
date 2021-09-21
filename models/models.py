@@ -10,8 +10,8 @@ class ConstructionProjects(models.Model):
     construction_type = fields.Many2one(
         comodel_name='construction.type', string='Type de construction')
     warehouse_id = fields.Many2one('stock.warehouse', string="Entrepot")
-    transaction_ids = fields.Many2many(
-        'stock.picking', relation='transaction', column1='scheduled_date', column2='picking_type_id')
+    transaction_ids = fields.One2many(
+        comodel_name='stock.picking', inverse_name='construction_project_id', string='Opération')
 
     @api.model
     def create(self, vals):
@@ -37,3 +37,10 @@ class ConstructionType(models.Model):
 
     name = fields.Char(string='Intitulé')
     description = fields.Text(string='Description')
+
+
+class StockPickInherit(models.Model):
+    _inherit = "stock.picking"
+
+    construction_project_id = fields.Many2one(
+        comodel_name='construction.projects', string='Projet de construction')
