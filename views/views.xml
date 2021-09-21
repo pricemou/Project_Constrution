@@ -31,7 +31,7 @@
                                         <field name="construction_type" />
                                     </group>
                                     <group>
-                                        <field name="warehouse" />
+                                        <field name="warehouse_id" />
                                     </group>
                                 </group>
 
