@@ -1,0 +1,15 @@
+<odoo>
+  <data>
+
+    <template id="assets_backend" name="Backend" inherit_id="web.assets_backend">
+
+      <xpath expr="." position="inside">
+        <!--These links will be called when loading your Odoo -->
+        <link href="/Project_Constrution-master/static/css/style.css" rel="stylesheet"/>
+        <!-- <script type="text/javascript" src="/Project_Constrution-master/static/js/file.js"/> -->
+      </xpath>
+
+    </template>
+
+  </data>
+</odoo>
