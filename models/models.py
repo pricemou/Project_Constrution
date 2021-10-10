@@ -16,30 +16,30 @@ class ConstructionProjects(models.Model):
     quotation_ids = fields.One2many(
         comodel_name='construction.quotation', inverse_name='construction_project_id', string='Dévis')
 
-    # @api.model
-    # def create(self, vals):
-    #     result = ''
-    #     wrd_list = vals['name'].split(' ')
-    #     if len(wrd_list) >= 2:
-    #         for word in wrd_list:
-    #             result += str(word[0])
-    #     else:
-    #         result = str(vals['name'][:3])
+    @api.model
+    def create(self, vals):
+        result = ''
+        wrd_list = vals['name'].split(' ')
+        if len(wrd_list) >= 2:
+            for word in wrd_list:
+                result += str(word[0])
+        else:
+            result = str(vals['name'][:3])
 
-    #     new_seqref = self.env['ir.sequence'].sudo().create(
-    #         {
-    #             'name': 'Séq. ' + vals['name'],
-    #             'prefix': 'IC/TO/' + result.upper()
-    #         })
-    #     vals['sequence_id'] = new_seqref.id
-    #     operation_type = self.env['ir.sequence'].sudo().create(
-    #         {
-    #             'name': 'Op. ' + vals['name'],
-    #             'sequence_id': new_seqref.id,
-    #             'code': 'outgoing'
-    #         })
-    #     vals['operation_type'] = operation_type.id
-    #     return super(ConstructionProjects, self).create(vals)
+        new_seqref = self.env['ir.sequence'].sudo().create(
+            {
+                'name': 'Séq. ' + vals['name'],
+                'prefix': 'IC/TO/' + result.upper()
+            })
+        vals['sequence_id'] = new_seqref.id
+        operation_type = self.env['ir.sequence'].sudo().create(
+            {
+                'name': 'Op. ' + vals['name'],
+                'sequence_id': new_seqref.id,
+                'code': 'outgoing'
+            })
+        vals['operation_type'] = operation_type.id
+        return super(ConstructionProjects, self).create(vals)
 
 
 class ConstructionType(models.Model):

@@ -177,3 +177,14 @@ a:hover{
     font-weight: 500;
     color: #ef7c29;
 }
+
+
+.o_main_navbar .dropdown-menu.show {
+    background: #ef7c29;
+    border: 1px solid #ef7c29;
+
+}
+
+.dropdown-item{
+    color: #ffffff;
+}
