@@ -4,7 +4,7 @@ from odoo import http, _
 from odoo.http import request
 import logging
 from datetime import datetime, timedelta
-from datetime import date
+from datetime import start_date
 import json
 import base64
 

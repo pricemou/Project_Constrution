@@ -1,6 +1,6 @@
-<odoo>  
+<odoo>
     <data>
-    
+
         <!-- model.name form view -->
         <record id="construction_projects_view_form" model="ir.ui.view">
             <field name="name">Listes des construction</field>
@@ -10,44 +10,44 @@
                     <sheet>
                         <group>
                             <!-- Add your fields here -->
-                          <sheet>
-                                <field name="image_medium" nolabel="1"
-                                    class="oe_left oe_avatar" img_width="120"
-                                    img_height="120" width="120" height="110"
-                                    widget="image" />
+                            <sheet>
 
-                                <div class="oe_title" >
+                                <div class="oe_title">
                                     <div class="oe_edit_only">
-                                        <label for="clientConstruction_Id" />
+                                        <label for="name" />
                                     </div>
                                     <h1>
-                                        <field style="width: 30%%" name="clientConstruction_Id"
-                                            default_focus="1" placeholder="Nom"
-                                            context="" />
+                                        <field name="name" default_focus="1" placeholder="Nom" context="" />
                                     </h1>
+                                    <group>
+                                        <field name="partner_id"/>
+                                    </group>
                                 </div>
 
-                                 <group>
+                                <group>
                                     <group>
-                                        <!-- <field name="id" /> -->
-                                        <field name="date" />
-                                        <field name="type_de_construction" />
-                                    </group>    
-                                    <group>
-                                        <field name="sex" />
-                                        <field name="entrepot" />
-                                        <field name="telephone"/>
+                                        <field name="operation_type" />
+                                        <field name="sequence_id" />
+                                        <field name="start_date" />
+                                        <field name="construction_type" />
                                     </group>
                                 </group>
 
                                 <notebook>
-                                    <page string="Transaction">
-                                        <field name="transaction_ids"
-                                            nolabel="1"  />
+                                    <page string="Dévis">
+                                        <field editable="bottom" name="quotation_ids" nolabel="1" mode="tree">
+                                            <tree default_order="product_id">
+                                                <field name="product_id" string="Date de la demande"/>
+                                                <field name="estimated_quantity"/>
+                                                <field name="used_quantity"/>
+                                                <field name="remaining_quantity"/>
+                                                <field name="used_quantity"/>
+                                            </tree>
+                                        </field>
                                     </page>
                                 </notebook>
 
-                          </sheet>
+                            </sheet>
                         </group>
                     </sheet>
                 </form>
@@ -61,11 +61,10 @@
             <field name="arch" type="xml">
                 <tree>
                     <!-- Add your fields here -->
-                    <field name="clientConstruction_Id" />
-                    <field name="clientConstruction_Id" />
-                    <field name="date" />
-                    <field name="type_de_construction" />
-                    
+                    <field name="name" />
+                    <field name="start_date" />
+                    <field name="construction_type" />
+
                 </tree>
             </field>
         </record>
@@ -79,42 +78,43 @@
             <field name="help" type="html">
                 <p class="oe_view_nocontent_create">
                     <!-- Add Text Here -->
-                </p><p>
-                    <!-- More details about what a user can do with this object will be OK --> 
+                </p>
+                <p>
+                    <!-- More details about what a user can do with this object will be OK -->
                 </p>
             </field>
         </record>
 
+        <record id="action_construction_operation" model="ir.actions.act_window">
+            <field name="name">Transactions</field>
+            <field name="res_model">stock.picking</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="view_type">form</field>
+        </record>
+
         <!-- construction.projects kanban view -->
         <record id='construction_projects_view_kanban' model='ir.ui.view'>
-        <field name="name">construction.projects.kanban</field>
-        <field name="model">construction.projects</field>
-        <field name="arch" type="xml">
-            <kanban string="Kanban "  >
-                <field name="id"  />
-                <!-- <field name="image" /> -->
-                <field name="clientConstruction_Id" /> 
-                <templates>
-                    <t t-name="kanban-box">
-                        <div class="oe_kanban_global_click ">
-                            <div class="o_kanban_image">
-                                <img t-att-src="kanban_image('construction.projects', 'image_medium', record.id.raw_value)"/>
-                            </div>
+            <field name="name">construction.projects.kanban</field>
+            <field name="model">construction.projects</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban ">
+                    <field name="id" />
+                    <!-- <field name="image" /> -->
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click ">
                                 <div class="oe_kanban_details">
                                     <strong class="o_kanban_record_title text_value_color">
-                                        <field name="clientConstruction_Id"/>
+                                        <field name="name"/>
                                     </strong>
-                                        <ul>
-                                            <li>
-                                                <t t-if="record.date"><field name="date"/></t>
-                                            </li>
-                                            <li>
-                                                <t t-if="record.sex"><field name="sex"/></t>
-                                            </li>
-                                            <li>
-                                                <t t-if="record.telephone"><field name="telephone"/></t>
-                                            </li>
-                                        </ul>
+                                    <ul>
+                                        <li>
+                                            <t t-if="record.start_date">
+                                                <field name="start_date"/>
+                                            </t>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </t>
@@ -123,12 +123,21 @@
             </field>
         </record>
 
-         <!-- <menuitem sequence="0" id="construction_root" name="Construction"/>
+        <record id="view_picking_form_inherit" model="ir.ui.view">
+            <field name="name">view_picking_form.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
+            <field name="arch" type="xml">
+                <field name="origin" position="after">
+                    <field name="construction_project_id" />
+                </field>
+            </field>
+        </record>
+        <!-- <menuitem sequence="0" id="construction_root" name="Construction"/>
 
-        <menuitem id="construction_projectss_menu" parent="construction_root"
-            name="Projets" action="action_construction_projectss" sequence="1"/> -->
+        <menuitem id="construction_projectss_menu" parent="construction_root" name="Projets" action="action_construction_projectss" sequence="1"/> -->
 
-    
+
     </data>
-    
+
 </odoo>

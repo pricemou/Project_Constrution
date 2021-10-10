@@ -5,5 +5,8 @@
 
         <menuitem id="construction_projects_menu" parent="construction_root"
             name="Projets" action="action_construction_projects" sequence="1"/>
+
+        <menuitem id="construction_operation_menu" parent="construction_root"
+            name="Operation" action="action_construction_operation" sequence=""/>
   </data>
 </odoo>

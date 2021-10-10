@@ -1,2 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_construction_projects,construction.projects,model_construction_projects,,1,1,1,1
+access_construction_quotation,construction.quotation,model_construction_quotation,,1,1,1,1
+access_construction_type,construction.type,model_construction_type,,1,1,1,1
