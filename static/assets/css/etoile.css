@@ -1,0 +1,105 @@
+.page {
+    margin-top: 90px;
+}
+
+body {
+    background-color: #eee
+}
+
+div.stars {
+    width: 270px;
+    display: inline-block
+}
+
+.mt-200 {
+    margin-top: 4px;
+    padding: 23px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0px 0px grey;
+}
+
+input.star {
+    display: none;
+}
+
+label.star {
+    float: right;
+    padding: 10px;
+    font-size: 36px;
+    color: grey;
+    transition: all .2s
+}
+
+input.star:checked~label.star:before {
+    content: '\f005';
+    color: #FD4;
+    transition: all .25s
+}
+
+input.star-5:checked~label.star:before {
+    color: #FE7;
+    text-shadow: 0 0 20px #952
+}
+
+input.star-1:checked~label.star:before {
+    color: #F62
+}
+
+label.star:hover {
+    transform: rotate(-15deg) scale(1.3)
+}
+
+label.star:before {
+    content: '\f006';
+    font-family: FontAwesome
+}
+
+.agent {
+    margin-top: 50px;
+}
+
+.valider {
+    width: 278px;
+    padding: 7px;
+    height: 69px;
+    font-size: 17px;
+    background-color: black;
+    color: white;
+    border-radius: 15px;
+    margin-top: 30px;
+}
+
+.annuler {
+    width: 278px;
+    height: 73px;
+    background-color: white;
+    color: black;
+    font-size: 23px;
+    border: white;
+    border-radius: 15px;
+    margin-top: 14px;
+}
+
+.etoiles{
+    display: block;
+    margin: auto;
+    padding: 20px;
+    text-align: center;
+    font-size: 32px;
+}
+
+.tt-etoiles-fond{
+    font-weight: bold;
+}
+
+.etoiles i{
+    color: #c5c7c7;
+   
+}
+
+@media (max-height:700px) {
+    .page {
+        margin-top: 100px;
+    }
+}

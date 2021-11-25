@@ -1,0 +1,646 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="ListeAgence">
+
+            <xpath expr="//link[last()]" position="after">
+
+                <head>
+                    <meta charset="utf-8" />
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+                    <meta name="description"
+                        content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website" />
+                    <meta name="author" content="Maxartkiller" />
+
+                    <title>CashOutWeb</title>
+
+                    <!-- Favicons -->
+                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png"
+                        sizes="180x180" />
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32"
+                        type="image/png" />
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16"
+                        type="image/png" />
+                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg"
+                        color="#ffffff" />
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico" />
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
+
+                    <!-- daterange picker -->
+                    <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css"
+                        rel="stylesheet" />
+
+                    <!-- Swiper Slider -->
+                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
+
+                    <!-- anonymous Slider -->
+                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+                        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+                        crossorigin="anonymous" />
+
+                    <!-- Custom styles for this template -->
+                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
+                    <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style" />
+                    <link href="/CashOutWeb/static/assets/css/customer.css" rel="stylesheet" id="style" />
+                    <link href="/CashOutWeb/static/assets/css/agence.css" rel="stylesheet" id="style" />
+
+                </head>
+
+                <body>
+                    <!-- Custom header -->
+                    <header class="header fixed-top header-fill  o_affix_enabled">
+                        <nav class="navbar">
+                            <div>
+                                <button class="btn btn-link btn-44" onclick="window.history.go(-1); return false;">
+                                    <span class="icon material-icons"><i class="fas fa-arrow-left"></i></span>
+                                </button>
+                            </div>
+                            <div>
+                                <a class="navbar-brand" href="index.html">
+                                    <h4 class="logo-text"><span>Trouvez une agence</span><small></small></h4>
+                                </a>
+                            </div>
+                            <div>
+
+                            </div>
+                        </nav>
+                    </header>
+
+
+
+                    <div class="indicator mt-6" style="">
+                        <section class="step-indicator">
+                            <div class="step step1 active">
+                                <div class="step-icon">1</div>
+                            </div>
+                            <div class="indicator-line active">
+
+                            </div>
+                            <div class="step step2">
+                                <div class="step-icon">2</div>
+                            </div>
+                            <div class="indicator-line"></div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                            <div class="indicator-line">
+
+                            </div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <main class="flex-shrink-0 main-container"></main>
+
+
+                    <form method="POST" action="/carteAgence/">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <div class="container">
+                            <div class="card border-0 mb-3 bouttonColor">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col text-cente">
+                                            <input type="submit" value="Utiliser le GPS" class="btn  tt-agence"
+                                                style="color: white; display: block;font-size: 18px;width: 69%; margin: auto;" />
+                                            <!-- <button type="button" class="btn btn-default tt-agence" style="display: block;font-size: 18px;width: 69%; margin: auto;" >Utiliser le GPS <i class="fas fa-location"></i></button> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+                    <!-- Required jquery and libraries -->
+                    <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js"></script>
+                    <script src="/CashOutWeb/static/assets/js/popper.min.js"></script>
+                    <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+
+                    <!-- cookie css -->
+                    <script src="/CashOutWeb/static/assets/vendor/cookie/jquery.cookie.js"></script>
+
+                    <!-- Customized jquery file  -->
+                    <script src="/CashOutWeb/static/assets/js/main.js"></script>
+                    <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js"></script>
+                    <script src="/CashOutWeb/static/assets/js/agencies_list.js"></script>
+                    <script type="text/javascript"
+                        src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3&amp;libraries=geometry"></script>
+                    <script>
+                        var agencies = <t t-esc='agencies' /> ;
+                        var all_cards = [];
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(
+                                (position) => {
+                                    const user_position = new google.maps.LatLng(position.coords.latitude, position
+                                        .coords.longitude);
+                                    agencies2 = agencies;
+                                    agencies2.forEach(element => {
+                                        element['distance'] = google.maps.geometry.spherical.computeDistanceBetween(user_position, new google.maps.LatLng(element.latitude, element.longitude));
+                                    });
+                                    sortByKey(agencies2, "distance").forEach(element => {
+                                        if (element['distance'] > 1000) {
+                                            var div_container_my_4 = document.createElement('div');
+                                            div_container_my_4.className = "container my-4";
+                                            div_container_my_4.setAttribute("data-toggle", "modal")
+                                            div_container_my_4.setAttribute("data-target", "#exampleModal"+String(element['id']));
+
+                                            var div_card_border = document.createElement('div');
+                                            div_card_border.className = "card border-0 shadow-sm mb-4";
+                                            div_card_border.style = "cursor: pointer;"
+
+                                            var div_card_body = document.createElement('div');
+                                            div_card_body.className = "card-body position-relative";
+
+                                            var div_media = document.createElement('div');
+                                            div_media.className = "media";
+
+                                            var figure = document.createElement('figure');
+                                            figure.className =
+                                            "avatar avatar-50 mr-3 tt-ListeAgence-figure";
+
+                                            var img = document.createElement('img');
+                                            img.className = "agency_image";
+                                            img.setAttribute("src",
+                                                `/web/image?model=res.partner&amp;id=${element['id']}&amp;field=image_128`
+                                            )
+
+                                            var div_media_body = document.createElement('div');
+                                            div_media_body.className = "media-body";
+
+                                            var h5 = document.createElement('h5');
+                                            h5.className = "mb-1 tt-ListeAgence-Non";
+                                            h5.innerText = element['name'];
+
+                                            var div_row = document.createElement('div');
+                                            div_row.className = "row";
+
+                                            var div_col_7 = document.createElement('div');
+                                            div_col_7.className = "col-7";
+
+                                            var p_1 = document.createElement('p');
+                                            p_1.className = "tt-ListeAgence";
+                                            p_1.innerText = element['address'];
+
+                                            var div_col_5 = document.createElement('div');
+                                            div_col_5.className = "col-5";
+
+                                            var p_2 = document.createElement('p');
+                                            p_2.className = "tt-ListeAgence-date";
+                                            p_2.setAttribute("t-att-id", String(element['id']));
+                                            p_2.innerText = String((element['distance'] / 1000).toFixed(2)) + " km";
+
+                                            var p_3 = document.createElement('p');
+                                            p_3.className = "tt-ListeAgence-date";
+                                            p_3.innerText += "4.0";
+
+                                            var i_2 = document.createElement('i');
+                                            i_2.className = "fa fa-star tt-color-start";
+                                            i_2.setAttribute("aria-hidden", "true");
+
+                                            div_container_my_4.appendChild(div_card_border);
+                                            div_card_border.appendChild(div_card_body);
+                                            div_card_body.appendChild(div_media);
+                                            div_media.appendChild(figure);
+                                            figure.appendChild(img);
+                                            div_media.appendChild(div_media_body);
+                                            div_media_body.appendChild(h5);
+                                            div_media_body.appendChild(div_row);
+                                            div_row.appendChild(div_col_7);
+                                            div_col_7.appendChild(p_1);
+                                            div_row.appendChild(div_col_5);
+                                            div_col_5.appendChild(p_2);
+                                            div_col_5.appendChild(p_3);
+                                            p_3.appendChild(i_2);
+
+
+                                            // Modal view
+                                            var form_modal = document.createElement('form');
+                                            form_modal.setAttribute("action", "/itineraire/");
+                                            form_modal.setAttribute("method", "post")
+
+                                            var token = `<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />;`
+
+                                            var input_csrf_token = document.createElement('input');
+                                            input_csrf_token.setAttribute("type", "hidden");
+                                            input_csrf_token.setAttribute("value", String(token.slice(46, -4)));
+                                            input_csrf_token.setAttribute("name", "csrf_token");
+
+                                            var div_modal_fade = document.createElement('div');
+                                            div_modal_fade.className = "modal fade modals";
+                                            div_modal_fade.id = "exampleModal"+String(element['id']);
+                                            div_modal_fade.setAttribute("tabindex", "-1");
+                                            div_modal_fade.setAttribute("role", "dialog");
+                                            div_modal_fade.setAttribute("aria-labelledby", "exampleModalLabel");
+                                            div_modal_fade.setAttribute("aria-hidden", "true");
+
+                                            var div_modal_dialog = document.createElement('div');
+                                            div_modal_dialog.className = "modal-dialog modal-cusom";
+                                            div_modal_dialog.setAttribute("role", "document");
+
+                                            var div_modal_header = document.createElement('div');
+                                            div_modal_header.className = "modal-header modal-border head";
+
+                                            var div_modal_content = document.createElement('div');
+                                            div_modal_content.className = "modal-content modal-contens";
+
+                                            var h5 = document.createElement('h5');
+                                            h5.className = "modal-title";
+                                            h5.id = "exampleModalLabel";
+
+                                            var span_modal_1 = document.createElement('span');
+                                            span_modal_1.className = "material-icons";
+                                            span_modal_1.setAttribute("data-dismiss", "modal");
+                                            span_modal_1.innerText = "delete_forever"
+
+                                            var div_modal_body = document.createElement('div');
+                                            div_modal_body.className = "modal-body text-center";
+
+                                            var img_modal = document.createElement('img');
+                                            img_modal.className = ".";
+                                            img_modal.setAttribute("src",
+                                                `/web/image?model=res.partner&amp;id=${element['id']}&amp;field=image_128`
+                                            )
+                                            img_modal.style = "width: 16em;"
+
+                                            var h2_modal = document.createElement('h2');
+                                            h2_modal.innerText = element['name'];
+
+                                            var span_modal_2 = document.createElement('span');
+                                            span_modal_2.innerText += element['address'];
+
+                                            var i_modal_1 = document.createElement('i');
+                                            i_modal_1.className = "icon material-icons place";
+                                            i_modal_1.setAttribute("aria-hidden", "true");
+
+                                            var div_modal_text_center = document.createElement('div');
+                                            div_modal_text_center.className = "text-center";
+
+                                            var span_modal_3 = document.createElement('span');
+                                            span_modal_3.innerText += "Agence publique";
+
+                                            var i_modal_2 = document.createElement('i');
+                                            i_modal_2.className = "icon material-icons flag";
+                                            i_modal_2.setAttribute("aria-hidden", "true");
+                                            i_modal_2.innerText += "flag";
+
+                                            var div_modal_text_center_2 = document.createElement('div');
+                                            div_modal_text_center_2.className = "text-center";
+
+                                            var span_modal_4 = document.createElement('span');
+                                            span_modal_4.innerText += String((element['distance'] / 1000).toFixed(2)) + " km";
+
+                                            var span_modal_5 = document.createElement('span');
+
+                                            var i_modal_3 = document.createElement('i');
+                                            i_modal_3.className = "icon material-icons star";
+                                            i_modal_3.setAttribute("aria-hidden", "true");
+                                            i_modal_3.innerText += "star";
+
+                                            var span_modal_6 = document.createElement('span');
+                                            span_modal_6.className = "ps";
+                                            span_modal_6.innerText = "4.0";
+
+                                            var div_modal_footer = document.createElement('div');
+                                            div_modal_footer.className = "modal-footer modal-border buttons";
+
+
+                                            var input_modal_footer = document.createElement('input');
+                                            input_modal_footer.setAttribute("name", "agence_id");
+                                            input_modal_footer.setAttribute("type", "hidden");
+                                            input_modal_footer.value = String(element['id']);
+
+                                            var input_modal_name = document.createElement('input');
+                                            input_modal_name.setAttribute("name", "agence_name");
+                                            input_modal_name.setAttribute("type", "hidden");
+                                            input_modal_name.value = String(element['name']);
+
+                                            var input_modal_distance = document.createElement('input');
+                                            input_modal_distance.setAttribute("name", "agence_distance");
+                                            input_modal_distance.setAttribute("type", "hidden");
+                                            input_modal_distance.value = String(element['distance']);
+
+                                            var input_modal_address = document.createElement('input');
+                                            input_modal_address.setAttribute("name", "agence_address");
+                                            input_modal_address.setAttribute("type", "hidden");
+                                            input_modal_address.value = String(element['address']);
+
+                                            var input_modal_longitude = document.createElement('input');
+                                            input_modal_longitude.setAttribute("name", "agence_longitude");
+                                            input_modal_longitude.setAttribute("type", "hidden");
+                                            input_modal_longitude.value = String(element['longitude']);
+
+                                            var input_modal_latitude = document.createElement('input');
+                                            input_modal_latitude.setAttribute("name", "agence_latitude");
+                                            input_modal_latitude.setAttribute("type", "hidden");
+                                            input_modal_latitude.value = String(element['latitude']);
+
+
+                                            var button_modal_footer = document.createElement('button');
+                                            button_modal_footer.setAttribute("class", "btn btn-dark valider");
+                                            button_modal_footer.setAttribute("type", "submit");
+                                            button_modal_footer.value = String(element['id']);
+                                            button_modal_footer.innerText = "Confirmer";
+
+
+                                            form_modal.appendChild(div_modal_fade);
+                                            form_modal.appendChild(input_csrf_token);
+                                            div_modal_fade.appendChild(div_modal_dialog);
+                                            div_modal_dialog.appendChild(div_modal_content);
+                                            div_modal_content.appendChild(div_modal_header);
+                                            div_modal_header.appendChild(h5);
+                                            h5.appendChild(span_modal_1);
+                                            div_modal_content.appendChild(div_modal_body);
+                                            div_modal_body.appendChild(img_modal);
+                                            div_modal_body.appendChild(h2_modal);
+                                            div_modal_body.appendChild(span_modal_2);
+                                            span_modal_2.appendChild(i_modal_1);
+                                            div_modal_content.appendChild(div_modal_text_center);
+                                            div_modal_text_center.appendChild(span_modal_3);
+                                            span_modal_3.appendChild(i_modal_2);
+                                            div_modal_content.appendChild(div_modal_text_center_2);
+                                            div_modal_text_center_2.appendChild(span_modal_4);
+                                            div_modal_text_center_2.appendChild(span_modal_5);
+                                            span_modal_5.appendChild(i_modal_3);
+                                            div_modal_text_center_2.appendChild(span_modal_6);
+                                            div_modal_content.appendChild(div_modal_footer);
+                                            div_modal_footer.appendChild(input_modal_footer);
+                                            div_modal_footer.appendChild(input_modal_name);
+                                            div_modal_footer.appendChild(input_modal_distance);
+                                            div_modal_footer.appendChild(input_modal_address);
+                                            div_modal_footer.appendChild(input_modal_longitude);
+                                            div_modal_footer.appendChild(input_modal_latitude);
+                                            div_modal_footer.appendChild(button_modal_footer);
+
+                                            div_container_my_4.appendChild(form_modal);
+                                            
+                                            var div_main_container = document.getElementsByClassName('flex-shrink-0 main-container')[0];
+                                            div_main_container.appendChild(div_container_my_4);
+                                            all_cards.push(div_container_my_4);
+
+                                        } else {
+                                            var div_container_my_4 = document.createElement('div');
+                                            div_container_my_4.className = "container my-4";
+                                            div_container_my_4.setAttribute("data-toggle", "modal")
+                                            div_container_my_4.setAttribute("data-target", "#exampleModal"+String(element['id']));
+
+                                            var div_card_border = document.createElement('div');
+                                            div_card_border.className = "card border-0 shadow-sm mb-4";
+                                            div_card_border.style = "cursor: pointer;"
+
+                                            var div_card_body = document.createElement('div');
+                                            div_card_body.className = "card-body position-relative";
+
+                                            var div_media = document.createElement('div');
+                                            div_media.className = "media";
+
+                                            var figure = document.createElement('figure');
+                                            figure.className =
+                                            "avatar avatar-50 mr-3 tt-ListeAgence-figure";
+
+                                            var img = document.createElement('img');
+                                            img.className = "agency_image";
+                                            img.setAttribute("src",
+                                                `/web/image?model=res.partner&amp;id=${element['id']}&amp;field=image_128`
+                                            )
+
+                                            var div_media_body = document.createElement('div');
+                                            div_media_body.className = "media-body";
+
+                                            var h5 = document.createElement('h5');
+                                            h5.className = "mb-1 tt-ListeAgence-Non";
+                                            h5.innerText = element['name'];
+
+                                            var div_row = document.createElement('div');
+                                            div_row.className = "row";
+
+                                            var div_col_7 = document.createElement('div');
+                                            div_col_7.className = "col-7";
+
+                                            var p_1 = document.createElement('p');
+                                            p_1.className = "tt-ListeAgence";
+                                            p_1.innerText = element['address'];
+
+                                            var div_col_5 = document.createElement('div');
+                                            div_col_5.className = "col-5";
+
+                                            var p_2 = document.createElement('p');
+                                            p_2.className = "tt-ListeAgence-date";
+                                            p_2.setAttribute("t-att-id", String(element['id']));
+                                            p_2.innerText = String((element['distance'] / 1000).toFixed(2)) + " km";
+
+                                            var p_3 = document.createElement('p');
+                                            p_3.className = "tt-ListeAgence-date";
+                                            p_3.innerText += "4.0";
+
+                                            var i_2 = document.createElement('i');
+                                            i_2.className = "fa fa-star tt-color-start";
+                                            i_2.setAttribute("aria-hidden", "true");
+
+                                            div_container_my_4.appendChild(div_card_border);
+                                            div_card_border.appendChild(div_card_body);
+                                            div_card_body.appendChild(div_media);
+                                            div_media.appendChild(figure);
+                                            figure.appendChild(img);
+                                            div_media.appendChild(div_media_body);
+                                            div_media_body.appendChild(h5);
+                                            div_media_body.appendChild(div_row);
+                                            div_row.appendChild(div_col_7);
+                                            div_col_7.appendChild(p_1);
+                                            div_row.appendChild(div_col_5);
+                                            div_col_5.appendChild(p_2);
+                                            div_col_5.appendChild(p_3);
+                                            p_3.appendChild(i_2);
+
+
+                                            // Modal view
+                                            var form_modal = document.createElement('form');
+                                            form_modal.setAttribute("action", "/itineraire/");
+                                            form_modal.setAttribute("method", "post")
+
+                                            var input_csrf_token = document.createElement('input');
+                                            input_csrf_token.setAttribute("type", "hidden");
+                                            input_csrf_token.setAttribute("value", "request.csrf_token()");
+                                            input_csrf_token.setAttribute("name", "csrf_token");
+
+                                            var div_modal_fade = document.createElement('div');
+                                            div_modal_fade.className = "modal fade modals";
+                                            div_modal_fade.id = "exampleModal"+String(element['id']);
+                                            div_modal_fade.setAttribute("tabindex", "-1");
+                                            div_modal_fade.setAttribute("role", "dialog");
+                                            div_modal_fade.setAttribute("aria-labelledby", "exampleModalLabel");
+                                            div_modal_fade.setAttribute("aria-hidden", "true");
+
+                                            var div_modal_dialog = document.createElement('div');
+                                            div_modal_dialog.className = "modal-dialog modal-cusom";
+                                            div_modal_dialog.setAttribute("role", "document");
+
+                                            var div_modal_header = document.createElement('div');
+                                            div_modal_header.className = "modal-header modal-border head";
+
+                                            var div_modal_content = document.createElement('div');
+                                            div_modal_content.className = "modal-content modal-contens";
+
+                                            var h5 = document.createElement('h5');
+                                            h5.className = "modal-title";
+                                            h5.id = "exampleModalLabel";
+
+                                            var span_modal_1 = document.createElement('span');
+                                            span_modal_1.className = "material-icons";
+                                            span_modal_1.setAttribute("data-dismiss", "modal");
+                                            span_modal_1.innerText = "delete_forever"
+
+                                            var div_modal_body = document.createElement('div');
+                                            div_modal_body.className = "modal-body text-center";
+
+                                            var img_modal = document.createElement('img');
+                                            img_modal.className = ".";
+                                            img_modal.setAttribute("src",
+                                                `/web/image?model=res.partner&amp;id=${element['id']}&amp;field=image_128`
+                                            )
+                                            img_modal.style = "width: 16em;"
+
+                                            var h2_modal = document.createElement('h2');
+                                            h2_modal.innerText = element['name'];
+
+                                            var span_modal_2 = document.createElement('span');
+                                            span_modal_2.innerText += element['address'];
+
+                                            var i_modal_1 = document.createElement('i');
+                                            i_modal_1.className = "icon material-icons place";
+                                            i_modal_1.setAttribute("aria-hidden", "true");
+
+                                            var div_modal_text_center = document.createElement('div');
+                                            div_modal_text_center.className = "text-center";
+
+                                            var span_modal_3 = document.createElement('span');
+                                            span_modal_3.innerText += "Agence publique";
+
+                                            var i_modal_2 = document.createElement('i');
+                                            i_modal_2.className = "icon material-icons flag";
+                                            i_modal_2.setAttribute("aria-hidden", "true");
+                                            i_modal_2.innerText += "flag";
+
+                                            var div_modal_text_center_2 = document.createElement('div');
+                                            div_modal_text_center_2.className = "text-center";
+
+                                            var span_modal_4 = document.createElement('span');
+                                            span_modal_4.innerText += String((element['distance']).toFixed(2)) + " m";
+
+                                            var span_modal_5 = document.createElement('span');
+
+                                            var i_modal_3 = document.createElement('i');
+                                            i_modal_3.className = "icon material-icons star";
+                                            i_modal_3.setAttribute("aria-hidden", "true");
+                                            i_modal_3.innerText += "star";
+
+                                            var span_modal_6 = document.createElement('span');
+                                            span_modal_6.className = "ps";
+                                            span_modal_6.innerText = "4.0";
+
+                                            var div_modal_footer = document.createElement('div');
+                                            div_modal_footer.className = "modal-footer modal-border buttons";
+
+
+                                            var input_modal_footer = document.createElement('input');
+                                            input_modal_footer.setAttribute("name", "agence_id");
+                                            input_modal_footer.setAttribute("type", "hidden");
+                                            input_modal_footer.value = String(element['id']);
+
+                                            var input_modal_name = document.createElement('input');
+                                            input_modal_name.setAttribute("name", "agence_name");
+                                            input_modal_name.setAttribute("type", "hidden");
+                                            input_modal_name.value = String(element['name']);
+
+                                            var input_modal_distance = document.createElement('input');
+                                            input_modal_distance.setAttribute("name", "agence_distance");
+                                            input_modal_distance.setAttribute("type", "hidden");
+                                            input_modal_distance.value = String(element['distance']);
+
+                                            var input_modal_address = document.createElement('input');
+                                            input_modal_address.setAttribute("name", "agence_address");
+                                            input_modal_address.setAttribute("type", "hidden");
+                                            input_modal_address.value = String(element['address']);
+
+                                            var input_modal_longitude = document.createElement('input');
+                                            input_modal_longitude.setAttribute("name", "agence_longitude");
+                                            input_modal_longitude.setAttribute("type", "hidden");
+                                            input_modal_longitude.value = String(element['longitude']);
+
+                                            var input_modal_latitude = document.createElement('input');
+                                            input_modal_latitude.setAttribute("name", "agence_latitude");
+                                            input_modal_latitude.setAttribute("type", "hidden");
+                                            input_modal_latitude.value = String(element['latitude']);
+
+
+                                            var button_modal_footer = document.createElement('button');
+                                            button_modal_footer.setAttribute("class", "btn btn-dark valider");
+                                            button_modal_footer.setAttribute("type", "submit");
+                                            button_modal_footer.value = String(element['id']);
+                                            button_modal_footer.innerText = "Confirmer";
+
+
+                                            form_modal.appendChild(div_modal_fade);
+                                            form_modal.appendChild(input_csrf_token);
+                                            div_modal_fade.appendChild(div_modal_dialog);
+                                            div_modal_dialog.appendChild(div_modal_content);
+                                            div_modal_content.appendChild(div_modal_header);
+                                            div_modal_header.appendChild(h5);
+                                            h5.appendChild(span_modal_1);
+                                            div_modal_content.appendChild(div_modal_body);
+                                            div_modal_body.appendChild(img_modal);
+                                            div_modal_body.appendChild(h2_modal);
+                                            div_modal_body.appendChild(span_modal_2);
+                                            span_modal_2.appendChild(i_modal_1);
+                                            div_modal_content.appendChild(div_modal_text_center);
+                                            div_modal_text_center.appendChild(span_modal_3);
+                                            span_modal_3.appendChild(i_modal_2);
+                                            div_modal_content.appendChild(div_modal_text_center_2);
+                                            div_modal_text_center_2.appendChild(span_modal_4);
+                                            div_modal_text_center_2.appendChild(span_modal_5);
+                                            span_modal_5.appendChild(i_modal_3);
+                                            div_modal_text_center_2.appendChild(span_modal_6);
+                                            div_modal_content.appendChild(div_modal_footer);
+                                            div_modal_footer.appendChild(input_modal_footer);
+                                            div_modal_footer.appendChild(input_modal_name);
+                                            div_modal_footer.appendChild(input_modal_distance);
+                                            div_modal_footer.appendChild(input_modal_address);
+                                            div_modal_footer.appendChild(input_modal_longitude);
+                                            div_modal_footer.appendChild(input_modal_latitude);
+                                            div_modal_footer.appendChild(button_modal_footer);
+
+                                            div_container_my_4.appendChild(form_modal);
+                                            
+                                            var div_main_container = document.getElementsByClassName('flex-shrink-0 main-container')[0];
+                                            div_main_container.appendChild(div_container_my_4);
+                                            all_cards.push(div_container_my_4);
+                                        }
+                                    });
+                                    var div_card = document.getElementsByClassName('flex-shrink-0 main-container');
+                                    all_cards.forEach(element => {
+                                        div_card.innerHTML += element
+                                    });
+                                },
+                                () => {
+                                    handleLocationError(true, infoWindow, map.getCenter());
+                                }
+                            );
+                        } else {
+                            // Browser doesn't support Geolocation
+                            handleLocationError(false, infoWindow, map.getCenter());
+                        }
+                    </script>
+                </body>
+
+            </xpath>
+
+        </template>
+    </data>
+</odoo>

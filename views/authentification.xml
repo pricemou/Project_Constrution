@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="authentification">
+        
+            <xpath expr="//link[last()]" position="after" > 
+                <head>
+                    <meta charset="utf-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+                    <meta name="description" content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website"/>
+                    <meta name="author" content="Maxartkiller"/>
+
+                    <title>CashOutWeb</title>
+
+                    <!-- Favicons -->
+                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+
+                    <!-- daterange picker -->
+                    <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css" rel="stylesheet"/>
+
+                    <!-- Swiper Slider -->
+                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+
+                    <!-- anonymous Slider -->
+                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+                    <!-- Custom styles for this template -->
+                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/customer.css" rel="stylesheet" id="style"/>
+                    
+                </head>
+
+                <body style="background: black" onload="myFunction()">
+                    <!-- Custom header -->
+                    <header class="header fixed-top header-fill  o_affix_enabled">
+                        <nav class="navbar">
+                            <div>
+                                <button class="btn btn-link btn-44"  onclick="window.history.go(-1); return false;">
+                                    <span class="icon material-icons"><i class="fas fa-arrow-left"></i></span>
+                                </button>
+                            </div>
+                            <div>
+                                <a class="navbar-brand" href="index.html">
+                                    <h4 class="logo-text"><span>Authentification</span><small></small></h4>
+                                </a>    
+                            </div>
+                            <div>
+                            
+                            </div>
+                        </nav>
+                    </header>
+
+                    <div class="container tt-authentification">
+                        <div class="text-center ">
+                            <img class="rounded-circle center-block logo" src="/CashOutWeb/static/assets/img/Agence/chargement.png" data-holder-rendered="true "/>
+                            <div class="tt-profie">
+                                <h2 class="tt-authentication-nom">Nom, Prénoms</h2>
+                                <h4 class="tt-authentication-contact">Contact</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tt-authentification-bordeur">
+                        <div class="">
+                            <div class="">
+                                <p class="tt-authentification-text">votre code QR est privé.</p>
+                                <p class="tt-authentification-text">Si vous le partagez avec quelqu'un, cette personne</p>
+                                <p class="tt-authentification-text">peut le scanner avec la caméra du MOOIS pour</p>
+                                <p class="tt-authentification-text">vous ajouter en tant que contact et partager des</p>
+                                <p class="tt-authentification-text">information avec vous. </p>
+                            </div>
+                        </div>
+
+                        <div class="">
+                            <div class="">
+                                <img class="center-block logos" src="/CashOutWeb/static/assets/img/Agence/qr-code.png" data-holder-rendered="true "/>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script>
+                        function myFunction() {
+                            setTimeout(() => {
+                                location.href = "http://127.0.0.1:8069/felicitation";
+                            }, 3000);
+                        }
+                    </script>
+                </body>
+
+          </xpath> 
+
+        </template>
+    </data>
+</odoo>

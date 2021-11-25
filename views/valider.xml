@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="valider">
+        
+            <xpath expr="//link[last()]" position="after"> 
+                
+
+                <body>
+
+                </body>
+
+          </xpath> 
+
+        </template>
+    </data>
+</odoo>

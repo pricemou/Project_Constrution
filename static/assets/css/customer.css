@@ -1,0 +1,295 @@
+/*---------------------------------------------------------------------------------*/
+/*------------------------------------index---------------------------------------*/
+/*---------------------------------------------------------------------------------*/
+
+body {
+  font-family: sans-serif;
+}
+
+
+.indicator {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.step-indicator {
+  margin-top: 80px;
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
+}
+
+.step-indicator .step-icon {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #c2c2c2;
+  font-size: 10px;
+  text-align: center;
+  color: #ffffff;
+  position: relative;
+  line-height: 17px;
+  font-size: 15px;
+}
+
+.step.active .step-icon {
+  background: rgb(12, 12, 12);
+}
+
+.step p {
+  text-align: center;
+  position: absolute;
+  bottom: -40px;
+  color: #c2c2c2;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.step.active p {
+  color: crimson;
+}
+
+.step.step2 p,
+.step.step3 p {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.indicator-line {
+  width: 100%;
+  height: 2px;
+  background: #c2c2c2;
+  flex: 1;
+}
+
+.indicator-line.active {
+  background: rgb(7, 7, 7);
+}
+
+@media screen and (max-width: 500px) {
+  .step p {
+    font-size: 11px;
+    bottom: -20px;
+  }
+}
+
+/* input choix */
+.card-body input {
+  margin-top: -12px;
+  margin-left: -13px;
+  color: black;
+}
+
+.bouttonColor {
+  background: #f7f7f7;
+}
+
+/* cadre */
+.card .card-body {
+  padding: 21px;
+}
+.card {
+  border-radius: 1.25rem;
+}
+
+.card-body .media .icons img {
+  width: 58px;
+}
+
+.icons.icon-40 {
+  height: 51px;
+  line-height: 38px;
+  width: 67px;
+  font-size: 20px;
+}
+
+/*---------------------------------------------------------------------------------*/
+/*------------------------------------Retrais---------------------------------------*/
+/*---------------------------------------------------------------------------------*/
+
+.centers {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* padding: 3px; */
+}
+
+.tt-rechargement {
+  font-size: 17px;
+  margin-top: 9px;
+}
+
+.tt-retrait h2 {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.tt-montant input {
+  width: 164px;
+  margin: 9px;
+  font-family: inherit;
+  color: #7a7575;
+  padding-left: 11px;
+  font-weight: 600;
+  font-size: 21px;
+  border: 1px solid #f7f7f7;
+  background: #ffffff94;
+}
+
+.tt-montant h2 {
+  font-size: 19px;
+  font-weight: 600;
+  border-spacing: 4px;
+}
+.tt-montant p {
+  font-weight: 600;
+}
+
+.tt-somme {
+  text-align: right;
+  font-size: 18px;
+  color: blue;
+}
+
+.tt-total {
+  font-weight: 500;
+  font-size: 21px;
+}
+
+.colorBlack {
+  color: black;
+}
+
+.confirm {
+  background-color: black;
+  color: white;
+}
+.comfirm-retrait {
+  width: 267px;
+  background-color: black;
+  height: 63px;
+  border-radius: 13px;
+  color: white;
+}
+
+@media (max-height: 619px) {
+  .confirm {
+    border-radius: 10px;
+    width: 160px;
+    background-color: black;
+    color: white;
+    border: 1px;
+    height: 50px;
+    font-weight: bold;
+  }
+
+  .tt-confirms {
+    /* margin-top: 350px; */
+    margin-top: 34%;
+  }
+}
+
+/* authentification */
+
+.tt-authentification {
+  margin-top: 66px;
+}
+.tt-authentification-text {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+.tt-authentification-bordeur {
+  background-color: white;
+  border-radius: 25px 25px 0px 0px;
+  padding-top: 18px;
+  height: 100%;
+}
+
+.logos {
+  padding-top: 34px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.tt-authentication-nom {
+  font-size: 19px;
+  color: white;
+  font-weight: 700;
+  padding-top: 7px;
+}
+.tt-authentication-contact {
+  color: #bdbdbd;
+  font-size: 18px;
+}
+
+/* authentification */
+.tt-ListeAgence-Non {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.tt-ListeAgence {
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.tt-ListeAgence-figure {
+  width: 90px;
+  height: 90px;
+  border-radius: 48px;
+}
+
+.tt-ListeAgence-date {
+  margin: 0;
+  text-align: right;
+}
+
+.tt-color-start {
+  color: #ffca02;
+}
+
+.tt-fromulaire {
+  margin-top: 8px;
+  font-weight: 500;
+  padding: 14px;
+  height: 50px;
+  color: #dc1b1b;
+  font-size: 16px;
+  background-color: #f7f7f7;
+  border-radius: 14px;
+}
+.tt-retrait img {
+  display: block;
+  margin: auto;
+}
+
+.tt-retrait-montant {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.tt-retrait-somme {
+  font-size: 17px;
+  font-weight: bold;
+  color: #4949e2;
+  text-align: right;
+}
+
+/* .modals {
+  width: 343px;
+  height: 226 px;
+  margin: auto;
+} */

@@ -1,46 +1,49 @@
 from odoo import models, fields, api
 
 
-class ConstructionProjects(models.Model):
-    _name = "construction.projects"
+class ModelA(models.Model):
+    _name = 'models.cashouts'
+    _rec_name = 'nameUser'
 
-    name = fields.Char(string='Intitulé', required=True)
-    partner_id = fields.Many2one('res.partner', string="Client associé")
-    start_date = fields.Date(string="Date de debut")
-    construction_type = fields.Many2one(
-        comodel_name='construction.type', string='Type de construction')
-    warehouse_id = fields.Many2one('stock.warehouse', string="Entrepot")
-    transaction_ids = fields.One2many(
-        comodel_name='stock.picking', inverse_name='construction_project_id', string='Opération')
+    # id_User = fields.Char(string="Identifiant de l'émetteur de la demande")
+    nameUser = fields.Many2one('res.partner', string='Identifiant de l\'émetteur de la demande')
+    date = fields.Char(string='Date de la transaction')
+    type = fields.Boolean(string='Type')
+    id_client = fields.Char(string="Identifiant du receveur")
+    client = fields.Many2one('res.partner', string='Nom du receveur')
+    montant = fields.Char(string="Montant de la transaction")
+    
+    
+class MyMixedInSaleOrder(models.Model):
+    _inherit = ['models.cashouts']
 
-    @api.model
-    def create(self, vals):
-        result = ''
-        wrd_list = vals['name'].split(' ')
-        if len(wrd_list) >= 2:
-            for word in wrd_list:
-                result += str(word[0])
-        else:
-            result = str(vals['name'][:3])
-
-        new_warehouse = self.env['stock.warehouse'].sudo().create(
-            {
-                'name': vals['name'],
-                'code': result.upper()
-            })
-        vals['warehouse_id'] = new_warehouse.id
-        return super(ConstructionProjects, self).create(vals)
+    montant_deposer = fields.Char(string='Numéro de retrait')
+    Ftransfer = fields.Char(string='Frais de transfert opérateur')
 
 
-class ConstructionType(models.Model):
-    _name = "construction.type"
+class AgencePartner(models.Model):
+    _inherit = 'res.partner'
 
-    name = fields.Char(string='Intitulé')
-    description = fields.Text(string='Description')
+    cash_out_agency = fields.Boolean(string='Agence CASH OUT?')
 
 
-class StockPickInherit(models.Model):
-    _inherit = "stock.picking"
+class PersonneRefusee(models.Model):
+    _inherit = 'res.partner'
 
-    construction_project_id = fields.Many2one(
-        comodel_name='construction.projects', string='Projet de construction')
+    liste_refuse = fields.One2many('personnes.refusees', 'user_who_refused', string='Liste des personnes refusées')
+    authorized_to_cash_out = fields.Boolean(string='Autorisé à faire du CASHOUT ?')
+
+class TransactionsCASHOUT(models.Model):
+    _inherit = 'res.partner'
+
+    transaction_list = fields.One2many('models.cashouts', 'nameUser', string='Liste')
+
+
+class PersonnesRefuseesCASHOUT(models.Model):
+    _name = 'personnes.refusees'
+
+    name = fields.Many2one('res.partner', string='Nom de la personne refusée')
+    user_who_refused = fields.Many2one('res.partner', string='Nom de la personne qui a refusé')
+
+
+

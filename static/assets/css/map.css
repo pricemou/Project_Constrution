@@ -1,0 +1,89 @@
+.modal-contens {
+    margin-top: 150px;
+    border-radius: 20px;
+    width: 320px;
+    margin-left: 40px;
+    height: 400px;
+}
+
+.image {
+    width: 170px;
+    height: 180px;
+}
+
+h2,
+.lib,
+p {
+    font-weight: bold;
+}
+
+.btn-view {
+    margin-top: 80px;
+}
+
+.type {
+    margin-top: 5px;
+}
+
+.cancel {
+    margin-top: 15px;
+}
+
+.confirmer {
+    width: 250px;
+    height: 60px;
+    border-radius: 18px;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+
+.annuler {
+    width: 250px;
+    height: 60px;
+    border-radius: 18px;
+    font-weight: bold;
+}
+
+.star {
+    color: orange;
+    font-size: 30px;
+    padding-left: 10px;
+}
+
+.ps {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+@media (max-width:400px) {
+    .modal-contens {
+        margin-left: 15px;
+        margin-top: 70px;
+    }
+}
+
+@media (max-height:800px) {
+    .modal-contens {
+        margin-top: 50px;
+        margin-left: 45px;
+    }
+}
+
+@media (min-width:700px) {
+    .btn-view {
+        margin-left: -90px;
+    }
+}
+
+@media only screen and (height:582px) and (min-width: 320px){
+    .modal-contens {
+      width: 262px;
+      margin-left: 20px;
+    }
+    .btn-view {
+      margin-top: 42px;
+    }
+  
+  }

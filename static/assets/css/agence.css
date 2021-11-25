@@ -1,0 +1,124 @@
+/* ListeAgence */
+
+.tt-ListeAgence-Non {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.tt-ListeAgence {
+  margin: 0px;
+  padding: 0px;
+  font-size: 15px;
+}
+
+.tt-ListeAgence-figure {
+  width: 75px;
+  height: 75px;
+  border-radius: 70px;
+}
+
+.tt-ListeAgence-date {
+  margin: 0;
+  text-align: right;
+}
+
+h2,
+span {
+  font-weight: bold;
+}
+
+.tt-color-start {
+  color: #ffca02;
+}
+
+.mb-4,
+.m4 {
+  margin-bottom: -1rem !important;
+}
+
+.titre {
+  margin-top: 30px;
+}
+
+.btn-content {
+  margin-top: 50px;
+}
+
+.valider {
+  height: 60px;
+  width: 250px;
+  border-radius: 45px;
+  display: block;
+  margin: auto;
+  background: black;
+}
+
+@media (min-height: 600px) and (max-height: 700px) {
+  .btn-content {
+    margin-top: 15px;
+  }
+  .titre h4 {
+    font-size: 17px;
+  }
+  .titre {
+    margin-top: 15px;
+  }
+  .valider {
+    height: 60px;
+    width: 250px;
+    border-radius: 45px;
+    display: block;
+    margin: auto;
+    background: black;
+  }
+}
+
+.star {
+  color: orange;
+  width: 17px;
+}
+
+.main {
+  margin-top: -67px;
+}
+
+.modal-title span {
+  color: red;
+  font-size: 70px;
+}
+
+.image {
+  width: 150px;
+  height: 160px;
+  margin-top: -80px;
+}
+
+.place {
+  color: green;
+}
+
+.flag {
+  color: rgb(77, 82, 129);
+}
+
+@media (min-width: 900px) {
+  .modal-title span {
+    font-size: 70px;
+    margin-left: -200px;
+  }
+}
+
+span i {
+  padding-left: 10px;
+}
+
+.ps {
+  padding-left: 15px;
+}
+.pso {
+  padding-top: 1px;
+}
+
+.targerId {
+  display: none;
+}

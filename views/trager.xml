@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="trager">
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8"/>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <title>Carte agence</title>
+                    <!-- Favicons -->
+                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+
+                    <!-- Swiper Slider -->
+                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                    <!-- Custom styles for this template -->
+                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/agence_maps.css " rel="stylesheet " id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/agence.css " rel="stylesheet " id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/styleIndicator.css" rel="stylesheet"/>
+                    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+                    <script>
+                        function initMap() {
+                            const myLatLng = { lat: 5.351246, lng: -4.006566 };
+                            const myClient = { lat:5.348853,lng:-4.009824};
+
+                            const map = new google.maps.Map(document.getElementById("map"), {
+                            zoom:17 ,
+                            center:  { lat: 5.351246, lng: -4.006566 },
+                            mapTypeId: "terrain",
+                            });
+
+                            const flightPlanCoordinates = [
+                                { lat:5.348853,lng:-4.009824},
+                                { lat:5.348720,lng:-4.010329},
+                                { lat:5.349441,lng:-4.009121},
+                                { lat:5.349222, lng: -4.008960},
+                                { lat:5.350247, lng: -4.007044 },
+                            { lat: 5.351246, lng: -4.006566 },
+                            
+                            ];
+                            const flightPath = new google.maps.Polyline({
+                            path: flightPlanCoordinates,
+                            geodesic: true,
+                            strokeColor: "#27db80",
+                            strokeOpacity: 1.0,
+                            strokeWeight: 8,
+                            
+                            //   coordsize="200",
+                            });
+
+                            new google.maps.Marker({
+                                position: myLatLng,
+                                map,
+                                title: "Hello World!",
+                            });
+
+                            new google.maps.Marker({
+                                position: myClient,
+                                map,
+                                title: "Hello World!",
+                            });
+
+                            flightPath.setMap(map);
+                            }
+
+                            setTimeout(() => {
+                                $('#exampleModal').modal('show')
+                            }, 2000);
+
+
+                            const inputText = document.createElement("input")
+                            inputText.type = "text";
+                            inputText.placeholder = "Commune,quartier,type d'agence"
+
+                            map.controls[google.maps.ControlPosition.TOP_CENTER].push(inputText)
+
+                            var btn = document.createElement('div')
+                            btn.classList.add('ok');
+                            btn.id = 'list'
+
+                            btn.innerHTML = '<button type="button" class="btn btn-dark valider" id="valider" >Afficher la liste  <span class="icon material-icons icone">format_list_bulleted</span></button>'
+                            map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(btn);
+
+                            btn.onclick = function quoi() {
+                                location.href = "retraitAgence"
+
+                            }
+
+                    </script>
+                </head>
+                <header class="header fixed-top header-fill">
+                    <nav class="navbar">
+                        <div>
+                            <button class="menu-btn btn btn-link btn-44" onclick="window.history.go(-1); return false;">
+                                <span class="icon material-icons">arrow_back</span>
+                            </button>
+                        </div>
+                        <div>
+                            <h6 class="text"><span>Trouver une agence</span></h6>
+                        </div>
+                        <div>
+                        </div>
+                    </nav>
+                </header>
+
+                <body>
+                    <div class=" diffg">
+                        <section class="step-indicator ">
+                            <div class="step step1 active">
+                                <div class="step-icon">1</div>
+                            </div>
+                            <div class="indicator-line active">
+
+                            </div>
+                            <div class="step step2">
+                                <div class="step-icon">2</div>
+                            </div>
+                            <div class="indicator-line"></div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                            <div class="indicator-line">
+
+                            </div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+                    <div id="map">
+                    </div>
+                    <!-- modal code -->
+                
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <input type="test" name="cpt" class="targerId" t-att-value="ps.id"/>
+                        <div class="modal fade modals" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-cusom " role="document ">
+                                <div class="modal-content modal-contens ">
+                                    <div class="modal-header modal-border head ">
+                                        <h5 class="modal-title " id="exampleModalLabel "> <span class="material-icons " data-dismiss="modal ">
+                                            delete_forever
+                                            </span>
+                                        </h5>
+                                    </div>
+                                    <div class="modal-body text-center ">
+                                            <img src="/CashOutWeb/static/assets/img/Agence/moussa.png" class="image"/>
+                                        <h3>vous êtes proche de Mr <t t-esc="ps.client"/></h3>
+                                        <p>Cliker sur continuer pour l'envoyer une notification </p>
+                                    </div>
+                                
+                                    <div class="modal-footer modal-border buttons ">
+                                        <button type="button " class="btn btn-dark valider " id="validerTrager">Confirmer</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    
+
+
+
+                    <!-- Required jquery and libraries -->
+                    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+                    <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js "></script>
+                    <script src="/CashOutWeb/static/assets/js/popper.min.js "></script>
+                    <script src="/CashOutWeb/static/assets/js/pos.js"></script>
+                    <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
+
+                    <!-- cookie css -->
+
+                    <!-- Customized jquery file  -->
+                    <script src="/CashOutWeb/static/assets/js/main.js "></script>
+                    <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js "></script>
+                    <script>
+                        
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc-7cU3-_x1VTV5eW3g2pVnl3vi9lvv7w&amp;callback=initMap&amp;libraries=&amp;v=weekly"></script>
+
+                </body>
+            </html>
+
+        </template>
+    </data>
+</odoo>

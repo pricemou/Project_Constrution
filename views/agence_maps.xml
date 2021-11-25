@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <template id="agence_maps">
+            <html lang="en">
+                <head>
+                    <meta charset="UTF-8"/>
+                    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                    <title>Carte agence</title>
+                    <!-- Favicons -->
+                    <link rel="apple-touch-icon" href="/CashIn/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+                    <link rel="icon" href="/CashIn/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+                    <link rel="icon" href="/CashIn/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+                    <link rel="mask-icon" href="/CashIn/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashIn/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashIn/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+
+                    <!-- Swiper Slider -->
+                    <link href="/CashIn/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+                    <!-- Custom styles for this template -->
+                    <link href="/CashIn/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+                    <link href="/CashIn/static/assets/css/agence_maps.css " rel="stylesheet " id="style"/>
+                    <link href="/CashIn/static/assets/css/agence.css " rel="stylesheet " id="style"/>
+                    <link href="/CashIn/static/assets/css/styleIndicator.css" rel="stylesheet"/>
+                    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+
+                    <script>
+                        // Initialize and add the map
+                        function initMap() {
+                            // The location of Uluru
+                            const uluru = {
+                                lat: 5.376066,
+                                lng: -3.993204
+                            };
+                            const agence1 = {
+                                lat: 5.3742433146325865,
+                                lng: -3.990339127890237
+                            };
+                            const agence2 = {
+
+
+                                lat: 5.3767266656381905,
+                                lng: -4.0100321916792145
+                            };
+                            const agence3 = {
+
+                                lat: 5.381316574709637,
+                                lng: -4.004757830555943
+                            };
+                            const agence4 = {
+                                lat: 5.359444534812267,
+                                lng: -3.978901457538368
+                            };
+                            // The map, centered at Uluru
+                            const map = new google.maps.Map(document.getElementById("map"), {
+                                zoom: 14,
+                                center: uluru,
+                                mapTypeId: "roadmap",
+
+                            });
+                            const image = {
+                                url: 'CashIn/static/assets/img/localiser.png',
+                                scaledSize: new google.maps.Size(70, 70),
+                                origin: new google.maps.Point(0.0),
+                                anchor: new google.maps.Point(0.0)
+                            }
+                            const image1 = {
+                                    url: 'CashIn/static/assets/img/position.png',
+                                    scaledSize: new google.maps.Size(75, 90),
+                                    origin: new google.maps.Point(0.0),
+                                    anchor: new google.maps.Point(0.0)
+                                }
+                                // The marker, positioned at Uluru
+                            const marker = new google.maps.Marker({
+                                position: uluru,
+                                map: map,
+                                icon: image,
+                                label: {
+                                    text: "Ma position ",
+                                    color: "blue",
+                                    fontSize: "20px",
+                                    fontWeight: 'bold',
+                                },
+                            });
+                            const marker2 = new google.maps.Marker({
+                                position: agence1,
+                                map: map,
+                                icon: image1,
+
+                            });
+                            const marker3 = new google.maps.Marker({
+                                position: agence2,
+                                map: map,
+                                icon: image1,
+
+                            });
+                            const marker4 = new google.maps.Marker({
+                                position: agence3,
+                                map: map,
+                                icon: image1,
+
+                            });
+                            const marker5 = new google.maps.Marker({
+                                position: agence4,
+                                map: map,
+                                icon: image1,
+
+                            });
+
+                            google.maps.event.addListener(marker2, 'click', popup);
+                            google.maps.event.addListener(marker3, 'click', popup);
+                            google.maps.event.addListener(marker4, 'click', popup);
+                            google.maps.event.addListener(marker5, 'click', popup);
+
+
+                            function popup() {
+                                $('#exampleModal').modal('show')
+                            }
+
+
+
+                            const inputText = document.createElement("input")
+                            inputText.type = "text";
+                            inputText.placeholder = "Commune,quartier,type d'agence"
+
+                            map.controls[google.maps.ControlPosition.TOP_CENTER].push(inputText)
+
+                            var btn = document.createElement('div')
+                            btn.classList.add('ok');
+                            btn.id = 'list'
+
+                            btn.innerHTML = '<button type="button" class="btn btn-dark valider" id="valider" >Afficher la liste  <span class="icon material-icons icone">format_list_bulleted</span></button>'
+                            map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(btn);
+
+                            btn.onclick = function quoi() {
+                                location.href = "listeagence"
+
+                            }
+
+
+                        }
+                    </script>
+                </head>
+                <header class="header fixed-top header-fill">
+                    <nav class="navbar">
+                        <div>
+                            <button class="menu-btn btn btn-link btn-44" onclick="window.history.go(-1); return false;">
+                                <span class="icon material-icons">arrow_back</span>
+                            </button>
+                        </div>
+                        <div>
+                            <h6 class="text"><span>Trouver une agence</span></h6>
+                        </div>
+                        <div>
+                        </div>
+                    </nav>
+                </header>
+
+                <body>
+                    <div class=" diffg">
+                        <section class="step-indicator ">
+                            <div class="step step1 active">
+                                <div class="step-icon">1</div>
+                            </div>
+                            <div class="indicator-line active">
+
+                            </div>
+                            <div class="step step2">
+                                <div class="step-icon">2</div>
+                            </div>
+                            <div class="indicator-line"></div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                            <div class="indicator-line">
+
+                            </div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                            </div>
+                        </section>
+                    </div>
+
+
+
+                    <div id="map">
+                    </div>
+                    <!-- modal code -->
+                    <div class="modal fade modals" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-cusom " role="document ">
+                            <div class="modal-content modal-contens ">
+                                <div class="modal-header modal-border head ">
+                                    <h5 class="modal-title " id="exampleModalLabel "> <span class="material-icons " data-dismiss="modal ">
+                                        delete_forever
+                                        </span>
+                                    </h5>
+                                </div>
+                                <div class="modal-body text-center ">
+                                    <img src="/CashIn/static/assets/img/agence.png " class="image "/>
+                                    <h2>Nom ,Prenom</h2>
+                                    <span><i class="icon material-icons place " aria-hidden="true ">place</i> Adresse</span>
+                                </div>
+                                <div class="text-center ">
+                                    <span><i class="icon material-icons flag " aria-hidden="true ">flag</i> Agence public</span>
+
+                                </div>
+                                <div class="text-center ">
+                                    <span> 10-15min</span>
+                                    <span><i class="icon material-icons star " aria-hidden="true ">star</i> </span>
+                                    <span class="ps ">4.0</span>
+
+                                </div>
+                                <div class="modal-footer modal-border buttons ">
+                                    <button type="button " class="btn btn-dark valider " id="valider">Confirmer</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Required jquery and libraries -->
+                    <script src="/CashIn/static/assets/js/jquery-3.3.1.min.js "></script>
+                    <script src="/CashIn/static/assets/js/popper.min.js "></script>
+                    <script src="/CashIn/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
+
+                    <!-- cookie css -->
+
+                    <!-- Customized jquery file  -->
+                    <script src="/CashIn/static/assets/js/main.js "></script>
+                    <script src="/CashIn/static/assets/js/color-scheme-demo.js "></script>
+                    <script>
+                        document.getElementById('valider').onclick = function() {
+                            location.href = "felicitation"
+                        }
+
+                        function close() {
+
+                        }
+                    </script>
+                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCc-7cU3-_x1VTV5eW3g2pVnl3vi9lvv7w&amp;callback=initMap&amp;libraries=&amp;v=weekly"></script>
+
+                </body>
+            </html>
+
+        </template>
+    </data>
+</odoo>

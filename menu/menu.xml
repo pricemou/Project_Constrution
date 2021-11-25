@@ -1,9 +1,0 @@
-<odoo>
-  <data>
-        <!-- Root menu -->
-        <menuitem sequence="0" id="construction_root" name="Construction"/>
-
-        <menuitem id="construction_projects_menu" parent="construction_root"
-            name="Projets" action="action_construction_projects" sequence="1"/>
-  </data>
-</odoo>

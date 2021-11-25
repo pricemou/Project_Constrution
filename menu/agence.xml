@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+      <record id="agence_partner" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                  <xpath expr="//div[@class='o_address_format']" position="before">
+                        <group>
+                              <field name="authorized_to_cash_out"/>
+                        </group>
+                  </xpath>
+                  <xpath expr="//notebook" position="inside">
+                        <page string="Agence CASHOUT">
+                              <group>
+                                    <field name="cash_out_agency"/>
+                              </group>
+                        </page>
+                        <page string="Personnes refusées par l'utilisateur pour ses transactions CASHOUT">
+                              <group>
+                                    <field name="liste_refuse"/>
+                              </group>
+                        </page>
+                        <page string="Transactions CASHOUT">
+                              <group>
+                                    <field name="transaction_list"/>
+                              </group>
+                        </page>
+                  </xpath>
+            </field>
+      </record>
+</odoo>

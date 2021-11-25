@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+        
+        <template id="retraitAgence">
+        
+            <xpath expr="//link[last()]" position="after" > 
+                <head>
+                    <meta charset="utf-8"/>
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+                    <meta name="description" content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website"/>
+                    <meta name="author" content="Maxartkiller"/>
+
+                    <title>CashOutWeb</title>
+
+                    <!-- Favicons -->
+                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
+                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+
+                    <!-- Elegant font icons -->
+                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+
+                    <!-- daterange picker -->
+                    <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css" rel="stylesheet"/>
+
+                    <!-- Swiper Slider -->
+                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+
+                    <!-- anonymous Slider -->
+                    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+                    <!-- Custom styles for this template -->
+                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style"/>
+                    <link href="/CashOutWeb/static/assets/css/customer.css" rel="stylesheet" id="style"/>
+                    
+                </head>
+
+                <body>
+                    <!-- Custom header -->
+                    <header class="header fixed-top header-fill  o_affix_enabled">
+                        <nav class="navbar">
+                            <div>
+                                <button class="btn btn-link btn-44"  onclick="window.history.go(-1); return false;">
+                                    <span class="icon material-icons"><i class="fas fa-arrow-left"></i></span>
+                                </button>
+                            </div>
+                            <div>
+                                <a class="navbar-brand" href="index.html">
+                                    <!-- <div class="logo">1<span>UX</span><span>UI</span></div> -->
+                                    <h4 class="logo-text"><span style="font-weight: 800;font-size: 29px;">Retirer</span><small></small></h4>
+                                </a>
+                            </div>
+                            <div>
+                            
+                            </div>
+                        </nav>
+                    </header>
+
+                    <div class="indicator" style="margin-top: px;">
+                        <section class="step-indicator">
+                            <div class="step step1 active">
+                                    <div class="step-icon">1</div>
+                            </div>
+                            <div class="indicator-line active"></div>
+                                <div class="step step2">
+                                    <div class="step-icon">2</div>
+                                </div>
+                                <div class="indicator-line"></div>
+                                <div class="step step3">
+                                    <div class="step-icon">3</div>
+                                </div>
+                                <div class="indicator-line"></div>
+                            <div class="step step3">
+                                <div class="step-icon">3</div>
+                                 </div>
+                        </section>
+                    </div>
+
+
+                <main class="flex-shrink-0 main-container">
+                        <!-- page content goes here -->
+                        <div class="container my-4">
+                            <div class="card  border-0 shadow-sm mb-4 ">
+                                <div class="card-body position-relative">
+                                    <div class="media">
+                                        <figure class="avatar avatar-50 mr-3 tt-ListeAgence-figure">
+                                            <img t-att-src="'data:image/png;base64,%s' % to_text(agence.image)" class=""/>
+                                        </figure>
+                                        <div class="media-body">
+                                            <h5 class="mb-1 tt-ListeAgence-Non"><t t-esc="agence.nom"/></h5>
+                                            <div class="row">
+                                                <div class="col-7">
+                                                    <p class="tt-ListeAgence"><t t-esc="agence.nom"/></p>
+                                                    <!-- <p class="tt-ListeAgence"><t t-esc="listeAgence.ville"/></p> -->
+                                                </div>
+                                                <div class="col-5">
+                                                    <p class="tt-ListeAgence-date">10-15min</p>
+                                                    <p class="tt-ListeAgence-date"><i class="fa fa-star tt-color-start" aria-hidden="true"></i> 4.0</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+
+                    <form method="POST" action="/valider">
+                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                        <div class="container my-4">
+                            <div class="border-0  mb-4 ">
+                               
+                                    <div class="form-group">
+                                      <h1></h1>
+                                      <input type="text" class="form-control tt-fromulaire" id="exampleInputPassword1" name="nom" placeholder="Nom"/>
+                                      <input type="text" class="form-control tt-fromulaire" id="exampleInputPassword1" name="numero_retrait" placeholder="Numéro de retrait"/>
+                                      <input type="text" class="form-control tt-fromulaire" id="exampleInputPassword1" name="montant_deposer" placeholder="Montant à déposer"/>
+                                      <input type="text" class="form-control tt-fromulaire" id="exampleInputPassword1" name="Ftransfer" placeholder="Frais de transfert opérateur"/>
+                                      <input type="hidden" name="agence" t-att-value="agence.id" />
+                                    </div>
+                                    
+                                    <div style="margin-top: 47px;">
+                                        <div class="row">
+                                            <div class="col-6 tt-retrait-montant"> Montant à recevoir : </div>
+                                            <div class="col-6 tt-retrait-somme"> XXXXXX XOF </div>
+                                        </div>
+                                    </div>
+                                
+                            </div> 
+                        </div>
+
+
+                        <div class="container">
+                            <div class="card border-0 mb-3 bouttonColor">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button type="button" class="mb-2 btn btn-light" onclick="window.history.go(-1); return false;">Annuler</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <!-- <button type="button" class="mb-2 btn  tt-agence" onclick="check()" id="valider" >Confirmer</button> -->
+                                            <input type="submit" value="Confirmer" style="color: white;" class="mb-2 btn  tt-agence" id="valider"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </main>
+
+                </body>
+
+          </xpath> 
+
+        </template>
+    </data>
+</odoo>

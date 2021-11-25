@@ -1,0 +1,30 @@
+#map {
+    margin-top: 10px;
+    border-top-right-radius: 50px;
+    height: 100%;
+    border-top-left-radius: 50px;
+}
+
+input[type="text"] {
+    margin-top: 70px;
+    width: 80%;
+    height: 40px;
+    border-radius: 13px;
+    border: none;
+    text-align: center;
+    font-size: 17px;
+}
+
+.valider {
+    background-color: black;
+    border-radius: 13px;
+    margin-bottom: 25px;
+    color: white;
+    width: 250px;
+    height: 60px;
+    font-size: 17px;
+}
+
+.icone {
+    margin-left: 5px;
+}
