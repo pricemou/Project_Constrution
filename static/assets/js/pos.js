@@ -1,73 +1,7 @@
 // pos_cash_in_out_odoo js
 $(document).ready(function () {
-    // // clic function
-    // $("#validert").click(function(){
+   
 
-    //     // get value input
-    //     var agence = $("#agence").is(":checked")
-    //     var individu = $("#individu").is(":checked")
-    //     var porte = $("#porte").is(":checked")
-
-    //     // requete de l'atat de la commande 
-    //     function assignmt_action(individu, agence, porte ) {
-    //         let value = {
-    //             "individu_id": individu,
-    //             "agence": agence,
-    //             'porte': porte,
-    //         }
-
-    //         console.log(value)
-    //         $.ajax({
-    //             url: "/retrait",
-    //             data: value,
-    //             cache: "false",
-    //             success: function (res) {
-    //                 if (res == true) {
-    //                     alert("hello");
-    //                 };
-
-    //                 if(( porte)||(individu)){
-    //                     // window.location = "/retrait";
-    //                 } else if(agence){
-    //                     window.location = "/ListeAgence";
-    //                 }else {
-                        
-    //                 }
-                    
-    //             },
-
-    //             Error: function (x, e) {
-    //                 alert("Some error");
-    //             }
-    //         });
-
-
-    //     }
-
-    //     assignmt_action(individu, agence, porte )
-    // })
-
-
-    // email fuction 
-    // $('#valider').on('click', function(){
-    //     console.log('Mail')
-    //     var value = {}  
-    //     $.ajax({
-    //         url: '/odoo/send/mail',
-    //         data: JSON.stringify(value),
-    //         type: "POST",
-    //         contentType: "application/json",
-    //         dataType: "json",
-
-    //         success: function (data) {
-    //         console.log('Mail Send')
-    //         }
-    //     })
-
-    // })
-
-
-    // Validation pour le type de paye
     $("#valider").click(function(){
 
         // get value input
@@ -86,16 +20,16 @@ $(document).ready(function () {
             btn.setAttribute("data-keyboard", 'false')
         }
         if(individu === true){
-            window.location = "/retrait";
+            window.location = "/cashout/retired";
         }
         if(porte === true){
-            window.location = "/retraitParDoor";
+            window.location = "/cashout/door_to_door_retired";
         }
     })
 
     // validation agence
     $("#validerloca").click(function(){
-        window.location = "/rechercherAgences";
+        window.location = "/cashout/agency/search/";
     })
 
     $("#validerTrager").click(function(){
@@ -120,8 +54,68 @@ $(document).ready(function () {
             });
 
             window.location = "/valider";
-        
     })
 
+    // choisir une methode de payement
+
+    $("#commande").click(function(){
+        $('.close-modal').hide();
+        var numero = $('.numero').val();
+        var opreteur = $('#operateur option:selected').val();
+        data = {
+            'operateur':opreteur,
+            'numero':numero,
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: JSON.parse(data),
+            success: success,
+            dataType: dataType
+          });
+    })
+
+    $( "#searchForm" ).submit(function(event) {
+ 
+        // Stop form from submitting normally
+        event.preventDefault();
+       
+        // Get some values from elements on the page:
+        var $form = $( this ),
+          term = $form.find( "input[name='numero']" ).val(),
+          url = $form.attr( "action" );
+          console.log(term);
+       
+        // Send the data using post
+        var settings = {
+            "url": "/cashout/request",
+            "method": "POST",
+            "timeout": 0,
+            "headers": {
+              "Content-Type": "application/json",
+              "Cookie": "session_id=d5e1e1bab77e63b026dab6a6d0e6fdbc001e27d5"
+            },
+            "data": JSON.stringify({
+              "paramas": {
+                "hello": "claude",
+                "place": "tesd"
+              }
+            }),
+          };
+          
+          $.ajax(settings).done(function (response) {
+            console.log(response);
+          });
+
+        // Put the results in a div
+        // posting.done(function( data ) {
+        //   var content = $( data ).find( "#content" );
+        // //   $( "#result" ).empty().append( content );
+        // });
+      });
+
 });
+
 

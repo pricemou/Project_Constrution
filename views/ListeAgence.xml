@@ -13,31 +13,31 @@
                         content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website" />
                     <meta name="author" content="Maxartkiller" />
 
-                    <title>CashOutWeb</title>
+                    <title>web_cash_out</title>
 
                     <!-- Favicons -->
-                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png"
+                    <link rel="apple-touch-icon" href="/web_cash_out/static/assets/img/favicons/apple-touch-icon.png"
                         sizes="180x180" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32"
+                    <link rel="icon" href="/web_cash_out/static/assets/img/favicons/favicon-32x32.png" sizes="32x32"
                         type="image/png" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16"
+                    <link rel="icon" href="/web_cash_out/static/assets/img/favicons/favicon-16x16.png" sizes="16x16"
                         type="image/png" />
-                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg"
+                    <link rel="mask-icon" href="/web_cash_out/static/assets/img/favicons/safari-pinned-tab.svg"
                         color="#ffffff" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico" />
+                    <link rel="icon" href="/web_cash_out/static/assets/img/favicons/favicon.ico" />
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
 
                     <!-- daterange picker -->
-                    <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css"
+                    <link href="/web_cash_out/static/assets/vendor/daterangepicker-master/daterangepicker.css"
                         rel="stylesheet" />
 
                     <!-- Swiper Slider -->
-                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
 
                     <!-- anonymous Slider -->
                     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -45,10 +45,10 @@
                         crossorigin="anonymous" />
 
                     <!-- Custom styles for this template -->
-                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
-                    <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style" />
-                    <link href="/CashOutWeb/static/assets/css/customer.css" rel="stylesheet" id="style" />
-                    <link href="/CashOutWeb/static/assets/css/agence.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/style.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/customer.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/agence.css" rel="stylesheet" id="style" />
 
                 </head>
 
@@ -74,35 +74,16 @@
 
 
 
-                    <div class="indicator mt-6" style="">
-                        <section class="step-indicator">
-                            <div class="step step1 active">
-                                <div class="step-icon">1</div>
-                            </div>
-                            <div class="indicator-line active">
+                    
 
-                            </div>
-                            <div class="step step2">
-                                <div class="step-icon">2</div>
-                            </div>
-                            <div class="indicator-line"></div>
-                            <div class="step step3">
-                                <div class="step-icon">3</div>
-                            </div>
-                            <div class="indicator-line">
+                    <main class="flex-shrink-0 main-container padding-top: 42px; margin-top: 6rem;"></main>
+                    <input type="hidden" name="csrf_token" id="token" t-att-value="request.csrf_token()" />
 
-                            </div>
-                            <div class="step step3">
-                                <div class="step-icon">3</div>
-                            </div>
-                        </section>
-                    </div>
-
-                    <main class="flex-shrink-0 main-container"></main>
 
 
                     <form method="POST" action="/carteAgence/">
-                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
+                        <input type="hidden" name="csrf_token"  t-att-value="request.csrf_token()" />
+
                         <div class="container">
                             <div class="card border-0 mb-3 bouttonColor">
                                 <div class="card-body">
@@ -120,27 +101,39 @@
 
 
                     <!-- Required jquery and libraries -->
-                    <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/popper.min.js"></script>
-                    <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+                    <script src="/web_cash_out/static/assets/js/jquery-3.3.1.min.js"></script>
+                    <script src="/web_cash_out/static/assets/js/popper.min.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 
                     <!-- cookie css -->
-                    <script src="/CashOutWeb/static/assets/vendor/cookie/jquery.cookie.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/cookie/jquery.cookie.js"></script>
 
                     <!-- Customized jquery file  -->
-                    <script src="/CashOutWeb/static/assets/js/main.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/agencies_list.js"></script>
-                    <script type="text/javascript"
-                        src="http://maps.google.com/maps/api/js?sensor=false&amp;v=3&amp;libraries=geometry"></script>
+                    <script src="/web_cash_out/static/assets/js/main.js"></script>
+                    <script src="/web_cash_out/static/assets/js/color-scheme-demo.js"></script>
+                    <script src="/web_cash_out/static/assets/js/agencies_list.js"></script>
+                    <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=false&amp;v=3&amp;libraries=geometry"></script>
                     <script>
                         var agencies = <t t-esc='agencies' /> ;
+
+
+                        navigator.geolocation.getCurrentPosition(
+                                             (position) => {
+                                                  const pos = {
+                                                       lat: position.coords.latitude,
+                                                       lng: position.coords.longitude,
+                                                  }
+                                             console.log("+++++++++++++++++++++"+pos.lng);
+
+                                                });
                         var all_cards = [];
                         if (navigator.geolocation) {
                             navigator.geolocation.getCurrentPosition(
                                 (position) => {
-                                    const user_position = new google.maps.LatLng(position.coords.latitude, position
-                                        .coords.longitude);
+                                    
+                                    // user position
+                                    const user_position = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+                                    
                                     agencies2 = agencies;
                                     agencies2.forEach(element => {
                                         element['distance'] = google.maps.geometry.spherical.computeDistanceBetween(user_position, new google.maps.LatLng(element.latitude, element.longitude));
@@ -223,7 +216,7 @@
 
                                             // Modal view
                                             var form_modal = document.createElement('form');
-                                            form_modal.setAttribute("action", "/itineraire/");
+                                            form_modal.setAttribute("action", "/cashout/itineraire/");
                                             form_modal.setAttribute("method", "post")
 
                                             var token = `<input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />;`
@@ -462,13 +455,15 @@
 
                                             // Modal view
                                             var form_modal = document.createElement('form');
-                                            form_modal.setAttribute("action", "/itineraire/");
+                                            form_modal.setAttribute("action", "/cashout/itineraire/");
                                             form_modal.setAttribute("method", "post")
 
-                                            var input_csrf_token = document.createElement('input');
-                                            input_csrf_token.setAttribute("type", "hidden");
-                                            input_csrf_token.setAttribute("value", "request.csrf_token()");
-                                            input_csrf_token.setAttribute("name", "csrf_token");
+                                            var input_csrf_token = document.getElementById('token')
+
+                                            // var input_csrf_token = document.createElement('input');
+                                            // input_csrf_token.setAttribute("type", "hidden");
+                                            // input_csrf_token.setAttribute("value", "request.csrf_token()");
+                                            // input_csrf_token.setAttribute("name", "csrf_token");
 
                                             var div_modal_fade = document.createElement('div');
                                             div_modal_fade.className = "modal fade modals";
@@ -589,7 +584,7 @@
 
                                             form_modal.appendChild(div_modal_fade);
                                             form_modal.appendChild(input_csrf_token);
-                                            div_modal_fade.appendChild(div_modal_dialog);
+                                            div_modal_fade.appendChild(div_modal_dialog); 
                                             div_modal_dialog.appendChild(div_modal_content);
                                             div_modal_content.appendChild(div_modal_header);
                                             div_modal_header.appendChild(h5);

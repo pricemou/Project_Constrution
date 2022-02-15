@@ -8,22 +8,14 @@ import json
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from math import sin, cos, sqrt, atan2, radians
 
 import logging
 _logger = logging.getLogger(__name__)
 
 
 class Academy(http.Controller):
-
-    # API retrait
-    #     @http.route('/retrait/', auth='user')
-    #     def index(self, **kw):
-    #           _logger.info('------------------------')
-    #           _logger.info( kw )
-    #           _logger.info('------------------------')
-    #           return http.request.render('CashOutWeb.retrait')
-
-    @http.route(['/odoo/send/mail'], type='json', auth='user', methods=['POST'], csrf=False)
+    @http.route(['/odoo/send/mail'], type='json', auth='user', methods=['POST'], csrf=False, website=True)
     def send_mail_odoo(self, **kwargs):
         html = """\
           <html>
@@ -31,16 +23,16 @@ class Academy(http.Controller):
           <body>
                <p>Bonjour!<br>
                VOulez Faire un Dépôt<br>
-               Here is the <a href="http://127.0.0.1:8069/valider?rep=accepter">Accepter</a> you wanted.
+               Here is the <a href="/valider?rep=accepter">Accepter</a> you wanted.
                </p>
           </body>
           </html>
           """
         # The mail addresses and password
-        sender_address = 'claude.pricemou@groupecerco.com'
-        sender_pass = '07013614'
+        sender_address = '@groupecerco.com'
+        sender_pass = ''
         #    receiver_address = kwargs['receive_mail']
-        receiver_address = "pricemouclaude97@gmail.com"
+        receiver_address = "@gmail.com"
         # Setup the MIME
         message = MIMEMultipart()
         message['From'] = sender_address
@@ -64,18 +56,21 @@ class Academy(http.Controller):
 
 #     @http.route('/retrait/', auth='user')
 #     def index(self):
-#          return http.request.render('CashOutWeb.retrait')
+#          return http.request.render('web_cash_out.retrait')
 
-    @http.route('/retrait/', auth='user')
+    @http.route('/cashout/', auth='user', website=True)
+    def cashOuts(self, **kw):
+        return http.request.render('web_cash_out.cashOuts', {})
+
+    @http.route('/cashout/retired', auth='user')
     def retrait(self, **kw):
-        return http.request.render('CashOutWeb.retrait', {})
+        return http.request.render('web_cash_out.retrait', {})
 
-    @http.route('/annuler/', auth='user')
+    @http.route('/annuler/', auth='user', website=True)
     def annulerCashout(self, **kw):
         transaction_id = kw['id']
         _logger.info(transaction_id)
-        transaction = http.request.env['models.cashouts'].sudo().search(
-            [('id', '=', str(transaction_id))])
+        transaction = http.request.env['models.cashouts'].sudo().search([('id', '=', str(transaction_id))])
         vals = {
             'type': False,
             'client': None,
@@ -89,14 +84,24 @@ class Academy(http.Controller):
         transaction.update(vals)
         personne_refusee = http.request.env['personnes.refusees'].sudo().create(
             vals_refuse)
-        return http.request.render('CashOutWeb.recherche', {'cpt': transaction_id})
+        return http.request.render('web_cash_out.recherche', {'cpt': transaction_id})
 
      #     envoye de notification a utilisateur
-    @http.route('/recherche/', auth='user')
+    @http.route('/cashout/research/', auth='user', website=True)
     def recherche(self, **kw):
+        lat_user = float(kw['lat'])
+        long_user = float(kw['long'])
+        user_id = http.request.session.uid
+
+        result = {
+            'cash_out_longitude' : str(long_user),
+            'cash_out_latitude' : str(lat_user),
+        }
+        update_localisation = http.request.env['res.users'].browse([user_id])
+        update_localisation.partner_id.update(result)
+
         if kw['montant']:
-            date = datetime.datetime.strftime(
-                datetime.datetime.utcnow(), "%Y-%m-%dT%H:%M:%SZ")
+            date = datetime.datetime.strftime(datetime.datetime.utcnow(), "%Y-%m-%dT%H:%M:%SZ")
             user_id = http.request.session.uid
             user_id = http.request.env['res.users'].browse([user_id])
 
@@ -104,19 +109,22 @@ class Academy(http.Controller):
                 'nameUser': user_id.partner_id.id,
                 'date': date,
                 'montant': kw['montant'],
+                'rechercheTour': 0,
             }
-            res_partners = http.request.env['res.partner'].sudo().search(
-                [('authorized_to_cash_out', '=', True)])
-            creation = http.request.env['models.cashouts'].sudo().create(
-                vals)
+            res_partners = http.request.env['res.partner'].sudo().search( [('authorized_to_cash_out', '=', True)])
+            _logger.info("+++++++++localisation++++++: "+str(res_partners))
+            
+            creation = http.request.env['models.cashouts'].sudo().create(vals)
             tab = {
-                "idCreation": creation.id
+                "idCreation": creation.id,
+                "montant": creation.montant,
+                "nameUser": creation.nameUser.name,
             }
 
             message = """
-                         <h3>Demande de cash</h3>
+                         <h3>Mr """+str(tab['nameUser'])+""" fait une demande de """+str(tab['montant'])+""" FCFA Cash</h3>
                          <button id="accepter" onclick="valider()">Accepter</button>
-                         <button>Refuser</button>
+                         <button onclick="Refuser()>Refuser</button>
                          <script type= "text/javascript">
 
                               function valider(){
@@ -130,10 +138,9 @@ class Academy(http.Controller):
                                                        lat: position.coords.latitude,
                                                        lng: position.coords.longitude,
                                                   };
+                                                  console.log("+++++++++++++++++++++++"+pos.lng),
+
                                                   code = {
-                                                      'idCreation': """+str(tab['idCreation'])+""", 'lat': pos.lat, 'lng': pos.lng};
-                                                  console.log(code);
-                                                  $.ajax({
                                                        url:"/cartee",
                                                        cache:"false",
                                                        data:code,
@@ -164,32 +171,34 @@ class Academy(http.Controller):
                                    }
                               }
                          </script>
-                        #  <h3>l'individu concerné est proche de vous <br>
-                        #  Cliquer sur accepter pour passer au paiement </h3>
-                        #  <button id="accepter" onclick="valider()">accepter</button>
-                        #  <button>annuler</button>
-                        #  <script type= "text/javascript">
-                        #       var code ="""+str(tab)+"""
-
-                        #       function valider(){
-                        #            let test =""
-                        #            $.ajax({
-                        #                url:"/cartParPorte",
-                        #                cache:"false",
-                        #                data:code,
-                        #                success: function (res){
-                        #                     window.location.href = `http://127.0.0.1:8069/RecherherDoor?ps=${code}`;
-                        #                },
-                        #                Error: function (x,e){
-                        #                     console.log('some error')
-                        #                }
-                        #           })
-                        #       }
-                        #  </script>
                """
+
+            def geolocation(lat1,lon1,lat2,lon2):
+                lat1 = radians(lat1)
+                lon1 = radians(lon1)
+                lat2 = radians(lat2)
+                lon2 = radians(lon2)
+
+                R = 6373.0
+                dlon = lon2 - lon1
+                dlat = lat2 - lat1
+                a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+                c = 2 * atan2(sqrt(a), sqrt(1 - a))
+                r = round(R * c, 3)
+                return r
+            
             for partner in res_partners:
-                rep = partner.user_id.notify_info(message)
-            return http.request.render('CashOutWeb.recherche', {'cpt': creation.id})
+                if (user_id.partner_id.id != partner.id) and (user_id.partner_id.authorized_to_cash_out == True):
+                    lat_client = float(partner.cash_out_latitude)
+                    log_client = float(partner.cash_out_longitude)
+                    _logger.info("+++++++++localisation++++++: "+str(lat_client))
+                    _logger.info("+++++++++localisation++++++: "+str(log_client))
+                    result = geolocation(lat_user,long_user,lat_client,log_client)
+                    if result <= 10:
+                        partner.user_id.notify_info(message)
+                    else:
+                        pass
+            return http.request.render('web_cash_out.recherche', {'cpt': creation.id})
 
     @http.route('/cartParPorte', type='http', auth='user', csrf=False, website=True)
     def cartParPorte(self, **kw):
@@ -210,8 +219,7 @@ class Academy(http.Controller):
     @http.route('/cartee', type='http', auth='user', csrf=False, website=True)
     def SaveData(self, **kw):
         ps = kw['idCreation']
-        updateOdoo = http.request.env['models.cashouts'].sudo().browse([
-            int(ps)])
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([int(ps)])
         verification = updateOdoo.type
         if verification == True:
             user_id = http.request.session.uid
@@ -246,50 +254,54 @@ class Academy(http.Controller):
 
 
 #     Rechercher pour voir sir l'utiisateur a valider
-    @http.route('/odooRecherher', auth='user', )
+    @http.route('/cashout/User_search', auth='user', website=True)
     def rechercheOdoo(self, **kw):
         ps = kw['ps']
-        updateOdoo = http.request.env['models.cashouts'].sudo().browse([
-            int(ps)])
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([int(ps)])
         verification = updateOdoo.type
+        _logger.info('updateOdoo.rechercheTour +++++++ ' + str(updateOdoo.rechercheTour))
+
+        if updateOdoo.rechercheTour <= 1:
+            val = {"rechercheTour": int(updateOdoo.rechercheTour)+ 1}
+            updateOdoo.update(val)
+        elif (updateOdoo.rechercheTour == 2) and(verification != True):
+            return http.request.render('web_cash_out.operateur')        
 
         _logger.info(verification)
         if verification == True:
-            destinataire = {
-                'id': updateOdoo.client['id'],
-                'name': updateOdoo.client['name'],
-                'address': str(updateOdoo.client['street']),
-                'longitude': updateOdoo.client['partner_longitude'],
-                'latitude': updateOdoo.client['partner_latitude'],
-            }
-            return http.request.render('CashOutWeb.Itineraire', {'agence': destinataire})
+            return http.request.render('web_cash_out.carte', {'updateOdoo': updateOdoo})
         else:
-            _logger.info('VERIFICATION == FALSE +++++++ ' + str(ps))
+            # Filtrer dans la base donnée
+            user_id = http.request.session.uid
+            user_id = http.request.env['res.users'].browse([user_id])
+            long_user = float(user_id.partner_id.cash_out_longitude)
+            lat_user = float(user_id.partner_id.cash_out_latitude)
+
             receivers = []
             personnes_refusees_list = []
-            personnes_refusees = http.request.env['personnes.refusees'].sudo().search([]).mapped(
-                'name')
-            res_partners = http.request.env['res.partner'].sudo().search(
-                [('authorized_to_cash_out', '=', True)])
+            personnes_refusees = http.request.env['personnes.refusees'].sudo().search([]).mapped('name')
+            res_partners = http.request.env['res.partner'].sudo().search( [('authorized_to_cash_out', '=', True), ('id', '!=', user_id.partner_id.id)])
 
             for personne_refusee in personnes_refusees:
                 personnes_refusees_list.append(personne_refusee.name)
 
             for partner in res_partners:
-                if partner.name in personnes_refusees_list:
+                if (partner.name in personnes_refusees_list):
                     pass
                 else:
-                    user = http.request.env['res.users'].sudo().search(
-                        [('partner_id', '=', partner.id)])
+                    user = http.request.env['res.users'].sudo().search( [('partner_id.id','=', partner.id)])
                     receivers.append(user)
+
             tab = {
-                "idCreation": ps
+                "idCreation": ps,
+                "nameUser": updateOdoo.nameUser.name,
+                "montant": updateOdoo.montant,
             }
 
             message = """
-                        <h3>Demande de cash</h3>
+                        <h3>Mr """+str(tab['nameUser'])+""" fait une demande de """+str(tab['montant'])+""" FCFA Cash</h3>
                         <button id="accepter" onclick="valider()">Accepter</button>
-                         <button>Refuser</button>
+                         <button onclick="Refuser()">Refuser</button>
                          <script type= "text/javascript">                         
 
                               function valider(){
@@ -303,6 +315,7 @@ class Academy(http.Controller):
                                                        lat: position.coords.latitude,
                                                        lng: position.coords.longitude,
                                                   };
+                                                  console.log("+++++++++++++++++++++++"+pos.lng),
                                                   code = {'idCreation': """+str(tab['idCreation'])+""", 'lat': pos.lat, 'lng': pos.lng};
                                                   console.log(code);
                                                   $.ajax({
@@ -331,60 +344,104 @@ class Academy(http.Controller):
                                         // Browser doesn't support Geolocation
                                         handleLocationError(false, infoWindow, map.getCenter());
                                    } 
-                                   
-
                               }
                          </script>
                """
-            for user in receivers:
-                rep = user.notify_info(message)
-            return http.request.render('CashOutWeb.recherche', {'cpt': ps})
+            def geolocation(lat1,lon1,lat2,lon2):
+                lat1 = radians(lat1)
+                lon1 = radians(lon1)
+                lat2 = radians(lat2)
+                lon2 = radians(lon2)
 
-#     Afficher le trajet de utilisateur
-    @http.route('/trajet/', auth='user')
+                R = 6373.0
+                dlon = lon2 - lon1
+                dlat = lat2 - lat1
+                a = sin(dlat / 2)**2 + cos(lat1) * cos(lat2) * sin(dlon / 2)**2
+                c = 2 * atan2(sqrt(a), sqrt(1 - a))
+                r = round(R * c, 3)
+                return r
+
+            for user in receivers:
+                lat_client = float(user.cash_out_latitude)
+                log_client = float(user.cash_out_longitude)
+                result = geolocation(lat_user,long_user,lat_client,log_client)
+                _logger.info('resulta +++++++ ' + str(result))
+                if result <= 16:
+                    user.user_ids.notify_info(message)
+
+            return http.request.render('web_cash_out.recherche', {'cpt': ps})
+
+    # Afficher le trajet de utilisateur
+    @http.route('/door_to_door/trajet/', auth='user', website=True)
+    def dortodor(self, **kw):
+        ps = kw['cpt']
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([ int(ps)])
+        verification = updateOdoo.type
+        if verification == True:
+            agences = {
+                'id':  updateOdoo.nameUser.id,
+            }
+
+            destinataire = {
+                'id': updateOdoo.client['id'],
+                'name': updateOdoo.client['name'],
+                'address': str(updateOdoo.client['street']),
+                'longitude': updateOdoo.client['partner_longitude'],
+                'latitude': updateOdoo.client['partner_latitude'],
+            }
+        return http.request.render('web_cash_out.Itineraire', {'agence': destinataire,'agences':updateOdoo.nameUser})
+
+
+    @http.route('/trajet/', auth='user', website=True)
     def index(self, **kw):
         ps = kw['cpt']
-        user_id = http.request.session.uid
-        user_id = http.request.env['res.users'].browse([user_id])
-        personnes_refusees = http.request.env['personnes.refusees'].sudo().search(
-            [('user_who_refused', '=', user_id.partner_id.id)])
-        if len(personnes_refusees) > 0:
-            for personne_refusee in personnes_refusees:
-                personne_refusee.unlink()
-                _logger.info('Utilisateur supprimé')
-        updateOdoo = http.request.env['models.cashouts'].sudo().browse([
-            int(ps)])
-        return http.request.render('CashOutWeb.trager', {'ps': updateOdoo})
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([ int(ps)])
+        verification = updateOdoo.type
+        _logger.info('updateOdoo.client.id == FALSE +++++++ ' + str(updateOdoo.client.id))
 
-    @http.route('/comfimation/', auth='user', type='http')
+
+        _logger.info(verification)
+        if verification == True:
+            agences = {
+                'id':  updateOdoo.client.id,
+            }
+            destinataire = {
+                'id': updateOdoo.client['id'],
+                'name': updateOdoo.client['name'],
+                # 'image':'{}/web/image?model=res.partner&id={}&field=image_128'.format(base_url, updateOdoo.client.id),
+                'address': str(updateOdoo.client['street']),
+                'longitude': updateOdoo.client['partner_longitude'],
+                'latitude': updateOdoo.client['partner_latitude'],
+            }
+        return http.request.render('web_cash_out.Itineraire', {'agence': destinataire,'agences':updateOdoo.client})
+
+    @http.route('/comfimation/', auth='user', type='http', website=True)
     def valider(self, **kw):
         ps = kw['cpt']
 
-        updateOdoo = http.request.env['models.cashouts'].sudo().browse([
-            int(ps)])
-        res_users = http.request.env['res.users'].sudo().browse(
-            [int(updateOdoo.id_client)])
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([int(ps)])
+        res_users = http.request.env['res.users'].sudo().browse([int(updateOdoo.id_client)])
         message = """
-                         <h3>l'individu concerné est proche de vous <br>
-                         Cliquer sur accepter pour passer au paiement </h3>
-                         <button id="accepter" onclick="valider()">accepter</button>
-                         <button>annuler</button>
-                         <script type= "text/javascript">
-                              function valider(){                                  
-                                   window.location.href = "https://moise.groupecerco.com/my";
-                              }
-                         </script>
+                        <h3>l'individu concerné est proche de vous <br>
+                        Cliquer sur accepter pour passer au paiement </h3>
+                    <button id="accepter" onclick="valider()">accepter</button>
+                    <button>annuler</button>
+                    <script type= "text/javascript">
+                        function valider(){                                  
+                               window.location.href = "https://moise.groupecerco.com/my";
+                          }
+                    </script>
                """
 
         rep = res_users.notify_info(message)
 
      # Rechercher agent
 
-    @http.route('/rechercherAgences/', auth='user')
+    @http.route('/cashout/agency/search/', auth='user', website=True)
     def rechercherAgencesUser(self, **kw):
-        return http.request.render('CashOutWeb.rechercherAgences', {})
+        return http.request.render('web_cash_out.rechercherAgences', {})
 
-    @http.route('/ListeAgence/', auth='user', methods=['GET'], type='http')
+    @http.route('/cashout/Agency_list/', auth='user', methods=['GET'], type='http')
     def ListeAgence(self):
         base_url = http.request.env['ir.config_parameter'].get_param(
             'web.base.url')
@@ -395,68 +452,43 @@ class Academy(http.Controller):
             one_agency = {
                 'id': agency.id,
                 'name': agency.name,
-                'address': agency.street,
+                # 'address': agency.street,
                 'longitude': agency.partner_longitude,
                 'latitude': agency.partner_latitude,
                 'image': '{}/web/image?model=res.partner&id={}&field=image_128'.format(base_url, agency.id)
             }
             agencies.append(one_agency)
-        return http.request.render('CashOutWeb.ListeAgence', {'agencies': agencies})
+        return http.request.render('web_cash_out.ListeAgence', {'agencies': agencies})
 
-    @http.route('/itineraire/', auth='user', methods=['GET', 'POST'], type='http')
+    @http.route('/cashout/itineraire/', auth='user', methods=['GET', 'POST'], type='http', website=True)
     def Itineraire(self, **kwargs):
-        agence = {
-            'id': kwargs['agence_id'],
+        user_id = http.request.session.uid
+        user_id = http.request.env['res.users'].browse([user_id])
+        partner_id = http.request.env['res.partner'].browse([user_id.partner_id.id])
+
+        destinataire = {
+            'id': partner_id['id'],
             'name': kwargs['agence_name'],
             'address': kwargs['agence_address'],
             'longitude': kwargs['agence_longitude'],
             'latitude': kwargs['agence_latitude'],
         }
+        # destinataire = {
+        #         'id': partner_id['id'],
+        #     }
+        return http.request.render('web_cash_out.Itineraire', {'agence': destinataire ,'agences':partner_id})
 
-     #     base_url = http.request.env['ir.config_parameter'].get_param('web.base.url')
-     #     all_agencies = http.request.env['res.partner'].sudo().search([('cash_out_agency','=',True)])
-     #     agencies = []
-     #     for agency in all_agencies:
-     #          one_agency = {
-     #               'id': agency.id,
-     #               'name': agency.name,
-     #               'address': agency.street,
-     #               'longitude': agency.partner_longitude,
-     #               'latitude': agency.partner_latitude,
-     #               'image': '{}/web/image?model=res.partner&id={}&field=image_128'.format(base_url, agency.id)
-     #          }
-     #          agencies.append(one_agency)
-     #          _logger.info('+++++++++++++++'+str(one_agency))
-        return http.request.render('CashOutWeb.Itineraire', {'agence': agence})
-
-    @http.route('/valider/', auth='user')
+    @http.route('/valider/', auth='user', website=True)
     def validerUser(self, **kw):
-        agent_id = http.request.session.uid
-        user_id = http.request.env['res.users'].browse([agent_id])
-
-        vals = {
-            'nameUser': user_id.name,
-            'client': kw['nom'],
-            'montant': kw['numero_retrait'],
-            'montant_deposer': kw['montant_deposer'],
-            'Ftransfer': kw['Ftransfer'],
-        }
-
-        agence = http.request.env['models.cashouts'].sudo().create(vals)
-        vals = {
-            'id': kw['agence'],
-        }
-        agence = http.request.env['agence.cashouts'].sudo().update(vals)
-
-        return http.request.render('CashOutWeb.valider', {})
+        return http.request.render('web_cash_out.valider', {})
 
      # Methode port a port
 
-    @http.route('/retraitParDoor/', auth='user')
+    @http.route('/cashout/door_to_door_retired', auth='user', website=True)
     def retraitParDoor(self, **kw):
-        return http.request.render('CashOutWeb.retraitParDoor', {})
+        return http.request.render('web_cash_out.retraitParDoor', {})
 
-    @http.route('/rechercheParPort/', auth='user')
+    @http.route('/cashout/research/door_to_door_retired', auth='user', website=True)
     def rechercheParPortOne(self, **kw):
 
         if kw['montant']:
@@ -474,12 +506,15 @@ class Academy(http.Controller):
                 [('authorized_to_cash_out', '=', True)])
             creation = http.request.env['models.cashouts'].sudo().create(
                 vals)
+
             tab = {
-                "idCreation": creation.id
+                "idCreation": creation.id,
+                "montant": creation.montant,
+                "nameUser": creation.nameUser.name,
             }
 
             message = """
-                         <h3>Demande de cash</h3>
+                        <h3>Mr """+str(tab['nameUser'])+""" fait une demande de """+str(tab['montant'])+""" FCFA Cash</h3>
                          <button id="accepter" onclick="valider()">Accepter</button>
                          <button>Refuser</button>
                          <script type= "text/javascript">
@@ -495,7 +530,9 @@ class Academy(http.Controller):
                                                        lat: position.coords.latitude,
                                                        lng: position.coords.longitude,
                                                   };
-                                
+
+                                                  console.log(pos);
+                    
                                                   $.ajax({
                                                        url:"/cartee",
                                                        cache:"false",
@@ -529,16 +566,16 @@ class Academy(http.Controller):
                """
             for partner in res_partners:
                 rep = partner.user_id.notify_info(message)
-            return http.request.render('CashOutWeb.rechercheParPor', {'cpt': creation.id})
+            return http.request.render('web_cash_out.rechercheParPor', {'cpt': creation.id})
 
-    @http.route('/RecherherDoor', auth='user', )
+    @http.route('/cashout/door_to_door_search', auth='user', website=True )
     def rechercheParPortTow(self, **kw):
         ps = kw['ps']
         updateOdoo = http.request.env['models.cashouts'].sudo().browse([
             int(ps)])
         verification = updateOdoo.type
         if verification == True:
-            return http.request.render('CashOutWeb.getAgent', {'updateOdoo': updateOdoo})
+            return http.request.render('web_cash_out.getAgent', {'updateOdoo': updateOdoo})
         else:
             receivers = []
             personnes_refusees_list = []
@@ -557,12 +594,15 @@ class Academy(http.Controller):
                     user = http.request.env['res.users'].sudo().search(
                         [('partner_id', '=', partner.id)])
                     receivers.append(user)
+
             tab = {
-                "idCreation": ps
+                "idCreation": ps,
+                "montant": updateOdoo.montant,
+                "nameUser": updateOdoo.nameUser.name,
             }
 
             message = """
-                         <h3>Demande de cash</h3>
+                        <h3>Mr """+str(tab['nameUser'])+""" fait une demande de """+str(tab['montant'])+""" FCFA Cash</h3>
                          <p>Une personne de votre région demande à faire du cashout</p>
                          <button id="accepter" onclick="valider()">Accepter</button>
                          <button>Refuser</button>
@@ -578,6 +618,9 @@ class Academy(http.Controller):
                                                        lat: position.coords.latitude,
                                                        lng: position.coords.longitude,
                                                   };
+
+                                                  console.log(pos);
+
                                                   code = {'idCreation': """+str(tab['idCreation'])+""", 'lat': pos.lat, 'lng': pos.lng};
                                                   console.log(code);
                                                   $.ajax({
@@ -609,33 +652,33 @@ class Academy(http.Controller):
                """
             for user in receivers:
                 rep = user.notify_info(message)
-            return http.request.render('CashOutWeb.rechercheParPor', {'cpt': ps})
+            return http.request.render('web_cash_out.rechercheParPor', {'cpt': ps})
 
-    @http.route('/rechercherAgence/', auth='user')
+    @http.route('/rechercherAgence/', auth='user', website=True)
     def rechercherAgence(self, **kw):
-        return http.request.render('CashOutWeb.rechercherAgence', {
+        return http.request.render('web_cash_out.rechercherAgence', {
             'teachers': ["Diana Padilla", "Jody Caroll", "Lester Vaughn"],
         })
 
-    @http.route('/authentification/', auth='user')
+    @http.route('/authentification/', auth='user', website=True)
     def authentification(self, **kw):
-        return http.request.render('CashOutWeb.authentification', {
+        return http.request.render('web_cash_out.authentification', {
             'teachers': ["Diana Padilla", "Jody Caroll", "Lester Vaughn"],
         })
 
-    @http.route('/felicitation/', auth='user')
+    @http.route('/felicitation/', auth='user', website=True)
     def felicitation(self, **kw):
-        return http.request.render('CashOutWeb.felicitation', {})
+        return http.request.render('web_cash_out.felicitation', {})
 
-    @http.route('/retraitAgence/', auth='user')
+    @http.route('/retraitAgence/', auth='user', website=True)
     def retraitAgence(self, **kw):
 
         ps = kw['agence_id']
         agence = http.request.env['agence.cashouts'].sudo().browse([int(ps)])
 
-        return http.request.render('CashOutWeb.retraitAgence', {'agence': agence})
+        return http.request.render('web_cash_out.retraitAgence', {'agence': agence})
 
-    @http.route('/carteAgence/', auth='user')
+    @http.route('/carteAgence/', auth='user', website=True)
     def carteAgence(self, **kw):
         base_url = http.request.env['ir.config_parameter'].get_param(
             'web.base.url')
@@ -649,13 +692,13 @@ class Academy(http.Controller):
                 'address': agency.street,
                 'longitude': agency.partner_longitude,
                 'latitude': agency.partner_latitude,
-                'image': '{}/web/image?model=res.partner&id={}&field=image_128'.format(base_url, agency.id),
+                'image': '/web/image?model=res.partner&id={}&field=image_128'.format(agency.id),
             }
             agencies.append(one_agency)
             data['agencies'] = agencies
-        return http.request.render('CashOutWeb.carteAgence', {'data': data})
+        return http.request.render('web_cash_out.carteAgence', {'data': data})
 
-    @http.route('/get_agencies/', auth='user', type="http", methods=['GET'])
+    @http.route('/get_agencies/', auth='user', type="http", methods=['GET'], website=True)
     def getAgencies(self):
         base_url = http.request.env['ir.config_parameter'].get_param(
             'web.base.url')
@@ -675,10 +718,68 @@ class Academy(http.Controller):
             data['agencies'] = agencies
         return json.dumps(data)
 
-    @http.route('/carte/', auth='user')
+    @http.route('/carte/', auth='user', website=True)
     def carte(self, **kw):
         transaction_id = kw['ps']
-        updateOdoo = http.request.env['models.cashouts'].sudo().browse([
-            int(transaction_id)])
+        updateOdoo = http.request.env['models.cashouts'].sudo().browse([int(transaction_id)])
         _logger.info("TRANSACTION DETECTEE: "+str(transaction_id))
-        return http.request.render('CashOutWeb.carteDoor', {'updateOdoo': updateOdoo})
+        return http.request.render('web_cash_out.carteDoor', {'updateOdoo': updateOdoo})
+
+    @http.route('/cashout/operateur/', auth='user', website=True)
+    def operateur(self, **kw):
+        return http.request.render('web_cash_out.operateur')
+
+    @http.route("/cashout/geolocation", methods=['POST'] ,type='json', auth='public', csrf=False)
+    def geolocationGps(self, **kw):
+        longitude = kw['long']
+        latitude = kw['lat']
+        id_partner = int(kw['id'])
+        
+        searchLocation = http.request.env['res.partner'].sudo().search([('id', '=', str(id_partner))])
+
+        _logger.info("++++++++++++++++: "+str(searchLocation.id))
+
+
+        vals = {
+            'cash_out_longitude' : longitude,
+            'cash_out_latitude' : latitude,
+        }
+
+        searchLocation.update(vals)
+        _logger.info("++++++00000000+++++++++: "+str(searchLocation))
+        
+        if searchLocation:
+            message = 'Succes' 
+            return message
+        else:
+            message = 'erreur lors de la creation' 
+            return message
+
+    @http.route('/cashout/request', auth='user', website=True)
+    def request(self, **kw):
+        _logger.info("++++++00000000+++++++++: "+str(kw))
+
+        operateur = kw['operateurs']
+        user_id = http.request.session.uid
+        user_id = http.request.env['res.users'].browse([user_id])
+        var = "OO4O"
+        if operateur =='1':
+            var = "Orange"
+        elif operateur =='2':
+            var = "MTN"
+        elif operateur =='3':
+            var = "Moov"
+        elif operateur =='4':
+            var = "Wave"
+        elif operateur == '5':
+            var = "MasterCarte"
+        
+        val= {
+            'name': user_id.partner_id.id,
+            'operateur':var,
+        }
+        creation = http.request.env['recharger.cashouts'].sudo().create(val)
+        
+        return http.request.render('web_cash_out.felicitation')
+
+

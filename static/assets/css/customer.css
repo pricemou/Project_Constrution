@@ -140,8 +140,9 @@ body {
   color: #7a7575;
   padding-left: 11px;
   font-weight: 600;
+  border-radius: 8px;
   font-size: 21px;
-  border: 1px solid #f7f7f7;
+  border: 1px solid #ccc6c6;
   background: #ffffff94;
 }
 
@@ -162,7 +163,7 @@ body {
 
 .tt-total {
   font-weight: 500;
-  font-size: 21px;
+  font-size: 112%;
 }
 
 .colorBlack {
@@ -180,6 +181,28 @@ body {
   border-radius: 13px;
   color: white;
 }
+
+@media (max-width: 320px) {
+  .tt-total {
+    font-weight: 500;
+    font-size: 73%;
+  }
+  .tt-rechargement {
+    font-size: 73%;
+    margin-top: 9px;
+  }
+
+  .tt-montant p {
+    font-weight: 600;
+  }
+
+  .tt-somme {
+    text-align: right;
+    font-size: 73%;
+    color: blue;
+  }
+}
+
 
 @media (max-height: 619px) {
   .confirm {
@@ -288,8 +311,4 @@ body {
   text-align: right;
 }
 
-/* .modals {
-  width: 343px;
-  height: 226 px;
-  margin: auto;
-} */
+

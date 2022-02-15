@@ -72,12 +72,27 @@ footer {
   padding: 13px;
 }
 
+
 .tt-annuler{
   width: 152px;
   border-radius: 13px;
-  padding: 16px;
-  border: 1px solid #0000000f;
+  padding: 13px;
+  border: 1px solid #8c8383;
   color: black;
+}
+
+@media (max-width: 383px) {
+  .tt-annuler{
+    width: 98%;
+    border-radius: 13px;
+    padding: 9%;
+  }
+
+  .tt-agence{
+    width: 98%;
+    border-radius: 13px;
+    padding: 9%;
+  }
 }
 
 .colPosition{
@@ -118,7 +133,7 @@ footer {
   background: #f7f7f7;
 }
 /* cadre */
-
+tt-annuler
 .card .card-body {
   padding: 21px;
 }
@@ -220,4 +235,11 @@ footer {
         width: 120px;
         height: 45px;
     } */
+}
+/* height >411 width >828 */
+
+@media (min-height: 800px){
+  .mtop{
+    margin-top: 15%;
+  }
 }

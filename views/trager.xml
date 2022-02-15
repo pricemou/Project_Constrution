@@ -10,25 +10,25 @@
                     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                     <title>Carte agence</title>
                     <!-- Favicons -->
-                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
-                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
+                    <link rel="apple-touch-icon" href="/web_cash_out/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
+                    <link rel="icon" href="/web_cash_out/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
+                    <link rel="icon" href="/web_cash_out/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
+                    <link rel="mask-icon" href="/web_cash_out/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+                    <link href="/web_cash_out/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+                    <link href="/web_cash_out/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
 
                     <!-- Swiper Slider -->
-                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+                    <link href="/web_cash_out/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
                     <!-- Custom styles for this template -->
-                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
-                    <link href="/CashOutWeb/static/assets/css/agence_maps.css " rel="stylesheet " id="style"/>
-                    <link href="/CashOutWeb/static/assets/css/agence.css " rel="stylesheet " id="style"/>
-                    <link href="/CashOutWeb/static/assets/css/styleIndicator.css" rel="stylesheet"/>
+                    <link href="/web_cash_out/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+                    <link href="/web_cash_out/static/assets/css/agence_maps.css " rel="stylesheet " id="style"/>
+                    <link href="/web_cash_out/static/assets/css/agence.css " rel="stylesheet " id="style"/>
+                    <link href="/web_cash_out/static/assets/css/styleIndicator.css" rel="stylesheet"/>
                     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
 
@@ -79,7 +79,7 @@
 
                             setTimeout(() => {
                                 $('#exampleModal').modal('show')
-                            }, 2000);
+                            }, 10000);
 
 
                             const inputText = document.createElement("input")
@@ -126,18 +126,18 @@
                             <div class="indicator-line active">
 
                             </div>
-                            <div class="step step2">
+                            <div class="step step2 active">
                                 <div class="step-icon">2</div>
                             </div>
-                            <div class="indicator-line"></div>
+                            <div class="indicator-line active"></div>
                             <div class="step step3">
-                                <div class="step-icon">3</div>
+                                <div class="step-icon active">3</div>
                             </div>
                             <div class="indicator-line">
 
                             </div>
                             <div class="step step3">
-                                <div class="step-icon">3</div>
+                                <div class="step-icon">4</div>
                             </div>
                         </section>
                     </div>
@@ -146,10 +146,9 @@
 
                     <div id="map">
                     </div>
-                    <!-- modal code -->
-                
+
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                        <input type="test" name="cpt" class="targerId" t-att-value="ps.id"/>
+                        <!-- <input type="test" name="cpt" class="targerId" t-att-value="ps.id"/> -->
                         <div class="modal fade modals" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-cusom " role="document ">
                                 <div class="modal-content modal-contens ">
@@ -160,7 +159,7 @@
                                         </h5>
                                     </div>
                                     <div class="modal-body text-center ">
-                                            <img src="/CashOutWeb/static/assets/img/Agence/moussa.png" class="image"/>
+                                            <img src="/web_cash_out/static/assets/img/Agence/moussa.png" class="image"/>
                                         <h3>vous êtes proche de Mr <t t-esc="ps.client"/></h3>
                                         <p>Cliker sur continuer pour l'envoyer une notification </p>
                                     </div>
@@ -178,16 +177,16 @@
 
                     <!-- Required jquery and libraries -->
                     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js "></script>
-                    <script src="/CashOutWeb/static/assets/js/popper.min.js "></script>
-                    <script src="/CashOutWeb/static/assets/js/pos.js"></script>
-                    <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
+                    <script src="/web_cash_out/static/assets/js/jquery-3.3.1.min.js "></script>
+                    <script src="/web_cash_out/static/assets/js/popper.min.js "></script>
+                    <script src="/web_cash_out/static/assets/js/pos.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
 
                     <!-- cookie css -->
 
                     <!-- Customized jquery file  -->
-                    <script src="/CashOutWeb/static/assets/js/main.js "></script>
-                    <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js "></script>
+                    <script src="/web_cash_out/static/assets/js/main.js "></script>
+                    <script src="/web_cash_out/static/assets/js/color-scheme-demo.js "></script>
                     <script>
                         
                     </script>

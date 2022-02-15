@@ -11,7 +11,7 @@ function initMap() {
             // Try HTML5 geolocation.
             // The map, centered at customer
             const map = new google.maps.Map(document.getElementById("map"), {
-                zoom: 10,
+                zoom: 16,
                 mapTypeId: "roadmap",
 
             });
@@ -70,13 +70,13 @@ function initMap() {
             }
 
             const image = {
-                url: '/CashOutWeb/static/assets/img/Agence/localiser.png',
+                url: '/web_cash_out/static/assets/img/Agence/localiser.png',
                 scaledSize: new google.maps.Size(70, 70),
                 origin: new google.maps.Point(0.0),
                 anchor: new google.maps.Point(0.0)
             }
             const image1 = {
-                url: '/CashOutWeb/static/assets/img/Agence/position.png',
+                url: '/web_cash_out/static/assets/img/Agence/position.png',
                 scaledSize: new google.maps.Size(75, 90),
                 origin: new google.maps.Point(0.0),
                 anchor: new google.maps.Point(0.0)
@@ -127,24 +127,24 @@ function initMap() {
 
 
 
-            const inputText = document.createElement("input")
-            inputText.type = "text";
-            inputText.placeholder = "Commune,quartier,type d'agence"
+            // const inputText = document.createElement("input")
+            // inputText.type = "text";
+            // inputText.placeholder = "Commune,quartier,type d'agence"
 
-            map.controls[google.maps.ControlPosition.TOP_CENTER].push(inputText)
+            // map.controls[google.maps.ControlPosition.TOP_CENTER].push(inputText)
 
             var btn = document.createElement('div')
             btn.classList.add('ok');
             btn.id = 'list'
 
             btn.innerHTML =
-                '<button type="button" class="btn btn-dark valider" id="valider" >Afficher la liste  <span class="icon material-icons icone">format_list_bulleted</span></button>'
+                '<button type="button" class="btn btn-dark valider" onclick="window.history.go(-1); return false;" id="valider" >Afficher la liste  <span class="icon material-icons icone">format_list_bulleted</span></button>'
             map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(btn);
 
-            btn.onclick = function quoi() {
-                location.href = "/retraitAgence"
+            // btn.onclick = function quoi() {
+            //     location.href = "/cashout/Agency_list"
 
-            }
+            // }
         }
     });
 

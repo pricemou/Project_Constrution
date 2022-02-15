@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_models_cashouts,models.cashouts,model_models_cashouts,,1,1,1,1
 access_personnes_refusees,personnes.refusees,model_personnes_refusees,,1,1,1,1
+access_recharger_cashouts,recharger.cashouts,model_recharger_cashouts,,1,1,1,1

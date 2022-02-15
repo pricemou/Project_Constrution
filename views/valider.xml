@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        
         <template id="valider">
-        
-            <xpath expr="//link[last()]" position="after"> 
-                
-
-                <body>
-
-                </body>
-
-          </xpath> 
-
+            <t t-call="website.layout">
+                <main style="">
+                    <div id="wrap" class="o_portal_wrap">
+                        <div class="container mb64">
+                            <div class="row justify-content-between mt-4">
+                               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Unde ratione itaque molestiae, iure iste id nisi corrupti voluptatem corporis vel, veritatis eveniet. Voluptate accusantium dignissimos veniam suscipit accusamus, necessitatibus ullam!
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </t>
         </template>
     </data>
 </odoo>
+
+

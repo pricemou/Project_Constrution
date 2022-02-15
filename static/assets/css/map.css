@@ -57,12 +57,7 @@ p {
     font-weight: bold;
 }
 
-@media (max-width:400px) {
-    .modal-contens {
-        margin-left: 15px;
-        margin-top: 70px;
-    }
-}
+
 
 @media (max-height:800px) {
     .modal-contens {
@@ -71,11 +66,28 @@ p {
     }
 }
 
+@media (max-width:320px) , (max-width:386px) {
+    .modal-contens {
+        margin-left: 5px;
+        margin-top: 0px;
+        width: 289px;
+    }
+    .image {
+        width: 125px;
+        height: 131px;
+    }
+}
+
 @media (min-width:700px) {
     .btn-view {
         margin-left: -90px;
     }
 }
+
+/* @media (max-width:320px) {
+   
+} */
+
 
 @media only screen and (height:582px) and (min-width: 320px){
     .modal-contens {

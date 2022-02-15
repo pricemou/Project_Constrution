@@ -13,31 +13,21 @@
                         content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website" />
                     <meta name="author" content="Maxartkiller" />
 
-                    <title>CashOutWeb</title>
+                    <title>web_cash_out</title>
 
-                    <!-- Favicons -->
-                    <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png"
-                        sizes="180x180" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32"
-                        type="image/png" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16"
-                        type="image/png" />
-                    <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg"
-                        color="#ffffff" />
-                    <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico" />
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
 
                     <!-- Elegant font icons -->
-                    <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
 
                     <!-- daterange picker -->
-                    <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css"
+                    <link href="/web_cash_out/static/assets/vendor/daterangepicker-master/daterangepicker.css"
                         rel="stylesheet" />
 
                     <!-- Swiper Slider -->
-                    <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
+                    <link href="/web_cash_out/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
 
                     <!-- anonymous Slider -->
                     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -45,9 +35,9 @@
                         crossorigin="anonymous" />
 
                     <!-- Custom styles for this template -->
-                    <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
-                    <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style" />
-                    <link href="/CashOutWeb/static/assets/css/map.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/style.css" rel="stylesheet" id="style" />
+                    <link href="/web_cash_out/static/assets/css/map.css" rel="stylesheet" id="style" />
 
                 </head>
 
@@ -56,7 +46,7 @@
                         <div class="row no-gutters">
                             <div class="col-auto align-self-center">
                                 <figure class="avatar avatar-50">
-                                    <img src="/CashOutWeb/static/assets/img/.png" alt="" />
+                                    <img src="/web_cash_out/static/assets/img/.png" alt="" />
                                 </figure>
                             </div>
                             <div class="col pl-3 align-self-center">
@@ -186,7 +176,7 @@
                     <!-- color settings ends -->
 
                     <!-- modal code -->
-                    <form method="POST" action="/itineraire/">
+                    <form method="POST" action="/door_to_door/trajet/">
                         <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                         <input type="hidden" class="medecin_id_class" name="cpt" t-att-value="updateOdoo.id" />
                         <input type="hidden" class="medecin_id_class" name="agence_id" t-att-value="updateOdoo.nameUser.id" />
@@ -212,8 +202,9 @@
                                         <p><i class="icon material-icons flag" aria-hidden="true">flag</i>Individu</p>
 
                                         <span class="lib">
-                                            <t t-esc="updateOdoo.nameUser.partner_longitude" />
-                                            <t t-esc="updateOdoo.nameUser.partner_latitude" /></span>
+                                            <!-- <t t-esc="updateOdoo.nameUser.partner_longitude" />
+                                            <t t-esc="updateOdoo.nameUser.partner_latitude" /> -->
+                                        </span> 
                                         <span><i class="icon material-icons star " aria-hidden="true">star</i> </span>
                                         <span class="ps">4.0</span>
                                     </div>
@@ -232,19 +223,19 @@
                     </form>
 
                     <!-- Required jquery and libraries -->
-                    <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/popper.min.js"></script>
-                    <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+                    <script src="/web_cash_out/static/assets/js/jquery-3.3.1.min.js"></script>
+                    <script src="/web_cash_out/static/assets/js/popper.min.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 
                     <!-- cookie css -->
-                    <script src="/CashOutWeb/static/assets/vendor/cookie/jquery.cookie.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/cookie/jquery.cookie.js"></script>
 
                     <!-- Swiper slider  -->
-                    <script src="/CashOutWeb/static/assets/vendor/swiper/js/swiper.min.js"></script>
+                    <script src="/web_cash_out/static/assets/vendor/swiper/js/swiper.min.js"></script>
 
                     <!-- Customized jquery file  -->
-                    <script src="/CashOutWeb/static/assets/js/main.js"></script>
-                    <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js"></script>
+                    <script src="/web_cash_out/static/assets/js/main.js"></script>
+                    <script src="/web_cash_out/static/assets/js/color-scheme-demo.js"></script>
 
                     <script>
                         function denyUser() {

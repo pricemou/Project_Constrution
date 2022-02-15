@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "CashOutWeb",
+    'name': "web_cash_out",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary':
+        """
+            Short (1 phrase/line) summary of the module's purpose, used as
+            subtitle on modules listing or apps.openerp.com
+        """,
 
     'description': """
         Long description of module's purpose
@@ -37,6 +39,7 @@
         'views/rechercherAgence.xml',
         'views/rechercherAgences.xml',
         'views/Itineraire.xml',
+        'views/operateur.xml',
         'views/valider.xml',
         'views/retraitParPort.xml',
         'views/rechercheParPor.xml',
@@ -46,10 +49,6 @@
         'views/views.xml',
         'menu/transaction.xml',
         'menu/agence.xml',
-
-    ],
-    # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
+        'menu/operateur.xml',
     ],
 }

@@ -16,10 +16,21 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay, driver_l
             lat: shipping_lat,
             lng: shipping_lng
         },
-        travelMode: 'DRIVING'
+        travelMode: 'WALKING'
     }, function (response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
         } else {}
     });
+}
+
+
+function openModal(agence, distance) {
+    if(distance < 100) {
+        var agency_name = document.querySelector('#exampleModal h3');
+        var agency_image = document.querySelector('#exampleModal img');
+        agency_name.innerText = 'Vous êtes proche de '+String(agence.name);
+        agency_image.src = `/web/image?model=res.partner&amp;id=${agence.id}&amp;field=image_128`;
+        $('#exampleModal').modal('show');
+    }
 }

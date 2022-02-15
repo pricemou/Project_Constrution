@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- rechargercashouts form view -->
+    <record id="recharger_cashouts_view_form" model="ir.ui.view">
+        <field name="name">recharger.cashouts.view.form</field>
+        <field name="model">recharger.cashouts</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <sheet>
+                    <group>
+                        <field name="name" />
+                        <field name="operateur" />
+                        <field name="date" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- recharger.cashouts tree view -->
+    <record id="recharger_cashouts_view_tree" model="ir.ui.view">
+        <field name="name">recharger.cashouts.view.tree</field>
+        <field name="model">recharger.cashouts</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="operateur" />
+                <field name="date" />
+            </tree>
+        </field>
+    </record>
+
+    <!-- recharger.cashouts action window -->
+    <record id="recharger_cashouts_action" model="ir.actions.act_window">
+        <field name="name">liste des demandes de recharge</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">recharger.cashouts</field>
+        <field name="view_mode">tree,form</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+            </p><p>
+                <!-- More details about what a user can do with this object will be OK --> 
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="_recharger_cashouts_act" name="Opération" parent="_cashouts_root" action="recharger_cashouts_action" />
+</odoo>

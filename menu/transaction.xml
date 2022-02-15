@@ -22,6 +22,7 @@
                         <!-- Add your fields here -->
                         <field name="id_client" />
                         <field name="client" />
+                        <field name="nomOperation"/>
                         
                     </group>
                 </sheet>
@@ -42,15 +43,14 @@
                 <field name="date"/>
                 <field name="id_client" />
                 <field name="client" />
-
-                
+                <field name="nomOperation"/>
             </tree>
         </field>
     </record>
 
     <!-- models.cashouts action window -->
     <record id="models_cashouts_action" model="ir.actions.act_window">
-        <field name="name">models.cashouts.action</field>
+        <field name="name">liste des transactions</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">models.cashouts</field>
         <field name="view_mode">tree,form</field>
@@ -64,7 +64,7 @@
         </field>
     </record>
 
-    <menuitem id="_cashouts_root" name="_cashouts" sequence="1"/>
+    <menuitem id="_cashouts_root" name="Cashouts" sequence="1"/>
     <!-- This Menu Item must have a parent and an action -->
     <menuitem id="_cashouts_act" name="Menu" parent="_cashouts_root" action="models_cashouts_action" />
     <!-- This Menu Item will appear in the Upper bar, that's why It needs NO parent or action -->

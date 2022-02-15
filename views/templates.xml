@@ -1,90 +1,40 @@
+
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
 <odoo>
     <data>
-        <template id="simple_theme_assets" name="simple" inherit_id="website.assets_frontend"> 
-          <xpath expr="//link[last()]" position="after" > 
-            <head>
-              <meta charset="utf-8"/>
+        
+        <template id="cashOuts">
+        
+            <xpath expr="//link[last()]" position="after"> 
+             <meta charset="utf-8"/>
               <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
               <meta name="description" content="OneUIUX HTML website template by Maxartkiller. Bootstrap UI UX, Bootstrap theme, Bootstrap HTML, Bootstrap template, Bootstrap website, multipurpose website template. get bootstrap template, website"/>
               <meta name="author" content="Maxartkiller"/>
-
-              <!-- Favicons -->
-              <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png" sizes="180x180"/>
-              <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png"/>
-              <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png"/>
-              <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg" color="#ffffff"/>
-              <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon.ico"/>
+  
 
               <!-- Elegant font icons -->
-              <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
+              <link href="/web_cash_out/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet"/>
 
               <!-- Elegant font icons -->
-              <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/>
+              <!-- <link href="/web_cash_out/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet"/> -->
 
               <!-- daterange picker -->
-              <link href="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.css" rel="stylesheet"/>
+              <link href="/web_cash_out/static/assets/vendor/daterangepicker-master/daterangepicker.css" rel="stylesheet"/>
 
               <!-- Swiper Slider -->
-              <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
+              <link href="/web_cash_out/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet"/>
 
               <!-- anonymous Slider -->
               <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
               <!-- Custom styles for this template -->
-              <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
-              <link href="/CashOutWeb/static/assets/css/style.css" rel="stylesheet" id="style"/>
-              <link href="/CashOutWeb/static/assets/css/customer.css" rel="stylesheet" id="style"/>
-              <link href="/CashOutWeb/static/assets/css/index.css" rel="stylesheet" id="style"/>
-
-          </head>
-
-          </xpath> 
-        </template> 
-        
-        <record id="homepage_view_1" model="ir.ui.view">
-         <field name="name">Open Cashout</field>
-         <field name="type">qweb</field>
-         <field name="key">website.homepage1</field>
-         <field name="mode">primary</field>
-         <field name="active">True</field>
-         <field name="arch" type="xml"> 
-            <t name="Homepage" t-name="website.homepage1">
-                <t t-call="website.layout">
-                    <t t-set="pageName" t-value="'homepage'"/>
-                    <div id="wrap" class="oReservee_structure oe_empty">
-
-                    <!-- custom Header -->
-                        <body class="ui-rounded">
-
-                            <!-- Page laoder -->
-                            <!-- <div class="container-fluid pageloader">
-                                <div class="row h-100">
-                                    <div class="col-12 align-self-start text-center">
-                                    </div>
-                                    <div class="col-12 align-self-center text-center">
-                                        <div class="loader-logo">
-                                            <div class="logo">1<span>UX</span><span>UI</span>
-                                                <div class="loader-roller">
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                    <div></div>
-                                                </div>
-                                            </div>
-                                            <h4 class="logo-text"><span>Cashout</span><small>Cashout </small></h4>
-                                        </div>
-                                    </div>
-                                    <div class="col-12 align-self-end text-center">
-                                        <p class="my-5">Please wait<br/><small class="text-mute">A world of great designs is loading...</small></p>
-                                    </div>
-                                </div>
-                            </div> -->
-                            <!-- Page laoder ends -->
-
+              <link href="/web_cash_out/static/assets/css/style-blue.css" rel="stylesheet" id="style"/>
+              <link href="/web_cash_out/static/assets/css/style.css" rel="stylesheet" id="style"/>
+              <link href="/web_cash_out/static/assets/css/customer.css" rel="stylesheet" id="style"/>
+              <link href="/web_cash_out/static/assets/css/index.css" rel="stylesheet" id="style"/>
+           </xpath> 
+     
+             <body class="ui-rounded">
                             <header class="header fixed-top header-fill  o_affix_enabled">
                               <nav class="navbar">
                                   <div>
@@ -94,7 +44,6 @@
                                   </div>
                                   <div>
                                       <a class="navbar-brand" href="index.html">
-                                          <!-- <div class="logo">1<span>UX</span><span>UI</span></div> -->
                                           <h4 class="logo-text"><span>Choisissez la methode de transaction</span><small></small></h4>
                                       </a>
                                   </div>
@@ -104,7 +53,7 @@
                               </nav>
                             </header>
 
-                            <div class="indicator" style="    margin-top: -45px;">
+                            <!-- <div class="indicator" style="margin-top: -45px;">
                                 <section class="step-indicator">
                                     <div class="step step1 active">
                                         <div class="step-icon">1</div>
@@ -122,28 +71,28 @@
                                         <div class="step-icon">3</div>
                                     </div>
                                 </section>
-                            </div>
+                            </div> -->
 
                             <!-- <form  method="POST" >
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/> -->
 
                                 <!-- Begin page content -->
                             
-                                <main class="flex-shrink-0  " style="padding-top: 42px;">
+                                <main class="flex-shrink-0  " style="padding-top: 42px; margin-top: 6rem;">
                                     <!-- page content goes here -->
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                                                 <div class="container">
                                                     <div class="card shadow-sm border-0 mb-4">
                                                         <div class="card-body">
-                                                            <input class="checkbox"  type="radio" value="1" name="individu" id="individu"/>
+                                                            <input class="checkbox"  type="radio" value="1" name="flexRadioDefault" id="individu"/>
                                                             <div class="media">
                                                                 <figure class="icons icon-40 mr-2 ">
-                                                                <img src="/CashOutWeb/static/assets/img/Agence/individu.png" alt=""/>
+                                                                <img src="/web_cash_out/static/assets/img/Agence/individu.png" alt=""/>
                                                                 </figure>
                                                                 <div class="media-body">
-                                                                    <h6 class="mb-1">Individu</h6>
-                                                                    <p class="mb-0 text-mute small">Agence Mobile</p>
+                                                                    <h6 class="mb-1">Personne phisique</h6>
+                                                                    <p class="mb-0 text-mute small">(Agence Mobile, Amis)</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -154,13 +103,13 @@
                                                     <div class="card shadow-sm border-0 mb-4">
                                                         <div class="card-body">
                                                             <div class="media">
-                                                            <input class="checkbox"  type="radio" value="2" name="agence" id="agence">
+                                                            <input class="form-check-input checkbox"  type="radio" value="2" name="flexRadioDefault" id="agence">
                                                                 <figure class="icons icon-40 mr-2 ">
-                                                                    <img src="/CashOutWeb/static/assets/img/Agence/agence.png" alt=""/>
+                                                                    <img src="/web_cash_out/static/assets/img/Agence/agence.png" alt=""/>
                                                                 </figure>
                                                                 <div class="media-body">
-                                                                    <h6 class="mb-1">Agence fixe/</h6>
-                                                                    <p class="mb-0 text-mute small">Banques / Autres</p>
+                                                                    <h6 class="mb-1">Agence fixe</h6>
+                                                                    <p class="mb-0 text-mute small">(Banques, agence mobile money)</p>
                                                                 </div>
                                                                 </input>
                                                             </div>
@@ -172,14 +121,14 @@
                                                 <div class="container">
                                                     <div class="card shadow-sm border-0 mb-4">
                                                         <div class="card-body">
-                                                            <input class="checkbox"  type="radio" value="3" name="porte" id="porte"/>
+                                                            <input class="checkbox"  type="radio" value="3" name="flexRadioDefault" id="porte"/>
                                                             <div class="media">
                                                                 <figure class="icons icon-40 mr-2 ">
-                                                                    <img src="/CashOutWeb//static/assets/img/Agence/Door_to_door.png" alt=""/>
+                                                                    <img src="/web_cash_out//static/assets/img/Agence/Door_to_door.png" alt=""/>
                                                                 </figure>
                                                                 <div class="media-body">
-                                                                    <h6 class="mb-1">Door to door</h6>
-                                                                    <p class="mb-0 text-mute small">(Port à porte)</p>
+                                                                    <h6 class="mb-1">Porte à porte</h6>
+                                                                    <p class="mb-0 text-mute small">(main a main)</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -194,7 +143,7 @@
                                                                     <input type="submit" value="Annuler"  class="mb-2 btn btn-light tt-annuler" onclick="window.history.go(-1); return false;"/>
                                                                 </div>
                                                                 <div class="col-6 topPosition">
-                                                                    <input type="submit" value="Confirmer" style="color: white;" class="mb-2 btns  tt-agence" id="valider"/>
+                                                                    <input type="submit" value="Confirmer" style="color: white;" class="mb-2 btn  tt-agence" id="valider"/>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -211,12 +160,12 @@
                                 <div class="modal-dialog modal-cusom" role="document">
                                     <div class="modal-content modal-contens">
                                         <div class="modal-header modal-border head " style="margin: auto;">
-                                            <h5 class="modal-title " id="exampleModalLabel"> <span class="icon material-icons icone">my_location
+                                            <h5 class="modal-title " id="exampleModalLabel"> <span class="icon material-icons icone">location
                                             </span>
                                             </h5>
                                         </div>
                                         <div class="modal-body text-center ">
-                                            <p>Pour continuer,activer la <br/>localisation de l'appareil</p>
+                                            <p>Pour continuer, activer la <br/>localisation de l'appareil</p>
                                         </div>
                                         <div class="modal-footer modal-border buttons">
                                             <button type="button" class="btn btn-secondary annuler" id='annuler' onclick="cancel()">Annuler</button>
@@ -231,39 +180,30 @@
 
 
                             <!-- Required jquery and libraries -->
-                            <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js"></script>
-                            <script src="/CashOutWeb/static/assets/js/popper.min.js"></script>
-                            <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
+                            <script src="/web_cash_out/static/assets/js/jquery-3.3.1.min.js"></script>
+                            <script src="/web_cash_out/static/assets/js/popper.min.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js"></script>
 
                             <!-- cookie css -->
-                            <script src="/CashOutWeb/static/assets/vendor/cookie/jquery.cookie.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/cookie/jquery.cookie.js"></script>
 
                             <!-- Swiper slider  -->
-                            <script src="/CashOutWeb/static/assets/vendor/swiper/js/swiper.min.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/swiper/js/swiper.min.js"></script>
 
                             <!-- date range picker -->
-                            <script src="/CashOutWeb/static/assets/vendor/daterangepicker-master/moment.min.js"></script>
-                            <script src="/CashOutWeb/static/assets/vendor/daterangepicker-master/daterangepicker.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/daterangepicker-master/moment.min.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/daterangepicker-master/daterangepicker.js"></script>
 
                             <!-- Swiper slider  -->
-                            <script src="/CashOutWeb/static/assets/vendor/sparklines/jquery.sparkline.min.js"></script>
+                            <script src="/web_cash_out/static/assets/vendor/sparklines/jquery.sparkline.min.js"></script>
 
                             <!-- Customized jquery file  -->
-                            <script src="/CashOutWeb/static/assets/js/main.js"></script>
-                            <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js"></script>
-                            <script src="/CashOutWeb/static/assets/js/pos.js"></script>
+                            <script src="/web_cash_out/static/assets/js/main.js"></script>
+                            <script src="/web_cash_out/static/assets/js/color-scheme-demo.js"></script>
+                            <script src="/web_cash_out/static/assets/js/pos.js"></script>
                         </body>
-                    </div>
-                </t>
-            </t>
-         </field>
-        </record>
 
-        <record id="homepage_view_menu" model="website.page">
-            <field name="website_published">True</field>
-            <field name="url">/demoNome</field>
-            <field name="is_homepage">True</field>
-            <field name="view_id" ref="homepage_view_1"/>
-        </record>
+          
+        </template>
     </data>
 </odoo>

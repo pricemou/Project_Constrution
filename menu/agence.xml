@@ -12,9 +12,18 @@
                         </group>
                   </xpath>
                   <xpath expr="//notebook" position="inside">
+                        <!-- <page string="CASHOUT">
+                              <group>
+                                    <field name="authorized_to_cash_out"/>
+                                    <field name="cash_out_longitude"/>
+                                    <field name="cash_out_latitude"/>
+                              </group>
+                        </page> -->
                         <page string="Agence CASHOUT">
                               <group>
                                     <field name="cash_out_agency"/>
+                                    <field name="cash_out_longitude"/>
+                                    <field name="cash_out_latitude"/>
                               </group>
                         </page>
                         <page string="Personnes refusées par l'utilisateur pour ses transactions CASHOUT">

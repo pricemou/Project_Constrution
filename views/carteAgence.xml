@@ -10,33 +10,20 @@
                 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
                 <title>Carte agence</title>
-                <!-- Favicons -->
-                <link rel="apple-touch-icon" href="/CashOutWeb/static/assets/img/favicons/apple-touch-icon.png"
-                    sizes="180x180" />
-                <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-32x32.png" sizes="32x32"
-                    type="image/png" />
-                <link rel="icon" href="/CashOutWeb/static/assets/img/favicons/favicon-16x16.png" sizes="16x16"
-                    type="image/png" />
-                <link rel="mask-icon" href="/CashOutWeb/static/assets/img/favicons/safari-pinned-tab.svg"
-                    color="#ffffff" />
-
                 <!-- Elegant font icons -->
-                <link href="/CashOutWeb/static/assets/vendor/elegant_font/HTMLCSS/style.css" rel="stylesheet" />
-
-                <!-- Elegant font icons -->
-                <link href="/CashOutWeb/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
+                <link href="/web_cash_out/static/assets/vendor/materializeicon/material-icons.css" rel="stylesheet" />
 
                 <!-- Swiper Slider -->
-                <link href="/CashOutWeb/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
+                <link href="/web_cash_out/static/assets/vendor/swiper/css/swiper.min.css" rel="stylesheet" />
                 <link rel="stylesheet"
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
                 <!-- Custom styles for this template -->
-                <link href="/CashOutWeb/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
-                <link href="/CashOutWeb/static/assets/css/agence_maps.css " rel="stylesheet " id="style" />
-                <link href="/CashOutWeb/static/assets/css/agence.css " rel="stylesheet " id="style" />
-                <link href="/CashOutWeb/static/assets/css/styleIndicator.css" rel="stylesheet" />
+                <link href="/web_cash_out/static/assets/css/style-blue.css" rel="stylesheet" id="style" />
+                <link href="/web_cash_out/static/assets/css/agence_maps.css " rel="stylesheet " id="style" />
+                <link href="/web_cash_out/static/assets/css/agence.css " rel="stylesheet " id="style" />
+                <link href="/web_cash_out/static/assets/css/styleIndicator.css" rel="stylesheet" />
                 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-                <script src="/CashOutWeb/static/assets/js/cashout.js"></script>
+                <script src="/web_cash_out/static/assets/js/cashout.js"></script>
 
             </head>
             <header class="header fixed-top header-fill">
@@ -63,14 +50,14 @@
                         <div class="indicator-line active">
 
                         </div>
-                        <div class="step step2">
+                        <div class="step step2 active">
                             <div class="step-icon">2</div>
                         </div>
-                        <div class="indicator-line"></div>
-                        <div class="step step3">
+                        <div class="indicator-line active"></div>
+                        <div class="step step3 active">
                             <div class="step-icon">3</div>
                         </div>
-                        <div class="indicator-line">
+                        <div class="indicator-line active">
 
                         </div>
                         <div class="step step3">
@@ -84,7 +71,7 @@
                 <div id="map">
                 </div>
                 <!-- modal code -->
-                <form action="/itineraire" method="post">
+                <form action="/cashout/itineraire/" method="post">
                     <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()" />
                     <input type="hidden" name="agence_id" class="agence_id"/>
                     <input type="hidden" name="agence_name" class="agence_name"/>
@@ -130,15 +117,15 @@
 
 
                 <!-- Required jquery and libraries -->
-                <script src="/CashOutWeb/static/assets/js/jquery-3.3.1.min.js "></script>
-                <script src="/CashOutWeb/static/assets/js/popper.min.js "></script>
-                <script src="/CashOutWeb/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
+                <script src="/web_cash_out/static/assets/js/jquery-3.3.1.min.js "></script>
+                <script src="/web_cash_out/static/assets/js/popper.min.js "></script>
+                <script src="/web_cash_out/static/assets/vendor/bootstrap-4.4.1/js/bootstrap.min.js "></script>
 
                 <!-- cookie css -->
 
                 <!-- Customized jquery file  -->
-                <script src="/CashOutWeb/static/assets/js/main.js "></script>
-                <script src="/CashOutWeb/static/assets/js/color-scheme-demo.js "></script>
+                <script src="/web_cash_out/static/assets/js/main.js "></script>
+                <script src="/web_cash_out/static/assets/js/color-scheme-demo.js "></script>
                 <script>
                     document.getElementById('valider').onclick = function () {
                         location.href = "felicitation"

@@ -44,6 +44,12 @@ span {
   margin-top: 50px;
 }
 
+.validers{
+  margin: auto;
+  background: black;
+  border-radius: 1rem;
+}
+
 .valider {
   height: 60px;
   width: 250px;
