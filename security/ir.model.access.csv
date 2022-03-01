@@ -1,4 +1,44 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_construction_projects,construction.projects,model_construction_projects,,1,1,1,1
-access_construction_quotation,construction.quotation,model_construction_quotation,,1,1,1,1
-access_construction_type,construction.type,model_construction_type,,1,1,1,1
+access_sm_program_create,sm.program.create,model_construction_program,group_program_crate,0,0,1,0
+access_sm_program_read,sm.program.read,model_construction_program,group_program_read,1,0,0,0
+access_sm_program_edit,sm.program.edit,model_construction_program,group_program_edit,0,1,0,0
+access_sm_program_delete,sm.program.delete,model_construction_program,group_program_delete,0,0,0,1
+access_sm_client_create,sm.client.create,model_construction_client,group_client_crate,0,0,1,0
+access_sm_client_read,sm.client.read,model_construction_client,group_client_read,1,0,0,0
+access_sm_client_edit,sm.client.edit,model_construction_client,group_client_edit,0,1,0,0
+access_sm_client_delete,sm.client.delete,model_construction_client,group_client_delete,0,0,0,1
+access_sm_house_create,sm.house.create,model_construction_house,group_house_crate,0,0,1,0
+access_sm_house_read,sm.house.read,model_construction_house,group_house_read,1,0,0,0
+access_sm_house_edit,sm.house.edit,model_construction_house,group_house_edit,0,1,0,0
+access_sm_house_delete,sm.house.delete,model_construction_house,group_house_delete,0,0,0,1
+access_sm_material_create,sm.material.create,model_construction_material,group_material_crate,0,0,1,0
+access_sm_material_read,sm.material.read,model_construction_material,group_material_read,1,0,0,0
+access_sm_material_edit,sm.material.edit,model_construction_material,group_material_edit,0,1,0,0
+access_sm_material_delete,sm.material.delete,model_construction_material,group_material_delete,0,0,0,1
+access_sm_tech_sheet_create,sm.tech_sheet.create,model_construction_tech_sheet,group_tech_sheet_crate,0,0,1,0
+access_sm_tech_sheet_read,sm.tech_sheet.read,model_construction_tech_sheet,group_tech_sheet_read,1,0,0,0
+access_sm_tech_sheet_edit,sm.tech_sheet.edit,model_construction_tech_sheet,group_tech_sheet_edit,0,1,0,0
+access_sm_tech_sheet_delete,sm.tech_sheet.delete,model_construction_tech_sheet,group_tech_sheet_delete,0,0,0,1
+access_sm_type_create,sm.type.create,model_construction_type,group_type_crate,0,0,1,0
+access_sm_type_read,sm.type.read,model_construction_type,group_type_read,1,0,0,0
+access_sm_type_edit,sm.type.edit,model_construction_type,group_type_edit,0,1,0,0
+access_sm_type_delete,sm.type.delete,model_construction_type,group_type_delete,0,0,0,1
+access_sm_work_create,sm.work.create,model_construction_work,group_work_crate,0,0,1,0
+access_sm_work_read,sm.work.read,model_construction_work,group_work_read,1,0,0,0
+access_sm_work_edit,sm.work.edit,model_construction_work,group_work_edit,0,1,0,0
+access_sm_work_delete,sm.work.delete,model_construction_work,group_work_delete,0,0,0,1
+access_construction_qty_generator,construction.qty_generator,model_construction_qty_generator,,1,1,1,1
+access_construction_work_generator,construction.work_generator,model_construction_work_generator,,1,1,1,1
+stock.access_stock_picking_user,stock.picking user,model_stock_picking,stock.group_stock_user,0,0,0,0
+stock.access_stock_picking_manager,stock.picking manager,model_stock_picking,stock.group_stock_manager,0,0,0,0
+stock_account.access_stock_picking_invoicing_payments,stock.picking,model_stock_picking,account.group_account_invoice,0,0,0,0
+access_sm_stock_picking_create,sm.stock_picking.create,model_stock_picking,group_stock_picking_crate,0,0,1,0
+access_sm_stock_picking_read,sm.stock_picking.read,model_stock_picking,group_stock_picking_read,1,0,0,0
+access_sm_stock_picking_edit,sm.stock_picking.edit,model_stock_picking,group_stock_picking_edit,0,1,0,0
+access_sm_stock_picking_delete,sm.stock_picking.delete,model_stock_picking,group_stock_picking_delete,0,0,0,1
+stock.access_stock_inventory_user,stock.inventory user,stock.model_stock_inventory,stock.group_stock_user,0,0,0,0
+stock.access_stock_inventory_manager,stock.inventory manager,stock.model_stock_inventory,stock.group_stock_manager,0,0,0,0
+access_sm_stock_inventory_create,sm.stock_inventory.create,stock.model_stock_inventory,group_stock_inventory_crate,0,0,1,0
+access_sm_stock_inventory_read,sm.stock_inventory.read,stock.model_stock_inventory,group_stock_inventory_read,1,0,0,0
+access_sm_stock_inventory_edit,sm.stock_inventory.edit,stock.model_stock_inventory,group_stock_inventory_edit,0,1,0,0
+access_sm_stock_inventory_delete,sm.stock_inventory.delete,stock.model_stock_inventory,group_stock_inventory_delete,0,0,0,1

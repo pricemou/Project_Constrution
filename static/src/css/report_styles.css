@@ -1,0 +1,57 @@
+.flyer_page {
+    /* background-image: url(/stock_management/static/src/img/fond.png); */
+    /* background-size: contain; */
+    margin: auto;
+    /* padding: 0; */
+}
+
+.border-b-1 {
+    border-bottom: 1px solid silver;
+}
+
+.flyer_page th {
+    background-color: silver;
+}
+
+.border-green {
+    border: 1px solid #41995e;
+}
+
+.border-bottom-inset {
+    border-bottom: inset;
+}
+
+.border-white {
+    border: 1px solid white;
+}
+
+.border-radius-10 {
+    border-radius: 10px;
+}
+
+.clr-green {
+    color: #41995e !important;
+}
+
+.clr-dimgray {
+    color: dimgray;
+}
+
+.clr-00A09D {
+    color: #00A09D;
+}
+
+.cst-report-header {
+    background-color: gray;
+    color: ghostwhite;
+}
+
+.progress {
+    height: 2em;
+    border: 1px solid;
+    border-color: cadetblue;
+}
+
+.fs-14 {
+    font-size: 14px;
+}

@@ -1,12 +1,128 @@
 <odoo>
   <data>
-        <!-- Root menu -->
-        <menuitem sequence="0" id="construction_root" name="Construction"/>
+    <!-- Root menu -->
+    <menuitem sequence="0" id="construction_root" name="Gestion de stock"/>
 
-        <menuitem id="construction_projects_menu" parent="construction_root"
-            name="Projets" action="action_construction_projects" sequence="1"/>
 
-        <menuitem id="construction_operation_menu" parent="construction_root"
-            name="Operation" action="action_construction_operation" sequence=""/>
+    <record id="action_construction_program" model="ir.actions.act_window">
+      <field name="name">Programmes</field>
+      <field name="res_model">construction.program</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_projects_menu" parent="construction_root"
+      name="Programmes" action="action_construction_program" sequence="1"/>
+
+    <record id="action_construction_client" model="ir.actions.act_window">
+      <field name="name">Clients</field>
+      <field name="res_model">construction.client</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_client_menu" parent="construction_root"
+      name="Clients" action="action_construction_client" sequence="2"/>
+
+    <record id="action_construction_house" model="ir.actions.act_window">
+      <field name="name">Maison</field>
+      <field name="res_model">construction.house</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_house_menu" parent="construction_root"
+    name="Liste des maisons" action="action_construction_house" sequence="3"/>
+
+    <record id="action_construction_material" model="ir.actions.act_window">
+      <field name="name">Matériaux</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">construction.material</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+      <field name="context">{"sale_ok":False}</field>
+      <field name="view_id" ref="material_tree_view"/>
+      <field name="search_view_id" ref="product.product_search_form_view"/>
+      <field name="help" type="html">
+        <p class="o_view_nocontent_smiling_face">
+          Create a new product variant
+        </p><p>
+          You must define a product for everything you sell, whether it's a physical product,
+          a consumable or a service you offer to customers.
+          The product form contains information to simplify the sale process:
+          price, notes in the quotation, accounting data, procurement methods, etc.
+        </p>
+      </field>
+    </record>
+    <menuitem id="construction_material_menu" parent="construction_root"
+      name="Matériaux" action="action_construction_material" sequence="4"/>
+
+
+
+    <!-- paramétrage -->
+    <menuitem id="construction_params_menu" parent="construction_root"
+    name="Paramétrages" sequence="5"/>
+
+    <record id="action_construction_type" model="ir.actions.act_window">
+      <field name="name">Type de maison</field>
+      <field name="res_model">construction.type</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_type_menu" parent="construction_params_menu"
+      name="Types de maisons" action="action_construction_type" sequence=""/>
+
+    <record id="action_construction_tech_sheet" model="ir.actions.act_window">
+      <field name="name">Fiches Techniques</field>
+      <field name="res_model">construction.tech_sheet</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+      <field name="domain">[]</field>
+      <field name="help" type="html">
+          <p class="oe_view_nocontent_create">Entrez la cible
+          </p >
+      </field>
+    </record>
+    <menuitem id="construction_tech_sheet_menu" parent="construction_params_menu"
+      name="Fiches Techniques" action="action_construction_tech_sheet" sequence=""/>
+
+    <record id="action_construction_work" model="ir.actions.act_window">
+      <field name="name">Ouvrage</field>
+      <field name="res_model">construction.work</field>
+      <field name="view_mode">kanban,tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_work_menu" parent="construction_params_menu"
+      name="Ouvrages" action="action_construction_work" sequence=""/>
+
+
+    <!-- opérations -->
+    <menuitem id="construction_operations_menu" parent="construction_root"
+    name="Opérations" sequence=""/>
+
+    <menuitem id="construction_stock_in_menu" parent="construction_operations_menu"
+    name="Approvisionnement" action="stock.action_inventory_form" sequence=""/>
+
+    <record id="stock.action_picking_tree_all" model="ir.actions.act_window">
+      <field name="name">Sortie de matériaux</field>
+    </record>
+    <menuitem id="construction_stock_out_menu" parent="construction_operations_menu"
+    name="Sortie de matériaux" action="stock.action_picking_tree_all" sequence="6"/>
+
+    <!-- <record id="action_construction_qty_generator" model="ir.actions.act_window">
+      <field name="name">Paramétrage de quantité</field>
+      <field name="res_model">construction.qty_generator</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_qty_generator_menu" parent="construction_params_menu"
+      name="Les quantités" action="action_construction_qty_generator" sequence=""/>
+
+    <record id="action_construction_work_generator" model="ir.actions.act_window">
+      <field name="name">Paramétrage des ouvrages</field>
+      <field name="res_model">construction.work_generator</field>
+      <field name="view_mode">tree,form</field>
+      <field name="view_type">form</field>
+    </record>
+    <menuitem id="construction_work_generator_menu" parent="construction_params_menu"
+      name="Les ouvrages" action="action_construction_work_generator" sequence=""/> -->
+
   </data>
 </odoo>

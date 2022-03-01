@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates id="template" inherit_id="web.template">
+
+  <t t-extend="UserMenu.Actions">
+    <t t-jquery="a[data-menu='documentation']" t-operation="replace"></t>
+    <t t-jquery="a[data-menu='account']" t-operation="replace"></t>
+    <t t-jquery="a[data-menu='support']" t-operation="replace"></t>
+  </t>
+
+</templates>

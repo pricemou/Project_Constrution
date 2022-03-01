@@ -4,11 +4,26 @@
     <template id="assets_backend" name="Backend" inherit_id="web.assets_backend">
 
       <xpath expr="." position="inside">
-        <!--These links will be called when loading your Odoo -->
-        <link href="/Project_Constrution/static/css/style.css" rel="stylesheet"/>
-        <!-- <script type="text/javascript" src="/Project_Constrution-master/static/js/file.js"/> -->
+        <link href="/stock_management/static/src/css/style.css" rel="stylesheet"/>
       </xpath>
 
+    </template>
+
+    <template id="web_debranding" name="Backend2" inherit_id="web.layout">
+       <xpath expr="//link[@rel='shortcut icon']" position="replace">
+          <link rel="shortcut icon" href="/stock_management/static/src/img/favicon.ico" type="image/x-icon"/>
+          <link href="/stock_management/static/src/css/style.css" rel="stylesheet"/>
+       </xpath>
+	   <xpath expr="." position="inside">
+          <link rel="shortcut icon" href="/stock_management/static/src/img/favicon.ico" type="image/x-icon"/>
+       </xpath>
+    </template>
+
+    <template id="techsheet_report_assets"
+        inherit_id="web.report_assets_common" name="Technical Sheet Assets">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/css" href="/stock_management/static/src/css/report_styles.css"/>
+        </xpath>
     </template>
 
   </data>

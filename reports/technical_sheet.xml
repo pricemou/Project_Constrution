@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+
+    <template id="techsheet_template">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-set="full_width" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="flyer_page">
+                    <div class="txt-div">
+                        <h4 class="clr-green border-b-1 text-center font-weight-bold py-2 m-0">
+                            Utilisation de <t t-esc="o.material_id.name"/>
+                        </h4>
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col" class="bg-white border-0"></th>
+                                <t t-foreach="o.all_constr_types" t-as="construction_type">
+                                    <th scope="col"><t t-esc="construction_type.name"/></th>
+                                </t>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="o.work_generator_ids" t-as="work_generator">
+                                <tr>
+                                    <th scope="row"><t t-esc="work_generator.work_id.name"/></th>
+                                    <t t-foreach="o.all_constr_types" t-as="construction_type">
+                                        <t t-set="qty" t-value="'-'"/>
+                                        <t t-foreach="work_generator.material_qty_ids" t-as="qty_generator">
+                                            <t t-if="construction_type.id == qty_generator.construction_type_id.id">
+                                                <t t-set="qty" t-value="qty_generator.quantity"/>
+                                            </t>
+                                        </t>
+                                        <td class="text-center" contenteditable="true"><t t-esc="qty"/></td>
+                                    </t>
+                                </tr>
+                            </t>
+                        </tbody>
+                      </table>
+                </div>
+            </t>
+        </t>
+    </template>
+
+    <template id="house_report">
+        <t t-set="data_report_landscape" t-value="True"/>
+        <t t-set="full_width" t-value="True"/>
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="flyer_page">
+                    <div class="container">
+                        <div class="row clr-green text-center">
+                            <div class="col cst-report-header py-1 font-weight-bold mt-4 border-white fs-xl">Ouvrage</div>
+                            <div class="col cst-report-header py-1 font-weight-bold mt-4 border-white fs-xl">Utilisation</div>
+                            <div class="col cst-report-header py-1 font-weight-bold mt-4 border-white fs-xl">Progression</div>
+                        </div>
+                        <t t-foreach="o.type_id.work_ids" t-as="work">
+                            <div class="row d-flex align-items-center py-3 border-bottom-inset clr-dimgray font-weight-bold">
+                                <div class="col clr-00A09D"><t t-esc="work.name"/></div>
+                                <div class="col row fs-14">
+                                    <t t-set="work_init_qty" t-value="0"/>
+                                    <t t-set="work_done_qty" t-value="0"/>
+                                    <t t-foreach="o.qty_gen_ids" t-as="qty_gen">
+                                        <t t-if="qty_gen.work_generator_id.work_id.id == work.id">
+                                            <t t-set="work_init_qty" t-value="work_init_qty + qty_gen.quantity"/>
+                                            <t t-set="count_moves" t-value="0"/>
+                                            <t t-foreach="o.move_line_ids" t-as="move">
+                                                <t t-if="move.product_id.id == qty_gen.work_generator_id.techsheet_id.material_id.product_prdt_id.id">
+                                                    <t t-set="count_moves" t-value="count_moves + move.qty_done"/>
+                                                </t>
+                                            </t>
+                                            <div class="col-6"><t t-esc="qty_gen.work_generator_id.techsheet_id.material_id.name"/></div>
+                                            <div class="col-6"><t t-esc="int(count_moves)"/> / <t t-esc="qty_gen.quantity"/></div>
+                                            <t t-set="work_done_qty" t-value="work_done_qty + count_moves"/>
+                                        </t>
+                                    </t>
+                                    <t t-if="work_done_qty == 0 or work_init_qty == 0">
+                                        <t t-set="work_rank" t-value="0"/>
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="work_rank" t-value="int((work_done_qty/work_init_qty)*100)"/>
+                                    </t>
+                                </div>
+                                <div class="col">
+                                    <div class="progress">
+                                        <div class="progress-bar" role="progressbar" t-attf-style="width: #{work_rank}%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                                            <t t-esc="work_rank"/>%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>

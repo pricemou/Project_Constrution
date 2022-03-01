@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.module.category" id="module_sm_program">
+        <field name="name">Programmes</field>
+    </record>
+    <record model="res.groups" id="group_program_crate">
+        <field name="category_id" ref="module_sm_program"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_program_read">
+        <field name="category_id" ref="module_sm_program"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_program_edit">
+        <field name="category_id" ref="module_sm_program"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_program_delete">
+        <field name="category_id" ref="module_sm_program"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+
+    <record model="ir.module.category" id="module_sm_client">
+        <field name="name">Clients</field>
+    </record>
+    <record model="res.groups" id="group_client_crate">
+        <field name="category_id" ref="module_sm_client"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_client_read">
+        <field name="category_id" ref="module_sm_client"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_client_edit">
+        <field name="category_id" ref="module_sm_client"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_client_delete">
+        <field name="category_id" ref="module_sm_client"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    
+    <record model="ir.module.category" id="module_sm_house">
+        <field name="name">Maisons</field>
+    </record>
+    <record model="res.groups" id="group_house_crate">
+        <field name="category_id" ref="module_sm_house"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_house_read">
+        <field name="category_id" ref="module_sm_house"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_house_edit">
+        <field name="category_id" ref="module_sm_house"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_house_delete">
+        <field name="category_id" ref="module_sm_house"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    
+    <record model="ir.module.category" id="module_sm_material">
+        <field name="name">Matériaux</field>
+    </record>
+    <record model="res.groups" id="group_material_crate">
+        <field name="category_id" ref="module_sm_material"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_material_read">
+        <field name="category_id" ref="module_sm_material"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_material_edit">
+        <field name="category_id" ref="module_sm_material"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_material_delete">
+        <field name="category_id" ref="module_sm_material"/>
+        <field name="name">Supprimer</field>
+    </record>
+    
+
+    <record model="ir.module.category" id="module_sm_type">
+        <field name="name">Types de constructions</field>
+    </record>
+    <record model="res.groups" id="group_type_crate">
+        <field name="category_id" ref="module_sm_type"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_type_read">
+        <field name="category_id" ref="module_sm_type"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_type_edit">
+        <field name="category_id" ref="module_sm_type"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_type_delete">
+        <field name="category_id" ref="module_sm_type"/>
+        <field name="name">Supprimer</field>
+    </record>
+    
+
+    <record model="ir.module.category" id="module_sm_work">
+        <field name="name">Ouvrages à exécuter</field>
+    </record>
+    <record model="res.groups" id="group_work_crate">
+        <field name="category_id" ref="module_sm_work"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_work_read">
+        <field name="category_id" ref="module_sm_work"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_work_edit">
+        <field name="category_id" ref="module_sm_work"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_work_delete">
+        <field name="category_id" ref="module_sm_work"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    
+    <record model="ir.module.category" id="module_sm_tech_sheet">
+        <field name="name">Fiches techniques</field>
+    </record>
+    <record model="res.groups" id="group_tech_sheet_crate">
+        <field name="category_id" ref="module_sm_tech_sheet"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_tech_sheet_read">
+        <field name="category_id" ref="module_sm_tech_sheet"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_tech_sheet_edit">
+        <field name="category_id" ref="module_sm_tech_sheet"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_tech_sheet_delete">
+        <field name="category_id" ref="module_sm_tech_sheet"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    
+    <record model="ir.module.category" id="module_stock_picking">
+        <field name="name">Sortie de Matériaux</field>
+    </record>
+    <record model="res.groups" id="group_stock_picking_crate">
+        <field name="category_id" ref="module_stock_picking"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_stock_picking_read">
+        <field name="category_id" ref="module_stock_picking"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_stock_picking_edit">
+        <field name="category_id" ref="module_stock_picking"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_stock_picking_delete">
+        <field name="category_id" ref="module_stock_picking"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    
+    <record model="ir.module.category" id="module_stock_inventory">
+        <field name="name">Approvisionnement</field>
+    </record>
+    <record model="res.groups" id="group_stock_inventory_crate">
+        <field name="category_id" ref="module_stock_inventory"/>
+        <field name="name">Créer</field>
+    </record>
+    <record model="res.groups" id="group_stock_inventory_read">
+        <field name="category_id" ref="module_stock_inventory"/>
+        <field name="name">Lire</field>
+    </record>
+    <record model="res.groups" id="group_stock_inventory_edit">
+        <field name="category_id" ref="module_stock_inventory"/>
+        <field name="name">Modifier</field>
+    </record>
+    <record model="res.groups" id="group_stock_inventory_delete">
+        <field name="category_id" ref="module_stock_inventory"/>
+        <field name="name">Supprimer</field>
+    </record>
+
+    <!-- <record id="group_program_manager" model="res.groups">
+        <field name="category_id" ref="module_stock_management"/>
+        <field name="name">Administrateur</field> -->
+        <!-- <field name="implied_ids" eval="[(4, ref('group_program_user'))]"/> -->
+    <!-- </record> -->
+     <!-- <record id="google_maps_api_key" model="ir.config_parameter">
+        <field name="key">google.api_key_geocode</field>
+        <field name="value">Your API Key</field>
+    </record> -->
+
+</odoo>

@@ -1,117 +1,32 @@
 <odoo>
     <data>
-
-        <!-- model.name form view -->
-        <record id="construction_projects_view_form" model="ir.ui.view">
-            <field name="name">Listes des construction</field>
-            <field name="model">construction.projects</field>
-            <field name="arch" type="xml">
-                <form string="">
-                    <sheet>
-                        <group>
-                            <!-- Add your fields here -->
-                            <sheet>
-
-                                <div class="oe_title">
-                                    <div class="oe_edit_only">
-                                        <label for="name" />
-                                    </div>
-                                    <h1>
-                                        <field name="name" default_focus="1" placeholder="Nom" context="" />
-                                    </h1>
-                                    <group>
-                                        <field name="partner_id"/>
-                                    </group>
-                                </div>
-
-                                <group>
-                                    <group>
-                                        <field name="operation_type" />
-                                        <field name="sequence_id" />
-                                        <field name="start_date" />
-                                        <field name="construction_type" />
-                                    </group>
-                                </group>
-
-                                <notebook>
-                                    <page string="Dévis">
-                                        <field editable="bottom" name="quotation_ids" nolabel="1" mode="tree">
-                                            <tree default_order="product_id">
-                                                <field name="product_id" string="Date de la demande"/>
-                                                <field name="estimated_quantity"/>
-                                                <field name="used_quantity"/>
-                                                <field name="remaining_quantity"/>
-                                                <field name="used_quantity"/>
-                                            </tree>
-                                        </field>
-                                    </page>
-                                </notebook>
-
-                            </sheet>
-                        </group>
-                    </sheet>
-                </form>
-            </field>
-        </record>
-
-        <!-- construction.projects tree view -->
-        <record id="construction_projects_view_tree" model="ir.ui.view">
-            <field name="name">Construction</field>
-            <field name="model">construction.projects</field>
-            <field name="arch" type="xml">
-                <tree>
-                    <!-- Add your fields here -->
-                    <field name="name" />
-                    <field name="start_date" />
-                    <field name="construction_type" />
-
-                </tree>
-            </field>
-        </record>
-
-        <!-- construction.projects action window -->
-        <record id="action_construction_projects" model="ir.actions.act_window">
-            <field name="name">Projets</field>
-            <field name="res_model">construction.projects</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="view_type">form</field>
-            <field name="help" type="html">
-                <p class="oe_view_nocontent_create">
-                    <!-- Add Text Here -->
-                </p>
-                <p>
-                    <!-- More details about what a user can do with this object will be OK -->
-                </p>
-            </field>
-        </record>
-
-        <record id="action_construction_operation" model="ir.actions.act_window">
-            <field name="name">Transactions</field>
-            <field name="res_model">stock.picking</field>
-            <field name="view_mode">kanban,tree,form</field>
-            <field name="view_type">form</field>
-        </record>
-
-        <!-- construction.projects kanban view -->
-        <record id='construction_projects_view_kanban' model='ir.ui.view'>
-            <field name="name">construction.projects.kanban</field>
-            <field name="model">construction.projects</field>
+        <!-- program -->
+        <record id='construction_program_view_kanban' model='ir.ui.view'>
+            <field name="name">construction.program.kanban</field>
+            <field name="model">construction.program</field>
             <field name="arch" type="xml">
                 <kanban string="Kanban ">
                     <field name="id" />
-                    <!-- <field name="image" /> -->
                     <field name="name" />
                     <templates>
                         <t t-name="kanban-box">
-                            <div class="oe_kanban_global_click ">
+                            <div class="oe_kanban_global_click cst-border-6 border-papayawhip d-flex align-items-center shadow">
+                                <div class="d-flex justify-content-center align-items-center min-w-20">
+                                    <i class="fa fa-building fs-xl clr-green" role="img"/>
+                                </div>
                                 <div class="oe_kanban_details">
-                                    <strong class="o_kanban_record_title text_value_color">
+                                    <strong class="o_kanban_record_title clr-green fw-800">
                                         <field name="name"/>
                                     </strong>
                                     <ul>
                                         <li>
-                                            <t t-if="record.start_date">
-                                                <field name="start_date"/>
+                                            <t t-if="record.commune.raw_value">
+                                                <field name="commune"/>
+                                            </t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.district.raw_value">
+                                                <field name="district"/>
                                             </t>
                                         </li>
                                     </ul>
@@ -123,20 +38,670 @@
             </field>
         </record>
 
+        <record id="program_tree_custom" model="ir.ui.view">
+			<field name="name">construction.program.tree</field>
+			<field name="model">construction.program</field>
+			<field name="arch" type="xml">
+                <tree string="Programmes">
+                    <field name="name"/>
+                    <field name="city"/>
+                    <field name="commune"/>
+                    <field name="district"/>
+                </tree>
+            </field>
+		</record>
+
+        <record id="program_view_form" model="ir.ui.view">
+            <field name="name">construction.program.form</field>
+            <field name="model">construction.program</field>
+            <field name="arch" type="xml">
+                <form string="Programme">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1><field name="name" placeholder="Libellé" required="True"/></h1>
+                        </div>
+                        <group name="group_standard_price" position="after">
+                            <group>
+                                <field name="city"/>
+                                <field name="commune"/>
+                                <field name="district"/>
+                            </group>
+                            <group>
+                                <field name="description"/>
+                                <!-- <field name="client_ids" widget="many2many_tags"/> -->
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Liste des maisons">
+                                <field name="house_ids" nolabel="1">
+                                    <tree>
+                                        <field name="client_id"/>
+                                        <field name="type_id"/>
+                                        <field name="lot"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- client -->
+        <record id="client_kanban_view" model="ir.ui.view">
+            <field name="name">construction.client.view.kanban</field>
+            <field name="model">construction.client</field>
+            <field name="mode">primary</field>
+            <field eval="7" name="priority"/>
+            <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//ul" position="inside">
+                    <li t-if="record.firstname.raw_value" class="o_text_overflow"><field name="firstname"/></li>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_image_fill_left')]" position="replace">
+                    <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                </xpath>
+                <xpath expr="//div[hasclass('o_kanban_image')]" position="replace">
+                </xpath>
+                <xpath expr="//div[hasclass('oe_kanban_details')]" position="attributes">
+                    <attribute name="class">oe_kanban_details ml8</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_kanban_global_click')]" position="attributes">
+                    <attribute name="class">oe_kanban_global_click o_kanban_record_has_image_fill o_res_partner_kanban cst-border-6 border-darkseagreen shadow</attribute>
+                </xpath>
+                <xpath expr="//strong" position="attributes">
+                    <attribute name="class">o_kanban_record_title oe_partner_heading clr-green fw-800</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="client_tree_view" model="ir.ui.view">
+            <field name="name">construction.client.view.tree</field>
+            <field name="model">construction.client</field>
+            <field name="mode">primary</field>
+            <field eval="7" name="priority"/>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <field name="function" position="replace">
+                    <field name="function" string="Profession"/>
+                </field>
+                <field name="phone" position="replace">
+                    <field name="mobile"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="client_form_view" model="ir.ui.view">
+            <field name="name">construction.client.form</field>
+            <field name="model">construction.client</field>
+            <field name="arch" type="xml">
+                <form string="Fiche technique">
+                    <sheet>
+                        <field name="image" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;image_medium&quot;, &quot;size&quot;: [90, 90]}"/>
+                        <div class="oe_title">
+                            <field name="is_company" invisible="1"/>
+                            <field name="commercial_partner_id" invisible="1"/>
+                            <field name="company_type" invisible="1" widget="radio" class="oe_edit_only" options="{'horizontal': true}"/>
+                            <h1 class="o_row">
+                                <field name="name" default_focus="1" placeholder="Nom" attrs="{'required' : [('type', '=', 'contact')]}"/>
+                                <field name="firstname" placeholder="Prenom" attrs="{'invisible' : [('company_type', '=', 'company')], 'required': [('company_type', '=', 'company')]}"/>
+                            </h1>
+                            <div class="o_row">
+                                <field name="title" class="oe_edit_only" placeholder="Titre: ex Mr, Mme,..." options="{&quot;no_open&quot;: True}" attrs="{'invisible': [('company_type', '=', 'company')], 'required': [('company_type', '!=', 'company')]}"/>
+                                <field name="parent_id" attrs="{'invisible': 1}"/>
+                                <field name="company_name" attrs="{'invisible': ['|', '|', ('company_name', '=', False), ('company_name', '=', ''), ('is_company', '=', True)]}"/>
+                                <button name="create_company" type="object" class="oe_edit_only btn-link" attrs="{'invisible': ['|', '|', ('is_company','=', True), ('company_name', '=', ''), ('company_name', '=', False)]}">
+                                        <span class="fa fa-plus-square"/>
+                                        Create company
+                                </button>
+                            </div>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="type" attrs="{'invisible': [('parent_id','=', False)]}" groups="base.group_no_one"/>
+                                <field name="id_card_num" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                                <field name="birth_date" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                                <field name="birth_place" widget="phone" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                                <field name="function" string="Profession" attrs="{'invisible': [('company_type', '=', 'company')]}"/>
+                                <field name="bank_id"/>
+                                <field name="bank_num"/>
+                            </group>
+                            <group>
+                                <field name="email" string="Email" widget="email" context="{'gravatar_image': True}"/>
+                                <field name="mobile" widget="phone"/>
+                                <field name="phone" widget="phone"/>
+                                <label for="street" string="Addresse"/>
+                                <div class="o_address_format">
+                                    <div attrs="{'invisible': ['|', ('parent_id', '=', False), ('type', '!=', 'contact')]}" class="oe_edit_only"><b>Company Address:</b></div>
+                                    <field name="street" placeholder="Indications" class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                    <field name="street2" placeholder="Commune" class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                    <field name="city" placeholder="Ville" class="o_address_city" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                                </div>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- house -->
+        <record id='construction_house_view_kanban' model='ir.ui.view'>
+            <field name="name">construction.house.kanban</field>
+            <field name="model">construction.house</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban ">
+                    <field name="id" />
+                    <field name="type_id" />
+                    <field name="client_id" />
+                    <field name="lot" />
+                    <field name="program_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click cst-border-6 border-papayawhip d-flex align-items-center shadow">
+                                <div class="d-flex justify-content-center align-items-center min-w-20">
+                                    <i class="fa fa-home fs-xl clr-green" role="img"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title clr-green fw-800">
+                                        <field name="type_id"/>
+                                    </strong>
+                                    <ul>
+                                        <li>
+                                            <t t-if="record.client_id.raw_value">
+                                                <field name="client_id"/>
+                                            </t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.program_id.raw_value">
+                                                <field name="program_id"/>
+                                            </t>
+                                        </li>
+                                        <li>
+                                            <t t-if="record.lot.raw_value">
+                                                <field name="lot"/>
+                                            </t>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="house_tree_custom" model="ir.ui.view">
+			<field name="name">construction.house.tree</field>
+			<field name="model">construction.house</field>
+			<field name="arch" type="xml">
+                <tree string="Les Maisons">
+                    <field name="lot"/>
+                    <field name="type_id"/>
+                    <field name="client_id"/>
+                    <field name="program_id"/>
+                </tree>
+            </field>
+		</record>
+
+        <record id="house_view_form" model="ir.ui.view">
+            <field name="name">construction.house.form</field>
+            <field name="model">construction.house</field>
+            <field name="arch" type="xml">
+                <form string="Maison">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                name="open_stock_move"
+                                icon="fa-random"
+                                type="object"
+                                string="Transferts"
+                            >
+                            </button>
+                            <button class="oe_stat_button"
+                                name="print_stock_report"
+                                icon="fa-columns"
+                                type="object"
+                                string="Progression"
+                            >
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="client_id"/>
+                                <field name="type_id"/>
+                                <field name="area"/>
+                                <field name="price"/>
+                            </group>
+                            <group>
+                                <field name="lot"/>
+                                <field name="ilot"/>
+                                <field name="program_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Sorties de matériaux">
+                                <field name="move_line_ids" nolabel="1">
+                                    <tree>
+                                        <field name="work_id"/>
+                                        <field name="date"/>
+                                        <field name="state"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Les quantités">
+                                <field name="qty_gen_ids" nolabel="1">
+                                    <tree>
+                                        <field name="construction_type_id"/>
+                                        <field name="work_generator_id"/>
+                                        <field name="quantity"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- material -->
+        <record id="material_kanban_view" model="ir.ui.view">
+            <field name="name">construction.material.view.kanban</field>
+            <field name="model">construction.material</field>
+            <field name="mode">primary</field>
+            <field eval="7" name="priority"/>
+            <field name="inherit_id" ref="product.product_template_kanban_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//li" position="replace">
+                </xpath>
+                <xpath expr="//strong[hasclass('o_kanban_record_title')]" position="attributes">
+                    <attribute name="class">clr-green fw-800</attribute>
+                </xpath>
+                <xpath expr="//div[hasclass('oe_kanban_global_click')]" position="attributes">
+                    <attribute name="class">oe_kanban_global_click cst-border-6 border-darkseagreen shadow</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="material_tree_view" model="ir.ui.view">
+            <field name="name">construction.material.view.tree</field>
+            <field name="model">construction.material</field>
+            <field name="mode">primary</field>
+            <field eval="117" name="priority"/>
+            <field name="inherit_id" ref="product.product_product_tree_view"/>
+            <field name="arch" type="xml">
+                <field name="default_code" position="replace">
+                </field>
+                <field name="standard_price" position="replace">
+                </field>
+                <field name="lst_price" position="replace">
+                </field>
+                <field name="barcode" position="replace">
+                </field>
+            </field>
+        </record>
+
+        <record id="material_form_view" model="ir.ui.view">
+            <field name="name">construction.material.view.form</field>
+            <field name="model">construction.material</field>
+            <field name="mode">primary</field>
+            <field eval="7" name="priority"/>
+            <field name="inherit_id" ref="product.product_normal_form_view"/>
+            <field name="arch" type="xml">
+                <!-- cacher des champs -->
+                <xpath expr="//button[@name='action_update_quantity_on_hand']" position="replace">
+                </xpath>
+                <xpath expr="//button[@name='%(stock.action_product_replenish)d']" position="replace">
+                </xpath>
+                <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_view_stock_move_lines']" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='%(stock.product_open_orderpoint)d']" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='name']" position="replace">
+                </xpath>
+                <group name="group_general" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </group>
+                <field name="taxes_id" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <field name="lst_price" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <field name="uom_po_id" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <field name="sale_ok" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <label for="sale_ok" position="replace">
+                </label>
+                <field name="purchase_ok" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <label for="purchase_ok" position="replace">
+                </label>
+
+                <!-- modification de l'affichage -->
+                <label for="standard_price" position="replace">
+                </label>
+                <field name="standard_price" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </field>
+                <xpath expr="//div[@name='options']" position="inside">
+                    <label for="categ_id" string="Catégorie"/>
+                    <field name="categ_id"/>
+                </xpath>
+
+                <!-- cacher des notebooks -->
+                <xpath expr="//page[@name='general_information']/group[last()]" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+                <xpath expr="//page[@name='inventory']" position="attributes">
+                    <attribute name="attrs">{'invisible': 1}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- technical sheet -->
+        <record id='construction_tech_sheet_view_kanban' model='ir.ui.view'>
+            <field name="name">construction.tech_sheet.kanban</field>
+            <field name="model">construction.tech_sheet</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban ">
+                    <field name="id" />
+                    <field name="material_id" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click cst-border-6 border-darkseagreen d-flex align-items-center shadow">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title clr-green fw-800">
+                                        <field name="material_id"/>
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="technical_sheet_view_form" model="ir.ui.view">
+            <field name="name">construction.technical_sheet.form</field>
+            <field name="model">construction.tech_sheet</field>
+            <field name="arch" type="xml">
+                <form string="Fiche technique">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                name="print_technical_sheet"
+                                icon="fa-table"
+                                type="object"
+                                string="Visualiser la fiche"
+                            >
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="material_id" placeholder="Choisissez un matériau" required="True"/></h1>
+                            <!-- <field name="all_constr_types" widget="many2many_tags"/> -->
+                        </div>
+                        <notebook>
+                            <page string="Ouvrages">
+                                <field name="work_generator_ids" nolabel="1">
+                                    <tree>
+                                        <field name="work_id"/>
+                                        <field name="material_qty_ids" widget="many2many_tags"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="technical_work_generator_form" model="ir.ui.view">
+            <field name="name">construction.work_generator.form</field>
+            <field name="model">construction.work_generator</field>
+            <field name="arch" type="xml">
+                <form string="Generateur d'ouvrage">
+                    <sheet>
+                        <h1><field name="work_id" placeholder="Sélectionnez un ouvrage" required="True"/></h1>
+                        <notebook>
+                            <page string="Les quantités par type de maisons">
+                                <field name="material_qty_ids" nolabel="1" mode="tree">
+                                    <tree editable="bottom">
+                                        <field name="construction_type_id"/>
+                                        <field name="quantity"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!-- ouvrages -->
+        <record id='construction_work_view_kanban' model='ir.ui.view'>
+            <field name="name">construction.work.kanban</field>
+            <field name="model">construction.work</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban ">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click cst-border-6 border-darkseagreen d-flex align-items-center shadow">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title clr-green fw-800">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- types de maisons -->
+        <record id='construction_type_view_kanban' model='ir.ui.view'>
+            <field name="name">construction.type.kanban</field>
+            <field name="model">construction.type</field>
+            <field name="arch" type="xml">
+                <kanban string="Kanban ">
+                    <field name="id" />
+                    <field name="name" />
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_click cst-border-6 border-darkseagreen d-flex align-items-center shadow">
+                                <div class="oe_kanban_details">
+                                    <strong class="o_kanban_record_title clr-green fw-800">
+                                        <field name="name"/>
+                                    </strong>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <!-- approvisionnement -->
+        <record id="view_inventory_tree_inherit" model="ir.ui.view">
+            <field name="name">view_inventory_tree.inherit</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_tree"/>
+            <field name="arch" type="xml">
+                <field name="name" position="attributes">
+                    <attribute name="string">Référence de l'approvisionnement</attribute>
+                </field>
+                <field name="date" position="attributes">
+                    <attribute name="string">Date</attribute>
+                </field>
+            </field>
+        </record>
+
+        <record id="stock_in_form_view" model="ir.ui.view">
+            <field name="name">construction.stock.inventory.form</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock.view_inventory_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//label[@for='name']" position="attributes">
+                    <attribute name="string">Référence de l'approvisionnement</attribute>
+                </xpath>
+                <field name="name" position="attributes">
+                    <attribute name="placeholder">par ex. Approvisionnement mensuel</attribute>
+                </field>
+                <field name="product_id" position="attributes">
+                    <attribute name="string">Matériau</attribute>
+                </field>
+                <field name="filter" position="attributes">
+                    <attribute name="string">Contexte</attribute>
+                </field>
+                <field name="date" position="attributes">
+                    <attribute name="string">Date</attribute>
+                </field>
+                <xpath expr="//h1" position="after">
+                    <field name="create_uid"/>
+                </xpath>
+                <xpath expr="//button[@name='action_validate']" position="attributes">
+                    <attribute name="string">Valider</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_start']" position="attributes">
+                    <attribute name="string">Démarrer</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_cancel_draft'][last()]" position="attributes">
+                    <attribute name="string">Annuler</attribute>
+                </xpath>
+                <xpath expr="//tree/field[@name='product_id']" position="after">
+                    <field name="supplier"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- approvisionnement -->
+        <record id="view_inventory_form_inherit" model="ir.ui.view">
+            <field name="name">view_inventory_form_inherit.inherit</field>
+            <field name="model">stock.inventory</field>
+            <field name="inherit_id" ref="stock_account.view_inventory_form_inherit"/>
+            <field name="arch" type="xml">
+                <field name="accounting_date" position="replace">
+                </field>
+            </field>
+        </record>
+
+
+        <!-- sortie de materiau -->
+        <record id="view_vpicktree_inherit" model="ir.ui.view">
+            <field name="name">vpicktree.inherit</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="attributes">
+                    <attribute name="string">Superviseur</attribute>
+                </field>
+                <field name="name" position="replace">
+                    <field name="program_id"/>
+                    <field name="client_id"/>
+                    <field name="house_id"/>
+                    <field name="work_id"/>
+                </field>
+                <field name="origin" position="replace">
+                </field>
+                <field name="backorder_id" position="replace">
+                </field>
+            </field>
+        </record>
+
         <record id="view_picking_form_inherit" model="ir.ui.view">
             <field name="name">view_picking_form.inherit</field>
             <field name="model">stock.picking</field>
             <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <field name="origin" position="after">
-                    <field name="construction_project_id" />
+                <field name="partner_id" position="replace">
+                    <field name="client_id"/>
+                    <field name="program_id"/>
+                    <field name="house_id"/>
+                </field>
+                <field name="picking_type_id" position="replace">
+                    <field name="work_id"/>
+                </field>
+                <field name="origin" position="replace">
+                </field>
+                <field name="scheduled_date" position="before">
+                    <field name="partner_id" string="Superviseur"/>
+                    <field name="picking_type_id" string="Type d'opération"/>
+                    <field name="create_uid" string="Effectué par"/>
                 </field>
             </field>
         </record>
-        <!-- <menuitem sequence="0" id="construction_root" name="Construction"/>
 
-        <menuitem id="construction_projectss_menu" parent="construction_root" name="Projets" action="action_construction_projectss" sequence="1"/> -->
+        <!-- mouvement de stock -->
+        <record id="stock_move_form_inherit" model="ir.ui.view">
+            <field name="name">view_move_form.inherit</field>
+            <field name="model">stock.move</field>
+            <field name="inherit_id" ref="stock.view_move_form"/>
+            <field name="arch" type="xml">
+                <field name="location_dest_id" position="after">
+                    <field name="house_id"/>
+                </field>
+                <field name="date" position="after">
+                    <field name="work_id"/>
+                </field>
+            </field>
+        </record>
 
+        <!-- mouvements d'articles -->
+        <record id="move_line_form_inherit" model="ir.ui.view">
+            <field name="name">view_move_line_form.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.view_move_line_form"/>
+            <field name="arch" type="xml">
+                <field name="product_id" position="after">
+                    <field name="house_id"/>
+                    <field name="work_id"/>
+                </field>
+            </field>
+        </record>
+
+        <!-- rapport de stock -->
+        <record id="move_line_tree_custom" model="ir.ui.view">
+			<field name="name">view_move_line_tree.inherit</field>
+			<field name="model">stock.move.line</field>
+			<field name="arch" type="xml">
+                <tree string="Rapport de stock">
+                    <field name="work_id"/>
+                    <field name="product_id"/>
+                    <field name="qty_done" string="Quantité traitée"/>
+                    <!-- <field name="qty_remaining"/> -->
+                    <field name="product_uom_id" options="{'no_open': True, 'no_create': True}" string="Unité de mésure" groups="uom.group_uom"/>
+                    <field name="date"/>
+                </tree>
+            </field>
+		</record>
+
+        <record id="stock_move_line_view_search_inherit" model="ir.ui.view">
+            <field name="name">stock_move_line_view_search.inherit</field>
+            <field name="model">stock.move.line</field>
+            <field name="inherit_id" ref="stock.stock_move_line_view_search"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="inside">
+                    <field name="work_id"/>
+                    <filter string="Ouvrages" domain="[]"
+                        context="{'group_by':'work_id'}"
+                        name="workgroup"/>
+                </xpath>
+            </field>
+        </record>
 
     </data>
 

@@ -1,0 +1,273 @@
+:root {
+    --orange: #f90505;
+    --orangeClair: #f90505;
+    --verte: #ae0001;
+    --verteFond: #f90505;
+    --blanc: white;
+    --grid: #cccccc;
+    --verteClaire: #f90505;
+    --verteTransparent: #41995e21;
+}
+
+
+/* #1890bd */
+
+.o_onboarding.o_onboarding_blue .o_onboarding_wrap {
+    background-color: rgb(174 0 1 / 47%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(96, 171, 195, 0.5)), to(#4187AE));
+    background-image: -webkit-linear-gradient(top, rgba(96, 171, 195, 0.5), #4187AE);
+    background-image: -moz-linear-gradient(top, rgba(96, 171, 195, 0.5), #4187AE);
+    background-image: -ms-linear-gradient(top, rgba(96, 171, 195, 0.5), #4187AE);
+    background-image: -o-linear-gradient(top, rgba(96, 171, 195, 0.5), #4187AE);
+    background-image: linear-gradient(to bottom, rgb(174 0 1 / 54%), #ae000161);
+    box-shadow: inset 0 -7px 20px -5px rgb(0 0 0 / 30%);
+}
+/*------------ a ----------------- */
+.btn-primary{
+    color: #FFFFFF;
+    background-color: #be0911;
+    border-color: #aa0000;
+}
+
+a {
+    color: var(--verteClaire);
+}
+
+a:hover {
+    color: var(--verte);
+}
+
+.o_main_navbar>ul>li.o_extra_menu_items.show>ul>li>a.dropdown-toggle {
+    background-color: var(--verte);
+    pointer-events: none;
+}
+
+
+/*------------ btn-link ----------------- */
+
+.btn-link {
+    color: var(--verteClaire);
+}
+
+.btn-link:hover {
+    color: var(--verte);
+}
+
+
+/*------------ o_main_navbar ----------------- */
+
+.o_loading {
+    background-color: var(--orange);
+}
+
+
+/*------------ o_main_navbar ----------------- */
+
+.o_main_navbar {
+    background-color: var(--verte);
+    border-bottom: 1px solid var(--verte);
+}
+
+.o_main_navbar .show .dropdown-toggle {
+    background-color: var(--verteFond);
+}
+
+.o_main_navbar>ul>li>a:hover {
+    background-color: var(--verteFond);
+    border-bottom: 1px solid var(--verteFond);
+}
+
+
+/*------------ o_menu_brand ----------------- */
+
+.o_main_navbar>.o_menu_brand:hover {
+    background-color: var(--verteFond);
+    border-bottom: 1px solid var(--verteFond);
+}
+
+
+/*------------ o_menu_brand ----------------- */
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    background-color: var(--verte);
+    border-bottom: 1px solid var(--orange);
+    border: var(--grid);
+}
+
+.btn-primary {
+    background-color: var(--verte);
+    border-color: var(--verte);
+    border-bottom: 1px solid var(--verte);
+}
+
+.btn-primary:hover {
+    background-color: var(--orange);
+    color: var(--blanc);
+    border-color: var(--orange);
+    border-bottom: 3px solid var(--orange);
+}
+
+
+/*------------ o_kanban_view ----------------- */
+
+.o_kanban_view.o_theme_kanban .o_kanban_record.o_theme_installed .o_theme_preview_top {
+    border: 3px solid var(--verteClaire);
+}
+
+.o_kanban_view.o_theme_kanban .o_kanban_record.o_theme_installed .o_theme_preview_top .fa {
+    color: var(--verte);
+}
+
+
+/*------------ o_searchview ----------------- */
+
+.o_searchview .o_searchview_facet .o_searchview_facet_label {
+    background-color: var(--verte);
+}
+
+
+/*------------ o_theme_preview_top ----------------- */
+
+.o_dashboards .o_website_dashboard div.o_box h2,
+.o_dashboards .o_website_dashboard div.o_box h4 {
+    color: var(--verte);
+}
+
+
+/*------------ o_required_modifier ----------------- */
+
+.o_required_modifier.o_input,
+.o_required_modifier .o_input {
+    background-color: var(--verteTransparent) !important;
+}
+
+
+/*------------ oe_main_menu_navbar ----------------- */
+
+#oe_main_menu_navbar .dropdown-item.active,
+#oe_main_menu_navbar .dropdown-item:active {
+    color: white;
+    background-color: var(--orangeClair);
+}
+
+
+/*------------ edit-page-menu ----------------- */
+
+#edit-page-menu a {
+    background-color: var(--orange);
+}
+
+#oe_main_menu_navbar .o_menu_systray>li>a[data-action="edit"],
+#oe_main_menu_navbar .o_menu_systray>li>a[data-action="translate"],
+#oe_main_menu_navbar .o_menu_systray>li>a.css_edit_dynamic {
+    background-color: var(--verte);
+    border-color: var(--verte);
+}
+
+
+/*------------ o_tooltip ------------------ */
+
+.o_tooltip {
+    border: 2px solid var(--verte);
+    /* background-color: var(--verte); */
+}
+
+.o_tooltip.active.bottom::before {
+    border-bottom-color: var(--verteClaire);
+}
+
+.o_tooltip::after {
+    background: radial-gradient(var(--verte), var(--verte));
+    border-color: var(--verte);
+}
+
+.o_tooltip.bottom::before {
+    border-bottom-color: var(--verte);
+}
+
+.o_main_navbar>ul>li.o_extra_menu_items.show>ul>li>a {
+    background-color: var(--verte);
+}
+
+
+/*------------ o_footer_copyright ------------------ */
+
+.o_footer_copyright {
+    display: none;
+}
+
+
+/*------------ o_footer_copyright ------------------ */
+
+.text_value_color:hover {
+    font-size: 19px;
+    font-weight: 500;
+    color: #ef7c29;
+}
+
+
+/*------------ menu latterale ------------------ */
+
+.dropdown-item:active {
+    background-color: #eeeeee;
+    color: black;
+}
+
+.dropdown-item:hover {
+    background-color: #ef7c29;
+    color: white;
+}
+
+.o_thread_window .o_thread_window_header {
+    background-color: var(--verte);
+}
+
+.o_button_icon {
+    color: darkorange !important;
+}
+
+.o_notebook ul.nav.nav-tabs a {
+    font-weight: 600;
+}
+
+.fs-xl {
+    font-size: x-large;
+}
+
+.cst-h100 {
+    height: 100%
+}
+
+.clr-orange {
+    color: darkorange;
+}
+
+.clr-green {
+    color: #41995e !important;
+}
+
+.cst-border-6 {
+    border-radius: 6px;
+}
+
+.min-w-20 {
+    min-width: 20%;
+}
+
+.fw-800 {
+    font-weight: 800 !important;
+}
+
+.border-papayawhip {
+    border-color: papayawhip !important;
+}
+
+.border-darkseagreen {
+    border-color: darkseagreen !important;
+}
+
+.o_menu_systray .o_mail_systray_item {
+    display: none
+}
